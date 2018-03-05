@@ -8,7 +8,7 @@ LinkedList  createLinkedList(LinkedList list, int (* cmp)(void*, void*))
     Node* data_list = (Node*) malloc(sizeof(Node));
     if(data_list == NULL)
     {
-        printf("Out of memory!\n");
+        printf("Out of memory\n");
         return NULL;
     }
 
