@@ -54,7 +54,7 @@ int main(void)
     printf("list -> data_list = %p\n", stuList -> data_list);
     printf("list -> rear = %p\n", stuList -> rear);
 
-    puts("Read stuList :\n");
+    puts("Read stuList :");
     Position p = stuList -> data_list;
     printf("%p\n", p);
     while(p)
