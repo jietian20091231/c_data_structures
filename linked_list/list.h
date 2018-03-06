@@ -46,8 +46,4 @@ void* get(Position position);
 
 void* remove_fifo(LinkedList list);
 
-
-
-
-
 #endif
