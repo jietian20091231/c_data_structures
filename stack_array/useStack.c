@@ -43,6 +43,8 @@ int main(void)
         free(((Student*)pop) -> name);
         free(pop);
     }
+
+    releaseStack(stack);
     
     return 0;
 }
