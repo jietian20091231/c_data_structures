@@ -28,13 +28,33 @@ LinkedList  createLinkedList(LinkedList list, int (* cmp)(void*, void*))
 
 void releaseLinkedList(LinkedList list)
 {
+    if(!isEmpty(list))
+    {
+        remove_fifo(list);
+    }
+
+    free(list -> data_list);
+    list -> data_list = NULL;
+    list -> rear = NULL;
+    list -> size = 0;
+
+    free(list);
+}
+
+void clearLinkedList(LinkedList list)
+{
+    if(!isEmpty(list))
+    {
+        void* p ;
+        while((p = remove_fifo(list)) != NULL) free(p);
+        list -> rear = NULL;
+    }
     
 }
 
-
-int isEmptry(LinkedList list)
+int isEmpty(LinkedList list)
 {
-    return list -> data_list -> next == NULL;
+    return list -> data_list == NULL || list -> data_list -> next == NULL;
 }
 
 int append(void* value, LinkedList list)
@@ -257,6 +277,10 @@ void* remove_fifo(LinkedList list)
     Position temp = list -> data_list;
     list -> data_list = temp -> next;
     void* result = temp -> element;
+    if(NULL == temp -> next)
+    {
+        list -> rear = NULL;
+    }
     free(temp);
 
     list -> size--;

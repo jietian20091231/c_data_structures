@@ -126,6 +126,11 @@ int main(void)
         stu = NULL;
         
     }
+
+    clearLinkedList(stuList);
+    printf("stuList -> data_list = %p, stuList -> rear = %p, stuList -> size = %d.\n", stuList -> data_list, stuList -> rear, stuList -> size);    
+
+    releaseLinkedList(stuList);
     
 
     return 0;

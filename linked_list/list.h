@@ -22,7 +22,9 @@ LinkedList createLinkedList(LinkedList list, int (* cmp) (void*, void*));
 
 void releaseLinkedList(LinkedList list);
 
-int isEmptry(LinkedList list);
+void clearLinkedList(LinkedList list);
+
+int isEmpty(LinkedList list);
 
 int append(void* value, LinkedList list);
 
