@@ -5,6 +5,7 @@
 #include <string.h>
 
 int cmp(void* value_1, void* value_2);
+void clearLinkedList(LinkedList list);
 
 struct _student {
     char* name;
@@ -82,6 +83,8 @@ int main(void)
         printf("Student'is %d not in the list.\n", not_found -> id);
     }
 
+    free(not_found);
+
     p = findPrevious(stu_array[2],stuList);
     if(NULL != p)
     {
@@ -144,3 +147,21 @@ int cmp(void* value_1, void* value_2)
     return stu_1 -> id - stu_2 -> id;
 }
 
+void clearLinkedList(LinkedList list)
+{
+    if(!isEmpty(list))
+    {
+        void* p ;
+        while((p = remove_fifo(list)) != NULL)
+        {
+            Student* stu = (Student*) p;
+            free(stu -> name);
+            free(stu);
+        }
+
+        list -> rear = NULL;
+        list -> data_list = NULL;
+        list -> size = 0;
+    }
+    
+}

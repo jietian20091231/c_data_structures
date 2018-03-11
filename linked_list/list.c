@@ -5,19 +5,9 @@
 
 LinkedList  createLinkedList(LinkedList list, int (* cmp)(void*, void*))
 {
-    Node* data_list = (Node*) malloc(sizeof(Node));
-    if(data_list == NULL)
-    {
-        printf("Out of memory!\n");
-        return NULL;
-    }
-
-    data_list -> element = NULL;
-    data_list -> next = NULL;
-
     list = (LinkedList)malloc(sizeof(struct _linkedList));
 
-    list -> data_list = data_list;
+    list -> data_list = NULL;
     list ->rear = NULL;
     list -> _cmp = cmp;
     list -> size = 0;
@@ -30,7 +20,8 @@ void releaseLinkedList(LinkedList list)
 {
     if(!isEmpty(list))
     {
-        remove_fifo(list);
+        printf("waring: list is not Empty! release linked list is failed!\n");
+        return;
     }
 
     free(list -> data_list);
@@ -41,16 +32,6 @@ void releaseLinkedList(LinkedList list)
     free(list);
 }
 
-void clearLinkedList(LinkedList list)
-{
-    if(!isEmpty(list))
-    {
-        void* p ;
-        while((p = remove_fifo(list)) != NULL) free(p);
-        list -> rear = NULL;
-    }
-    
-}
 
 int isEmpty(LinkedList list)
 {
