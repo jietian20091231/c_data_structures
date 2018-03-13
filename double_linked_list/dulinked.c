@@ -31,10 +31,11 @@ void releaseLinked(DuLinkedList list)
 
 int isEmptyLinked(DuLinkedList list)
 {
-    return list == NULL || (list -> data_list -> previous == NULL && list -> data_list -> next = NULL);
+    int status = (NULL == list || NULL == list -> data_list -> next)? 1 : 0;
+    return status;
 }
 
-int append(void* value, DuLinkedList list)
+int append(void* value, DuLinkedList list, int mode)
 {
     if(NULL == value || NULL == list) return 0;
     Node* pNew = (Node*)malloc(sizeof(Node));
@@ -51,21 +52,33 @@ int append(void* value, DuLinkedList list)
     if(isEmptyLinked(list))
     {
         list -> data_list -> next = pNew;
-        pNew -> previous = list - > data_list;
-        list -> front = list -> rera = pNew;
+        pNew -> previous = list -> data_list;
+        list -> front = list -> rear = pNew;
     }
     else
     {
-        list -> rear -> next = pNew;
-        pNew -> previous = list -> rear;
-        list -> rear = pNew;
+        if(0 == mode)
+        {
+            list -> rear -> next = pNew;
+            pNew -> previous = list -> rear;
+            list -> rear = pNew;            
+        }
+        else
+        {
+            Node* old_front = list -> data_list -> next;
+            list -> data_list -> next = pNew;
+            pNew -> previous = list -> data_list;
+            pNew -> next = old_front;
+            old_front -> previous = pNew;
+            list -> front = pNew;
+        }
     }
 
     list -> size++;
 
 }
 
-int append_list(DuLinkedList addList, DuLinkedList list)
+int append_list(DuLinkedList addList, DuLinkedList list, int mode)
 {
     if(NULL == addList || NULL == list ) return 0;
     if(isEmpty(addList))
@@ -79,15 +92,32 @@ int append_list(DuLinkedList addList, DuLinkedList list)
         list -> data_list = addList -> data_list;
         list -> front = addList -> front;
         list -> rear = addList -> rear;
-        list -> size += addList -> szie;
     }
     else
     {
-        addList -> front -> previous = list -> rear;
-        list -> rear -> next = addList -> front;
-        list -> rear = addList -> rear;
-        list -> szie += addList -> size;
+        if(0 == mode)
+        {
+            addList -> front -> previous = list -> rear;
+            list -> rear -> next = addList -> front;
+            list -> rear = addList -> rear;
+        }
+        else
+        {
+            Node* old_list_front = list -> front;
+            Node* old_addList_front = addList -> front;
+
+            list -> data_list -> next = old_addList_front;
+            old_addList_front -> previous = list -> data_list;
+
+            addList -> rear -> next = old_list_front;
+            old_list_front -> previous = addList -> rear;
+
+            list -> front = old_addList_front;
+
+        }
     }
+
+    list -> size += addList -> size;
 
     addList -> rear = NULL;
     addList -> front = NULL;
@@ -99,13 +129,13 @@ int append_list(DuLinkedList addList, DuLinkedList list)
     
 }
 
-int append_array(void* arr[], int length, DuLinkedList list)
+int append_array(void* arr[], int length, DuLinkedList list, int mode)
 {
     if(NULL == arr || 0 == arr || NULL == list ) return 0;
     int index; 
     for(index = 0; index < length; index++)
     {
-        void* value = arr[i];
+        void* value = arr[index];
         if(NULL == value) continue;
         Node* pNew = (Node*)malloc(sizeof(Node));
         if(NULL == pNew)
@@ -126,9 +156,22 @@ int append_array(void* arr[], int length, DuLinkedList list)
         }
         else
         {
-            pNew -> previous = list -> rear;
-            list -> rear -> next = pNew;
-            list -> rear = pNew;
+            if(0 == mode)
+            {
+                pNew -> previous = list -> rear;
+                list -> rear -> next = pNew;
+                list -> rear = pNew;
+            }
+            else
+            {
+                Node* old_front = list -> data_list -> next;
+                list -> data_list -> next = pNew;
+                pNew -> previous = list -> data_list;
+                pNew -> next = old_front;
+                old_front -> previous = pNew;
+                list -> front = pNew;            
+            }
+
         }
 
         list -> size++;
@@ -147,15 +190,46 @@ int insert(void* value, Position position, DuLinkedList list, int mode)
 
     if(NULL == position -> next)
     {
-        position -> next = pNew;
-        pNew -> previous = position;
-        list -> rear = pNew;
+        if(0 == mode)
+        {
+            position -> next = pNew;
+            pNew -> previous = position;
+            list -> rear = pNew;            
+        }
+        else
+        {   
+            pNew -> previous = list -> data_list;
+            list -> data_list -> next = pNew;
+
+            position -> previous = pNew;
+
+            list -> front = pNew;
+        }
     }
     else
     {
-        Position old_next = position -> next;
-        pNew -> next = old_next;
-        pNew -> previous = position;
+        if(0 == mode)
+        {
+            Position old_next = position -> next;
+
+            pNew -> previous = position;
+            position -> next = pNew;
+
+            pNew -> next = old_next;
+            old_next -> previous = pNew;
+        }
+        else
+        {
+            Position old_previous = position -> previous;
+
+            old_previous -> next = pNew;
+            pNew -> previous = old_previous;
+
+            pNew -> next = position;
+            position -> previous = pNew;
+
+        }
+
     }
 
     list -> size++;

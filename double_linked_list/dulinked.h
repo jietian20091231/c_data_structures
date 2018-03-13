@@ -36,7 +36,7 @@ int insert(void* value, Position position, DuLinkedList list, int mode);
 
 int insert_list(DuLinkedList addList, Position position, DuLinkedList list, int mode);
 
-int insert_array(void* arr[], int length, Position position, DuLinkedList list, mode);
+int insert_array(void* arr[], int length, Position position, DuLinkedList list, int mode);
 
 Position find(void* value, DuLinkedList list, int mode);
 
