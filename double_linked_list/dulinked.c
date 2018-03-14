@@ -238,6 +238,63 @@ int insert(void* value, Position position, DuLinkedList list, int mode)
 
 int insert_list(DuLinkedList addList, Position position, DuLinkedList list, int mode)
 {
+    if(NULL == addList || NULL == position || NULL == list) return 0;
+
+    if(NULL == position -> next)
+    {
+        if(0 == mode)
+        {
+            position -> next = addList -> front;
+            addList -> front -> previous = position;
+            list -> rear = addList -> rear;
+        }
+        else
+        {
+            list -> data_list -> next = addList -> front;
+            addList -> front -> previous = list -> data_list;
+            list -> front = addList -> front;
+
+            addList -> rear -> next = position;
+            position -> previous = addList -> rear;
+        }
+    }
+    else
+    {   
+        if(0 == mode)
+        {
+            Node* old_next = position -> next;
+
+            position -> next = addList -> front;
+            addList -> front -> previous = position;
+
+            addList -> rear -> next = old_next;
+            old_next -> previous = addList -> rear;
+
+        }
+        else
+        {
+            Node* old_previous = position -> previous;
+
+            old_previous -> next = addList -> front;
+            addList -> front -> previous = old_previous;
+
+            addList -> rear -> next = position;
+            position -> previous = addList -> rear;
+
+        }
+
+    }
+
+    addList -> size = 0;
+    addList -> front = NULL; 
+    addList -> rear = NULL;
+
+    free(addList -> data_list);
+    free(addList);
+
+    list -> size += addList -> size;
+
+    return 1;
 
 }
 
