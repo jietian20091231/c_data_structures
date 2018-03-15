@@ -12,7 +12,7 @@ DuLinkedList createLinked(DuLinkedList list, int (* cmp) (void*, void*))
         return NULL;
     }
 
-    header ->element = NULL;
+    header -> element = NULL;
     header -> previous = NULL;
     header -> next = NULL;
 
@@ -124,6 +124,7 @@ int append_list(DuLinkedList addList, DuLinkedList list, int mode)
     addList -> rear = NULL;
     addList -> front = NULL;
     addList -> size = 0;
+    
     free(addList -> data_list);
     free(addList);
 
@@ -238,7 +239,7 @@ int insert_list(DuLinkedList addList, Position position, DuLinkedList list, int 
         Node* old_next = position -> next;
 
         position -> next = addList -> front;
-        addList -> front -> previous = position -> next;
+        addList -> front -> previous = position;
 
         if(NULL == old_next)
         {
@@ -254,8 +255,8 @@ int insert_list(DuLinkedList addList, Position position, DuLinkedList list, int 
     {
         Node* old_previous = position -> previous;
 
-        position -> previous  = addList -> front;
-        addList -> front -> previous = position -> previous;
+        old_previous -> next = addList -> front;
+        addList -> front -> previous = old_previous;
 
         addList -> rear -> next = position;
         position -> previous = addList -> rear;
@@ -289,6 +290,8 @@ int insert_array(void* arr[], int length, Position position, DuLinkedList list, 
     for(index =0; index < length; index++)
     {
         void* value = arr[index];
+        if(NULL == value) continue;
+
         Node* pNew = (Node*)malloc(sizeof(Node));
         pNew -> element = value;
         pNew -> next = pNew -> previous = NULL;
@@ -302,7 +305,7 @@ int insert_array(void* arr[], int length, Position position, DuLinkedList list, 
 
             if(NULL == old_next)
             {
-                list -> rear = pNew;
+                list -> rear -> next;
             }
             else
             {
@@ -311,28 +314,113 @@ int insert_array(void* arr[], int length, Position position, DuLinkedList list, 
             }
 
         }
+        else
+        {
+            Node* old_previous = position -> previous;
+
+            old_previous -> next = pNew;
+            pNew -> previous = old_previous;
+
+            pNew -> next = position;
+            position -> previous = pNew;
+
+            if(list -> data_list == old_previous) list -> front = pNew;
+        }
+
+        list -> size++;
     }
 
 }
 
 Position find(void* value, DuLinkedList list, int mode)
 {
+    if(NULL == value || NULL == list || NULL == list -> _cmp) return NULL;
+
+    Position p;
+
+    if(0 == mode)
+    {
+        p = list -> front;
+        while(p && 0 != list -> _cmp(value, p -> element)) p = p -> next;
+    }
+    else
+    {
+        p = list -> rear;
+        while(list -> data_list != p && 0 != list -> _cmp(value, p -> element)) p = p -> previous;
+
+        if(list -> data_list == p) p = NULL;      
+
+    }
+
+    return p;
 
 }
 
 Position findPrevious(void* value, DuLinkedList list, int mode)
 {
+    if(NULL == value || NULL == list || NULL == list -> _cmp) return NULL;
 
+    Position p;
+
+    if(0 == mode)
+    {
+        p = list -> front;
+        while(p && p ->next &&  0 != list -> _cmp(value, p -> next -> element)) p = p -> next;
+    }
+    else
+    {
+        p = list -> rear;
+        while(list -> data_list != p -> previous && 0 != list -> _cmp(value, p -> previous -> element)) p = p -> previous;
+        
+        if(list -> data_list == p) p = NULL;      
+
+    }
+
+    return p;
 }
 
 int find_index(void* value, DuLinkedList list, int mode)
 {
+    if(NULL == value || NULL == list || NULL == list -> _cmp) return -1;
 
+    Position p;
+    int index = -1;
+
+    if(0 == mode)
+    {
+        p = list -> front;
+        while(p &&  0 != list -> _cmp(value, p -> element))
+        {
+            p = p -> next;
+            index++;
+        }         
+    }
+    else
+    {
+        p = list -> rear;
+        index = list -> size -1;
+        while(list -> data_list != p && 0 != list -> _cmp(value, p -> element))
+        {
+            p = p -> previous;
+            index--;
+        }
+        
+        if(list -> data_list == p)
+        {
+            p = NULL;      
+            index = -1;
+        }
+
+
+    }
+
+    return index;
 }
 
 void* get(Position position)
 {
-
+    if(NULL == position) return NULL;
+    return position -> element;
 }
 
 void* remove_fifo(DuLinkedList list)
@@ -346,11 +434,6 @@ int pushElement(void* element, DuLinkedList list)
 }
 
 void* popElement(DuLinkedList list)
-{
-
-}
-
-void traverse(DuLinkedList list, int mode)
 {
 
 }

@@ -1,3 +1,4 @@
+
 #ifndef _DULINKED_H_
 #define _DULINKED_H_
 
@@ -51,8 +52,6 @@ void* remove_fifo(DuLinkedList list);
 int pushElement(void* element, DuLinkedList list);
 
 void* popElement(DuLinkedList list);
-
-void traverse(DuLinkedList list, int mode);
 
 
 
