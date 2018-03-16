@@ -140,6 +140,14 @@ int main(void)
 }
 
 
+int cmp(void* value_1, void* value_2)
+{
+    Student* stu_1 = (Student*) value_1;
+    Student* stu_2 = (Student*) value_2;
+
+    return stu_1 -> id - stu_2 -> id;
+}
+
 
 void clearLinkedList(LinkedList list)
 {
