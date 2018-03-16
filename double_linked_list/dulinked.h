@@ -47,11 +47,13 @@ int find_index(void* value, DuLinkedList list, int mode);
 
 void* get(Position position);
 
-void* remove_fifo(DuLinkedList list);
+void* rpop(DuLinkedList list);
 
-int pushElement(void* element, DuLinkedList list);
+void* lpop(DuLinkedList list);
 
-void* popElement(DuLinkedList list);
+int rpush(void* value, DuLinkedList list);
+
+int lpush(void* value, DuLinkedList list);
 
 
 

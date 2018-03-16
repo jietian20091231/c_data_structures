@@ -16,7 +16,7 @@ DuLinkedList createLinked(DuLinkedList list, int (* cmp) (void*, void*))
     header -> previous = NULL;
     header -> next = NULL;
 
-    DuLinkedList list = (DuLinkedList)malloc(sizeof(DuLinkedList));
+    list = (DuLinkedList)malloc(sizeof(struct _dulinkedList));
     list -> data_list = header;
     list -> front = list -> rear = NULL;
     list -> size = 0;
@@ -26,23 +26,42 @@ DuLinkedList createLinked(DuLinkedList list, int (* cmp) (void*, void*))
 
 void releaseLinked(DuLinkedList list)
 {
+    if(NULL == list) return;
+    if(!isEmptyLinked(list))
+    {
+        puts("duLinked list is not emptry, please make sure the linked list is empty!\n");
+        return;
+    }
 
+    list -> rear = NULL;
+    list -> front = NULL;
+    list -> data_list -> next = NULL;
+    list -> data_list -> previous = NULL;
+    list -> size = 0;
+    list -> _cmp = NULL;
+
+    free(list -> data_list);
+    list -> data_list = NULL;
+
+    free(list);
+    list = NULL;
 }
 
 int isEmptyLinked(DuLinkedList list)
 {
     int status = (NULL == list || NULL == list -> data_list -> next)? 1 : 0;
+    //printf("status = %d\n", status);
     return status;
 }
 
 int append(void* value, DuLinkedList list, int mode)
 {
-    if(NULL == value || NULL == list) return 0;
+    if(NULL == value || NULL == list) return -1;
     Node* pNew = (Node*)malloc(sizeof(Node));
     if(NULL == pNew)
     {
         puts("Out of Memory!\n");
-        return 0;
+        return -1;
     }
 
     pNew -> element = value;
@@ -77,17 +96,17 @@ int append(void* value, DuLinkedList list, int mode)
         }
     }
 
-    list -> size++;
+    return list -> size++;
 
 }
 
 int append_list(DuLinkedList addList, DuLinkedList list, int mode)
 {
-    if(NULL == addList || NULL == list ) return 0;
-    if(isEmpty(addList))
+    if(NULL == addList || NULL == list ) return -1;
+    if(isEmptyLinked(addList))
     {
         puts("addList is emtpy!, append 0 elements.\n");
-        return 1;
+        return list -> size;
     }
 
     if(isEmptyLinked(list))
@@ -128,13 +147,13 @@ int append_list(DuLinkedList addList, DuLinkedList list, int mode)
     free(addList -> data_list);
     free(addList);
 
-    return 1;
+    return list -> size;
     
 }
 
 int append_array(void* arr[], int length, DuLinkedList list, int mode)
 {
-    if(NULL == arr || 0 == arr || NULL == list ) return 0;
+    if(NULL == arr || 0 == arr || NULL == list ) return -1;
     int index; 
     for(index = 0; index < length; index++)
     {
@@ -144,7 +163,7 @@ int append_array(void* arr[], int length, DuLinkedList list, int mode)
         if(NULL == pNew)
         {
             puts("Out of memory!\n");
-            return 0;
+            return -1;
         }
 
         pNew -> element = value;
@@ -185,13 +204,21 @@ int append_array(void* arr[], int length, DuLinkedList list, int mode)
 
 
     }
+
+    return list -> size;
 }
 
 int insert(void* value, Position position, DuLinkedList list, int mode)
 {
-    if(NULL == value || NULL == position || NULL == list || isEmptyLinked(list)) return 0;
+    if(NULL == value || NULL == position || NULL == list || isEmptyLinked(list)) return -1;
 
     Node* pNew = (Node*)malloc(sizeof(Node));
+    if(NULL == pNew)
+    {
+        puts("Out of memory!\n");
+        return -1;
+    }
+
     pNew -> element = value;
     pNew -> previous = pNew -> next = NULL;
 
@@ -228,11 +255,13 @@ int insert(void* value, Position position, DuLinkedList list, int mode)
 
     list -> size++;
 
+    return list -> size;
+
 }
 
 int insert_list(DuLinkedList addList, Position position, DuLinkedList list, int mode)
 {
-    if(NULL == addList || NULL == position || NULL == list) return 0;
+    if(NULL == addList || NULL == position || NULL == list) return -1;
 
     if(0 == mode)
     {
@@ -279,13 +308,13 @@ int insert_list(DuLinkedList addList, Position position, DuLinkedList list, int 
 
     list -> size += addList -> size;
 
-    return 1;
+    return list -> size;
 
 }
 
 int insert_array(void* arr[], int length, Position position, DuLinkedList list, int mode)
 {
-    if(NULL == arr || 0 == length || NULL == position || isEmptyLinked(list)) return 0;
+    if(NULL == arr || 0 == length || NULL == position || isEmptyLinked(list)) return -1;
     int index;
     for(index =0; index < length; index++)
     {
@@ -293,6 +322,12 @@ int insert_array(void* arr[], int length, Position position, DuLinkedList list, 
         if(NULL == value) continue;
 
         Node* pNew = (Node*)malloc(sizeof(Node));
+        if(NULL == pNew)
+        {
+            puts("Out of Memory!\n");
+            return -1;
+        }
+
         pNew -> element = value;
         pNew -> next = pNew -> previous = NULL;
 
@@ -330,6 +365,7 @@ int insert_array(void* arr[], int length, Position position, DuLinkedList list, 
         list -> size++;
     }
 
+    return list -> size;
 }
 
 Position find(void* value, DuLinkedList list, int mode)
@@ -423,17 +459,127 @@ void* get(Position position)
     return position -> element;
 }
 
-void* remove_fifo(DuLinkedList list)
+void* rpop(DuLinkedList list)
 {
+    if(NULL == list || NULL == list -> data_list || isEmptyLinked(list)) return NULL;
+
+    Node* old_rear = list -> rear;
+
+    list -> rear = old_rear -> previous;
+    list -> rear -> next = NULL;
+
+    printf("pop rear old_rear = %p\n", old_rear);
+
+    void* result = old_rear -> element;
+    free(old_rear);
+    old_rear = NULL;
+
+    if(list -> rear == list ->data_list)
+    {
+        list -> front = NULL;
+        list -> rear  = NULL;
+    }
+
+    list -> size--;
+
+    return result;
+}
+
+void* lpop(DuLinkedList list)
+{
+    if(NULL == list || NULL == list -> data_list || isEmptyLinked(list)  ) return NULL;
+
+    Node* old_front = list -> front;
+    Node* new_front = list -> front -> next;
+    if(NULL == new_front)
+    {
+        list -> data_list -> next = NULL;
+        list -> front = list -> rear = NULL;
+        list -> size = 0;
+    }
+    else
+    {
+        list -> data_list -> next = new_front;
+        new_front -> previous = list -> data_list;
+        list -> front = new_front;
+    }
+    
+    void* result = old_front -> element;
+    list -> size--;
+
+    return result;    
+}
+
+int rpush(void* value, DuLinkedList list)
+{
+    if(NULL == value || NULL == list) return -1;
+    Node* pNew = (Node*)malloc(sizeof(Node));
+    if(NULL == pNew)
+    {
+        puts("Out of Memory!\n");
+        return -1;
+    }
+
+    pNew -> element = value;
+    pNew -> previous = pNew -> next = NULL;
+
+    if(isEmptyLinked(list))
+    {
+        printf("list is emptry!\n");
+        list -> data_list -> next = pNew;
+        pNew -> previous = list -> data_list;
+        list -> front = list -> rear = pNew;
+    }
+    else
+    {
+        list -> rear -> next = pNew;
+        pNew -> previous = list -> rear;
+        list -> rear = pNew;
+    }
+
+    list -> size++;
+
+    return list -> size;
 
 }
 
-int pushElement(void* element, DuLinkedList list)
+int lpush(void* value, DuLinkedList list)
 {
+    if(NULL == value || NULL == list ) return -1;
+    Node* pNew = (Node*)malloc(sizeof(Node));
+    if(NULL == pNew)
+    {
+        puts("Out of memory!\n");
+        return -1;
+    }
 
-}
+    pNew -> element = value;
+    pNew -> previous = pNew -> next = NULL;
 
-void* popElement(DuLinkedList list)
-{
+    //printf("isEmtpty = %d\n", isEmptyLinked(list));
+
+    if(isEmptyLinked(list))
+    {
+        list -> data_list -> next = pNew;
+        pNew -> previous = list -> data_list;
+        list -> front = list -> rear = pNew;
+    }
+    else
+    {
+        Node* old_front = list -> front;
+
+        list -> data_list -> next = pNew;
+        pNew -> previous = list -> data_list;
+        
+        pNew -> next = old_front;
+        old_front -> previous = pNew;
+        
+        list -> front = pNew;
+    }
+
+    list ->size++;
+
+
+    return list -> size;
 
 }
