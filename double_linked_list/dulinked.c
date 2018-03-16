@@ -495,7 +495,6 @@ void* lpop(DuLinkedList list)
     {
         list -> data_list -> next = NULL;
         list -> front = list -> rear = NULL;
-        list -> size = 0;
     }
     else
     {
@@ -505,6 +504,8 @@ void* lpop(DuLinkedList list)
     }
     
     void* result = old_front -> element;
+    free(old_front);
+    
     list -> size--;
 
     return result;    

@@ -16,7 +16,8 @@ int main(void)
     list = createLinked(list,cmp);
     printf("list -> data_list = %p\n", list -> data_list );
 
-    printf("================  lpush  ================\n");
+    //printf("================  lpush  ================\n");
+    printf("================  rpush  ================\n");
 
     int index;
     for(index = 0; index < 10; index++)
@@ -31,20 +32,30 @@ int main(void)
         stu -> name = name;        
         printf(">>>>==== Student[%p %d]%s.\n", stu, stu -> id, stu -> name);
 
+        /*
         int n = lpush(stu, list);
         printf(">>>>==== lpush successed, current list's size is %d\n", n);
+        */
+
+        int n = rpush(stu, list);
+        printf(">>>>==== rpush successed, current list's size is %d\n", n);
+
         printListInfo(list -> size, list -> front, list -> rear);
     }
 
     void* current;
 
-    printf("================lpush done================\n");
+    //printf("================lpush done================\n");
+    printf("================rpush done================\n");
 
     printListInfo(list -> size, list -> front, list -> rear);
 
-    printf("================  rpop  ================\n");
+    //printf("================  rpop  ================\n");
+    printf("================  lpop  ================\n");
+    
 
-    while((current = rpop(list)))
+    //while((current = rpop(list)))
+    while((current = lpop(list)))
     {
         printf("====<<<< list -> front = %p, list -> rear = %p.\n", list -> front, list -> rear);
         printListInfo(list -> size, list ->front, list -> rear);
