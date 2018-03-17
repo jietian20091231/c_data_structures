@@ -15,9 +15,6 @@ int main(void)
     DuLinkedList list;
     DuLinkedList list_1;
     DuLinkedList list_2;
-
-    Student* stuArray[5];
-
     list = createLinked(list,cmp);
     printf("list -> data_list = %p\n", list -> data_list );
 
@@ -69,33 +66,12 @@ int main(void)
     }    
     printf("==============  append mode = 0 list_2  done  ==============\n");
 
-    printf("==============  student array fill ==============\n");
-    int i = 0;
-    for(i = 0; i < 5; i++)
-    {
-        char* name = (char*)calloc(10, sizeof(char));
-        memset(name, 0, sizeof(char));
-        sprintf(name, "name_%d", i + 6);
-
-        Student* stu = (Student*)malloc(sizeof(Student));
-        stu -> id = i + 6;
-        stu -> name = name;        
-        printf(">>>>==== Student[%p %d]%s.\n", stu, stu -> id, stu -> name);        
-        stuArray[i] = stu;
-    }
-    printf("===========  student array fill done  ===========\n");
-
     printf("============== append list mode = 0 (append list_1, list_2 to list) ==============\n");
     append_list(list_1, list, 1);
     printListInfo(list -> size, list -> front, list -> rear);
     append_list(list_2, list, 1);
     printListInfo(list -> size, list -> front, list -> rear);
     printf("============== append list mode = 0 (append list_1, list_2 to list) done ==============\n");
-
-    printf("============== append array mode = 1 (append array into list) ==============\n");
-    append_array(stuArray,5,list, 1);
-    printListInfo(list -> size, list -> front, list -> rear);
-    printf("=========== append array mode = 1 (append array into list) done ============\n");
 
 
     printf("================  rpop  ================\n"); 

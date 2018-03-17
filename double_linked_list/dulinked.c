@@ -50,7 +50,6 @@ void releaseLinked(DuLinkedList list)
 int isEmptyLinked(DuLinkedList list)
 {
     int status = (NULL == list || NULL == list -> data_list -> next)? 1 : 0;
-    //printf("status = %d\n", status);
     return status;
 }
 
@@ -111,7 +110,8 @@ int append_list(DuLinkedList addList, DuLinkedList list, int mode)
 
     if(isEmptyLinked(list))
     {
-        list -> data_list = addList -> data_list;
+        list -> data_list -> next = addList -> front;
+        addList -> front -> previous = list -> data_list;
         list -> front = addList -> front;
         list -> rear = addList -> rear;
     }
@@ -170,8 +170,10 @@ int append_array(void* arr[], int length, DuLinkedList list, int mode)
         pNew -> previous = NULL; 
         pNew -> next = NULL;
 
+        printf("[%d]loop ===> list -> front = %p, list -> rear = %p, list -> data_list -> next = %p\n", index ,list ->front, list -> rear ,list -> data_list -> next);
         if(isEmptyLinked(list))
         {
+            printf("list is empty!\n");
             list -> data_list -> next = pNew;
             pNew -> previous = list -> data_list;
             list -> front = list -> rear = pNew;
@@ -180,12 +182,14 @@ int append_array(void* arr[], int length, DuLinkedList list, int mode)
         {
             if(0 == mode)
             {
-                pNew -> previous = list -> rear;
                 list -> rear -> next = pNew;
+                pNew -> previous = list -> rear;
                 list -> rear = pNew;
+                printf("list -> front = %p, list -> data_list -> next = %p\n", list ->front, list -> data_list -> next);
             }
             else
             {
+                printf("list -> front = %p\n list -> data_list = %p\n", list -> front , list -> data_list);
                 Node* old_front = list -> front;
 
                 list -> data_list -> next = pNew;
