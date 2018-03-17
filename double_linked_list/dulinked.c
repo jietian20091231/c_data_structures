@@ -17,6 +17,7 @@ DuLinkedList createLinked(DuLinkedList list, int (* cmp) (void*, void*))
     header -> next = NULL;
 
     list = (DuLinkedList)malloc(sizeof(struct _dulinkedList));
+    list -> _cmp = cmp;
     list -> data_list = header;
     list -> front = list -> rear = NULL;
     list -> size = 0;
@@ -170,7 +171,7 @@ int append_array(void* arr[], int length, DuLinkedList list, int mode)
         pNew -> previous = NULL; 
         pNew -> next = NULL;
 
-        printf("[%d]loop ===> list -> front = %p, list -> rear = %p, list -> data_list -> next = %p\n", index ,list ->front, list -> rear ,list -> data_list -> next);
+        //printf("[%d]loop ===> list -> front = %p, list -> rear = %p, list -> data_list -> next = %p\n", index ,list ->front, list -> rear ,list -> data_list -> next);
         if(isEmptyLinked(list))
         {
             printf("list is empty!\n");
@@ -185,11 +186,11 @@ int append_array(void* arr[], int length, DuLinkedList list, int mode)
                 list -> rear -> next = pNew;
                 pNew -> previous = list -> rear;
                 list -> rear = pNew;
-                printf("list -> front = %p, list -> data_list -> next = %p\n", list ->front, list -> data_list -> next);
+                //printf("list -> front = %p, list -> data_list -> next = %p\n", list ->front, list -> data_list -> next);
             }
             else
             {
-                printf("list -> front = %p\n list -> data_list = %p\n", list -> front , list -> data_list);
+                //printf("list -> front = %p\n list -> data_list = %p\n", list -> front , list -> data_list);
                 Node* old_front = list -> front;
 
                 list -> data_list -> next = pNew;
@@ -411,47 +412,31 @@ Position findPrevious(void* value, DuLinkedList list, int mode)
     {
         p = list -> rear;
         while(list -> data_list != p -> previous && 0 != list -> _cmp(value, p -> previous -> element)) p = p -> previous;
-        
-        if(list -> data_list == p) p = NULL;      
+        if(list -> front == p) p = NULL;      
 
     }
 
     return p;
 }
 
-int find_index(void* value, DuLinkedList list, int mode)
+int find_index(void* value, DuLinkedList list)
 {
     if(NULL == value || NULL == list || NULL == list -> _cmp) return -1;
 
-    Position p;
     int index = -1;
 
-    if(0 == mode)
+    Position p = list -> rear;
+    index = list -> size -1;
+    while(list -> data_list != p && 0 != list -> _cmp(value, p -> element))
     {
-        p = list -> front;
-        while(p &&  0 != list -> _cmp(value, p -> element))
-        {
-            p = p -> next;
-            index++;
-        }         
+        p = p -> previous;
+        index--;
     }
-    else
+    
+    if(list -> data_list == p)
     {
-        p = list -> rear;
-        index = list -> size -1;
-        while(list -> data_list != p && 0 != list -> _cmp(value, p -> element))
-        {
-            p = p -> previous;
-            index--;
-        }
-        
-        if(list -> data_list == p)
-        {
-            p = NULL;      
-            index = -1;
-        }
-
-
+        p = NULL;      
+        index = -1;
     }
 
     return index;
@@ -472,7 +457,7 @@ void* rpop(DuLinkedList list)
     list -> rear = old_rear -> previous;
     list -> rear -> next = NULL;
 
-    printf("pop rear old_rear = %p\n", old_rear);
+    //printf("pop rear old_rear = %p\n", old_rear);
 
     void* result = old_rear -> element;
     free(old_rear);

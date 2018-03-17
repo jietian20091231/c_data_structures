@@ -43,7 +43,7 @@ Position find(void* value, DuLinkedList list, int mode);
 
 Position findPrevious(void* value, DuLinkedList list, int mode);
 
-int find_index(void* value, DuLinkedList list, int mode);
+int find_index(void* value, DuLinkedList list);
 
 void* get(Position position);
 

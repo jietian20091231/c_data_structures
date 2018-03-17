@@ -13,51 +13,70 @@ void printElementInfo(void* current);
 int main(void)
 {
     DuLinkedList list;
+    DuLinkedList list_1;
+    DuLinkedList list_2;
     list = createLinked(list,cmp);
     printf("list -> data_list = %p\n", list -> data_list );
 
-    //printf("================  append mode = 0  ================\n");
-    printf("================  append mode = 1  ================\n");
+    list_1 = createLinked(list_1, cmp);
+    list_2 = createLinked(list_2, cmp);
+
+
+    printf("================  append mode = 1 list_1  ================\n");
 
     int index;
-    for(index = 0; index < 10; index++)
+    for(index = 0; index < 3; index++)
     {
         char* name = (char*)calloc(10, sizeof(char));
         memset(name, 0, sizeof(char));
         sprintf(name, "name_%d", index);
-        //printf("%s\n", name);
 
         Student* stu = (Student*)malloc(sizeof(Student));
         stu -> id = index;
         stu -> name = name;        
         printf(">>>>==== Student[%p %d]%s.\n", stu, stu -> id, stu -> name);
 
-        /*
-        int n = lpush(stu, list);
-        printf(">>>>==== lpush successed, current list's size is %d\n", n);
-        */
+        int n = append(stu, list_1, 1);
 
-        //int n = append(stu, list, 0);
-        int n = append(stu, list, 1);
-
-        //printf(">>>>==== append mode 0 successed, current list's size is %d\n", n);
         printf(">>>>==== append mode 1 successed, current list's size is %d\n", n);
 
-        printListInfo(list -> size, list -> front, list -> rear);
+        printListInfo(list_1 -> size, list_1 -> front, list_1 -> rear);
     }
 
-    void* current;
+    printf("==============  append mode = 1 list_1  done  ==============\n");
 
-    printf("================append mode 0 done================\n");
+    printf("================  append mode = 1 list_2  ================\n");
 
+    for(index = 3; index < 6; index++)
+    {
+        char* name = (char*)calloc(10, sizeof(char));
+        memset(name, 0, sizeof(char));
+        sprintf(name, "name_%d", index);
+
+        Student* stu = (Student*)malloc(sizeof(Student));
+        stu -> id = index;
+        stu -> name = name;        
+        printf(">>>>==== Student[%p %d]%s.\n", stu, stu -> id, stu -> name);
+
+        int n = append(stu, list_2, 1);
+
+        printf(">>>>==== append mode 1 successed, current list's size is %d\n", n);
+
+        printListInfo(list_2 -> size, list_2 -> front, list_2 -> rear);
+    }    
+    printf("==============  append mode = 0 list_2  done  ==============\n");
+
+    printf("============== append list mode = 0 (append list_1, list_2 to list) ==============\n");
+    append_list(list_1, list, 1);
     printListInfo(list -> size, list -> front, list -> rear);
+    append_list(list_2, list, 1);
+    printListInfo(list -> size, list -> front, list -> rear);
+    printf("============== append list mode = 0 (append list_1, list_2 to list) done ==============\n");
 
-    //printf("================  rpop  ================\n");
-    printf("================  lpop  ================\n");
-    
 
-    //while((current = rpop(list)))
-    while((current = lpop(list)))
+    printf("================  rpop  ================\n"); 
+    void* current;
+    while((current = rpop(list)))
     {
         printf("====<<<< list -> front = %p, list -> rear = %p.\n", list -> front, list -> rear);
         printListInfo(list -> size, list ->front, list -> rear);
@@ -67,7 +86,6 @@ int main(void)
         free(temp -> name);
         free(temp);
     }
-
     printf("====<<<< list -> front = %p, list -> rear = %p, list -> data_list = %p\n", list -> front, list -> rear , list -> data_list);
 
     printListInfo(list -> size, list -> front, list -> rear);
