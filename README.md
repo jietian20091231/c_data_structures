@@ -1,6 +1,44 @@
 # c_data_structures
 data_structures (C description)
 
+
+## double linked list
+
+DuLinkedList createLinked(DuLinkedList list, int (* cmp) (void*, void*));
+
+void releaseLinked(DuLinkedList list);
+
+int isEmptyLinked(DuLinkedList list);
+
+int append(void* value, DuLinkedList list, int mode);
+
+int append_list(DuLinkedList addList, DuLinkedList list, int mode);
+
+int append_array(void* arr[], int length, DuLinkedList list, int mode);
+
+int insert(void* value, Position position, DuLinkedList list, int mode);
+
+int insert_list(DuLinkedList addList, Position position, DuLinkedList list, int mode);
+
+int insert_array(void* arr[], int length, Position position, DuLinkedList list, int mode);
+
+Position find(void* value, DuLinkedList list, int mode);
+
+Position findPrevious(void* value, DuLinkedList list, int mode);
+
+int find_index(void* value, DuLinkedList list);
+
+void* get(Position position);
+
+void* rpop(DuLinkedList list);
+
+void* lpop(DuLinkedList list);
+
+int rpush(void* value, DuLinkedList list);
+
+int lpush(void* value, DuLinkedList list);
+
+
 ## linked list 
 LinkedList createLinkedList(LinkedList list, int (* cmp) (void*, void*));
 
