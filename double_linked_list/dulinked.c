@@ -302,16 +302,14 @@ int insert_list(DuLinkedList addList, Position position, DuLinkedList list, int 
 
     }
 
-    
+    list -> size += addList -> size;
 
     addList -> size = 0;
-    addList -> front = NULL; 
+    addList -> front = NULL;
     addList -> rear = NULL;
 
     free(addList -> data_list);
     free(addList);
-
-    list -> size += addList -> size;
 
     return list -> size;
 
@@ -321,6 +319,8 @@ int insert_array(void* arr[], int length, Position position, DuLinkedList list, 
 {
     if(NULL == arr || 0 == length || NULL == position || isEmptyLinked(list)) return -1;
     int index;
+    Position cursor = position;
+
     for(index =0; index < length; index++)
     {
         void* value = arr[index];
@@ -338,33 +338,32 @@ int insert_array(void* arr[], int length, Position position, DuLinkedList list, 
 
         if(0 == mode)
         {
-            Node* old_next = position -> next;
+           Node* old_next = cursor -> next;
 
-            position -> next = pNew;
-            pNew -> previous = position;
+           cursor -> next = pNew;
+           pNew -> previous = cursor;
 
-            if(NULL == old_next)
-            {
-                list -> rear -> next;
-            }
-            else
-            {
-                pNew -> next = old_next;
-                old_next -> previous = pNew;
-            }
+           pNew -> next = old_next;
+           if(NULL == old_next) list -> rear = pNew;
+           else old_next -> previous = pNew;
 
-        }
+           cursor = pNew;
+
+        }   
         else
         {
-            Node* old_previous = position -> previous;
+            Node* old_previous = cursor -> previous;
 
             old_previous -> next = pNew;
             pNew -> previous = old_previous;
 
-            pNew -> next = position;
-            position -> previous = pNew;
+            pNew -> next = cursor;
+            cursor -> previous = pNew;
 
-            if(list -> data_list == old_previous) list -> front = pNew;
+            cursor = pNew;
+
+            if(NULL == old_previous) list -> front = pNew;
+
         }
 
         list -> size++;
@@ -383,7 +382,7 @@ Position find(void* value, DuLinkedList list, int mode)
     {
         p = list -> front;
         while(p && 0 != list -> _cmp(value, p -> element)) p = p -> next;
-    }
+    }    
     else
     {
         p = list -> rear;
@@ -399,7 +398,7 @@ Position find(void* value, DuLinkedList list, int mode)
 
 Position findPrevious(void* value, DuLinkedList list, int mode)
 {
-    if(NULL == value || NULL == list || NULL == list -> _cmp) return NULL;
+    if(NULL == value || NULL == list || NULL == list -> _cmp || find_index(value, list) < 1) return NULL;
 
     Position p;
 
