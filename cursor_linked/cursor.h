@@ -39,6 +39,8 @@ int isLast(CursorLinked* list, Position pos);
 
 Position findPrevious(CursorLinked* list, void* value);
 
+Position find(CursorLinked* list, void* value);
+
 int push(void* value, CursorLinked* list, Position pos);
 
 void* pop(CursorLinked* list);

@@ -113,6 +113,20 @@ Position findPrevious(CursorLinked* list, void* value)
 }
 
 
+Position find(CursorLinked* list, void* value)
+{
+    Position p = -1;
+    if(checkCursorLinked(list)) return p;
+    if(NULL == value || NULL == list -> _cmp) return p;
+    p = list -> cursorSpace[list -> header].next;
+    while(p && 0 != list -> _cmp(value, list ->cursorSpace[p].element))
+        p = list -> cursorSpace[p].next;
+
+
+    return p;
+}
+
+
 int push(void* value, CursorLinked* list, Position pos)
 {
     if(checkLinkedAndPos(list, pos) || NULL == value) return -1;
