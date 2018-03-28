@@ -34,7 +34,7 @@ void cursorFree(CursorLinked* list, Position pos)
 
 #ifndef DEBUG
     printf("CursorFree =====> cursor[0].next = %d\n", list -> cursorSpace[0].next);
-#endif    
+#endif
 
 }
 
@@ -51,16 +51,18 @@ void initCursorLinked(CursorLinked* list, int (* _cmp) (void*, void*))
     {
         list -> cursorSpace[i].next = i + 1;
         list -> cursorSpace[i].prev = i - 1;
+        list -> cursorSpace[i].element = NULL;
     }
 
     list -> cursorSpace[CURSOR_SIZE -1 ].next = 0;
-        
+
 
 #ifndef DEBUG
     ShowCursorLinkedInfo(list,"initCursorLinked");
 #endif
-    
+
 }
+
 
 
 void makeEmpty(CursorLinked* list)
@@ -70,7 +72,7 @@ void makeEmpty(CursorLinked* list)
         printf("makeEmpty: deleteList\n");
         deleteList(list);
     }
-        
+
     ShowCursorLinkedInfo(list,"makeEmpty(1)");
 
     Position header = cursorAlloc(list);
@@ -159,10 +161,10 @@ int push(void* value, CursorLinked* list, Position pos)
     }
 
     list -> cursorSpace[pos].next = pNew;
-    list -> cursorSpace[pNew].prev = pos;    
+    list -> cursorSpace[pNew].prev = pos;
 
     list -> size++;
-    
+
     return list -> size;
 }
 
@@ -205,7 +207,7 @@ Position first(CursorLinked* list)
 
 void ShowCursorLinkedInfo(const CursorLinked* list, const char* msg)
 {
-    if( NULL == &list)
+    if( NULL == list)
     {
         printf("CursorLinked list is NULL.\n");
         return;
@@ -284,8 +286,9 @@ void cursorDelete(void* value, CursorLinked* list)
         ShowCursorLinkedInfo(list, "cursorDelete:");
 
     }
-    
+
 }
+
 
 void deleteList(CursorLinked* list)
 {
@@ -298,7 +301,7 @@ void deleteList(CursorLinked* list)
 
 #ifndef DEBUG
     printf("deleteList [header] header = %d, p = %d, cursorSpace[%d].next = %d\n", list -> header, p, p, list -> cursorSpace[p].next);
-#endif // !    
+#endif
 
     int count = 0;
     while( p != 0)
@@ -306,7 +309,7 @@ void deleteList(CursorLinked* list)
         temp = list -> cursorSpace[p].next;
 #ifndef DEBUG
         printf("deleteList[%d] p = %d, temp = %d, cursor[%d].prev = %d, cursor[%d].next = %d\n", count++, p, temp, temp, list -> cursorSpace[temp].prev, temp, list -> cursorSpace[temp].next);
-#endif        
+#endif
         cursorFree(list,temp);
         temp = p;
     }

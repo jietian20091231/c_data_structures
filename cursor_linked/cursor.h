@@ -18,7 +18,7 @@ struct cursor_linked {
     int rear;
     int size;
     int (* _cmp) (void*, void*);
-    
+
 };
 
 typedef int Position;
@@ -55,4 +55,4 @@ void cursorDelete(void* value, CursorLinked* list);
 
 void deleteList(CursorLinked* list);
 
-#endif 
+#endif

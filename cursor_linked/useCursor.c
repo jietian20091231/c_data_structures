@@ -8,6 +8,7 @@
 int cmp(void* value_1, void* value_2);
 
 void printCurosrLinkedInfo(const CursorLinked* pList);
+void clearCursorLinked(CursorLinked* list);
 
 int main()
 {
@@ -22,7 +23,6 @@ int main()
         char* name = (char*)calloc(10,sizeof(char));
         memset(name,0,sizeof(char));
         sprintf(name, "name_%d", index);
-        printf("%s\n", name);
 
         Student* stu  = (Student*)malloc(sizeof(Student));
         stu -> id = index;
@@ -75,7 +75,7 @@ int cmp(void* value_1, void* value_2)
     Student* stu_1 = (Student*) value_1;
     Student* stu_2 = (Student*) value_2;
 
-    return stu_1 -> id - stu_2 -> id;    
+    return stu_1 -> id - stu_2 -> id;
 }
 
 void printCurosrLinkedInfo(const CursorLinked* pList)
@@ -86,22 +86,21 @@ void printCurosrLinkedInfo(const CursorLinked* pList)
         printf("list -> header = %d;\n", pList -> header);
         printf("list -> front = %d;\n", pList -> front);
         printf("list -> rear = %d;\n", pList -> rear);
-        printf("list -> size = %d.\n", pList -> size);                        
+        printf("list -> size = %d.\n", pList -> size);
         printf("==============================================================\n");
 
         int index;
         for(index = 0; index < CURSOR_SIZE; index++)
         {
             Node node = pList -> cursorSpace[index];
-            printf("cursor[%d].prev = %d, cursor[%d].next = %d, ", index, pList -> cursorSpace[index].prev, index, pList -> cursorSpace[index].next);
-            if(NULL != node.element)            
+            if(NULL != node.element)
             {
                 Student* stu = (Student*)node.element;
                 printf("cursor[%d].element = student[%d]%s\n", index, stu -> id, stu -> name);
             }
             else
             {
-                printf("cursor[%d].element = NULL\n", index);                
+                printf("cursor[%d].element = NULL\n", index);
             }
 
         }
@@ -118,6 +117,7 @@ void clearCursorLinked(CursorLinked* list)
 
     printf("clearCursorLinked\n");
 
+
     int index;
     for(index = 0; index < CURSOR_SIZE; index++)
     {
@@ -130,7 +130,7 @@ void clearCursorLinked(CursorLinked* list)
 
         list -> cursorSpace[index].element = NULL;
         list -> cursorSpace[index].next = index + 1;
-        list -> cursorSpace[index].prev = index -1;
+        list -> cursorSpace[index].prev = index - 1;
     }
 
     list -> cursorSpace[CURSOR_SIZE -1].next = 0;
