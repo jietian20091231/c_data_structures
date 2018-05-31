@@ -1,144 +1,211 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "bst.h"
-#include "stdio.h"
-#include "stdlib.h"
 
-#define MAX( a, b )  ( (a) >= (b) ? (a) : (b) )
+static Node* create_bstree_node(int key, Node* father, Node* left, Node* right);
+static Node* bstree_insert(BSTree t, Node* n);
 
-void makeEmpty(SearchTree t)
+void preorder_bstree(BSTree t)
 {
-    if( NULL != t )
+    if(NULL != t)
     {
-        makeEmpty(t -> left);
-        makeEmpty(t -> right);
-        free(t);
+        printf("%d ", t -> key);
+        preorder_bstree(t -> left);
+        preorder_bstree(t -> right);
     }
-
 }
 
 
-Position find(int key, SearchTree t)
+void inorder_bstree(BSTree t)
 {
-    if(NULL == t) return NULL;
-    if(t -> key > key)
+    if(NULL != t)
     {
-        return find(key, t -> left);
-
-    } if(t -> key < key)
-    {
-        return find(key, t -> right);
+        inorder_bstree(t -> left);
+        printf("%d ", t -> key);
+        inorder_bstree(t -> right);
     }
-    else
+}
+
+
+void postorder_bstree(BSTree t)
+{
+    if(NULL != t)
+    {
+        postorder_bstree(t -> left);
+        postorder_bstree(t -> right);
+        printf("%d ", t -> key);
+    }
+}
+
+
+Node* bstree_search(BSTree t, int key)
+{
+    if(NULL == t || t -> key == key)
     {
         return t;
     }
-}
 
-
-Position findMin(SearchTree t)
-{
-    if(NULL == t) return NULL;
-
-    Position p = t;
-    while(p -> left != NULL)
-            p = p -> left;
-    
-    return p;
-
-}
-
-
-Position findMax(SearchTree t)
-{
-    if(NULL == t) return NULL;
-
-    Position p = t;
-    while(p -> right != NULL)
-            p = p -> right;
-    
-    return p;
-}
-
-
-SearchTree insert(int key, SearchTree t)
-{
-    if(NULL == t)
+    if(t -> key < key)
     {
-        t = (Node*) malloc(sizeof(struct _node));
-        if(NULL == t)
-        {
-            printf("Error, malloc node memory failed!\n");
-            exit(-1);
-        }
-
-        t -> key = key;
-        t -> left = NULL;
-        t -> right = NULL;
-
+        return bstree_search(t -> left, key);
     }
     else if(t -> key > key)
     {
-        t -> left = insert(key, t -> left);
+        return bstree_search(t -> right, key);
     }
-    else if(t -> key < key)
+
+}
+
+
+Node* iterative_bstree_search(BSTree t, int key)
+{
+    while((NULL != t) && ( t-> key != key))
     {
-        t -> right = insert(key, t -> right);
+        if(t -> key > key)
+        {
+            t = t -> left;
+        }
+        else if(t -> key < key)
+        {
+            t = t -> right;
+        }
+    }
+
+    return t;
+}
+
+
+Node* bstree_minimum(BSTree tree)
+{
+    if(NULL == tree) return NULL;
+    
+    Node* result = tree;
+    while( result -> left != NULL)
+        result = result -> left;
+
+    return result;
+
+}
+
+
+Node* bstree_maximum(BSTree tree)
+{
+    if(NULL == tree) return NULL;
+    
+    Node* result = tree;
+    while(result -> right != NULL)
+    {
+        result = result -> right;
+    }
+        
+    return result;
+}
+
+
+Node* bstree_next(Node* n)
+{
+    return NULL;
+}
+
+
+Node* bstree_previous(Node* n)
+{
+    return NULL;
+}
+
+
+Node* insert_bstree(BSTree t, int key)
+{
+    Node* n = NULL;
+    if(NULL == (n = create_bstree_node(key, NULL, NULL, NULL))) return NULL;
+
+    return bstree_insert(t, n);
+}
+
+
+Node* delete_bstree(BSTree t, int key)
+{
+    return NULL;
+}
+
+
+void destroy_bstree(BSTree t)
+{
+    if(NULL != t)
+    {
+        destroy_bstree(t -> left);
+        destroy_bstree(t -> right);
+        free(t);
+    }
+}
+
+
+void print_bstree(BSTree t, int key, int direction)
+{
+    if(NULL != t)
+    {
+        if( 0 == direction)
+        {
+            printf("%2d is root.\n", key);
+        }
+        else
+        {
+            printf("%2d is %2d's %s child.\n", t -> key, key, (direction == 1) ? "left" : "right" );
+        }
+
+        print_bstree(t -> left, t -> key, 1);
+        print_bstree(t -> right, t -> key, 2);
+    }
+
+}
+
+static Node* create_bstree_node(int key, Node* father, Node* left, Node* right)
+{
+    Node* p = (Node*) malloc(sizeof(struct _node));
+    if(NULL == p) return p;
+
+    p -> key = key;
+    p -> father = father;
+    p -> left = left;
+    p -> right = right;
+
+    return p;
+
+}
+
+static Node* bstree_insert(BSTree t, Node* n)
+{
+    Node* y = NULL;
+    Node* x = t;
+
+    while(x != NULL)
+    {
+        y = x;
+
+        if(n -> key < x -> key)
+        {
+            x = x -> left;
+        }
+        else if(n -> key > x -> key)
+        {
+            x = x -> right;
+        }
+    }
+
+    n -> father = y;
+    if(NULL == y)
+    {
+        t = n;
+    }
+    else if(n -> key < y -> key)
+    {
+        y -> left = n;
+    }
+    else if(n ->key > y -> key)
+    {
+        y -> right = n;
     }
 
     return t;
 
 }
-
-
-SearchTree delete(int key, SearchTree t)
-{
-
-}
-
-
-void perorder_traversal(SearchTree t)
-{
-    if(NULL != t )
-    {
-        printf("%d ", t -> key);
-        perorder_traversal(t-> left);
-        perorder_traversal(t -> right);
-    }
-
-}
-
-void inorder_traversal(SearchTree t)
-{
-    if(NULL != t)
-    {
-        inorder_traversal(t -> left);
-        printf("%d ", t -> key);
-        inorder_traversal(t -> right);
-    }
-
-}
-
-void postorder_traversal(SearchTree t)
-{
-    if(NULL != t)
-    {
-        postorder_traversal( t -> left );
-        postorder_traversal( t -> right );
-        printf( "%d ", t -> key );        
-    }
-
-}
-
-
-int getHeight(SearchTree t)
-{
-    int height = 0;
-
-    if( NULL != t)
-    {
-        height = MAX( getHeight( t -> left ), getHeight( t -> right ) ) + 1;
-    }
-
-
-    return height;
-}
-

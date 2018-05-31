@@ -3,46 +3,47 @@
 
 int main()
 {
-    int numbers[] = { 6, 2, 8, 1, 4, 3, 5 };
+    int numbers[] = { 1, 5, 4, 3, 2, 6 };
 
-    SearchTree t = NULL;
+    BSTree bst = NULL;
 
-    int i = 0;
-    for( i = 0; i < 7; i++ )
-        t = insert( numbers[i], t );
+    int i;
+    for( i = 0; i < 6; i++)
+        bst = insert_bstree(bst, numbers[i]);
 
-    printf( "t -> key = %d\n", t -> key );
-    
-    printf( "the searchTree's height = %d\n", getHeight(t) );
+    printf("preorder traversal:\n");
+    preorder_bstree(bst);
 
-    printf( "Perorder traversal :\n" );
-    perorder_traversal(t);
+    printf("\ninorder traversal:\n");
+    inorder_bstree(bst);
+  
+    printf("\npostorder traversal:\n");
+    postorder_bstree(bst);
 
-    printf( "\ninorder traversal :\n" );
-    inorder_traversal(t);
 
-    printf( "\npostorder traversal :\n" );
-    postorder_traversal(t);
+    Node* n = bstree_maximum(bst);
+    printf("\nFind bst maximum's %d.", n -> key);
 
-    if( NULL != t )
+    n = bstree_minimum(bst);
+    printf("\nFnd bst minimum's %d.", n -> key);
+
+
+    int searchKey = 1;
+    n = iterative_bstree_search(bst, searchKey);
+    if(NULL == n)
     {
-        printf( "\nnumbers max = %d, min = %d\n", findMax(t) -> key, findMin(t) -> key );
-        int searchKey = 4;
-        Position p = find( searchKey, t) ;
-        if(p)
-        {
-            printf( "Number %d is found!\n", p -> key );
-        }
-        else
-        {
-            printf( "Number %d can't be found!\n", searchKey );
-        }
+        printf("\nCan't found %d in bstree.", searchKey );
     }
-    
+    else
+    {
+        printf("\nthe key[%d] is found in bstree.", n -> key);
+    }
 
-    printf( "free searchTree.\n" );
-    makeEmpty(t);
+    printf("\nshow bstree :\n");
+    print_bstree(bst, bst -> key, 0);
 
-    return 0;
+
+    printf("\nDestory bstree.\n");
+    destroy_bstree(bst);
 
 }
