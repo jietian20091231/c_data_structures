@@ -18,8 +18,8 @@ Node* iterative_bstree_search(BSTree t, int key);
 Node* bstree_minimum(BSTree tree);
 Node* bstree_maximum(BSTree tree);
 
-Node* bstree_next(Node* n);
-Node* bstree_previous(Node* n);
+Node* bstree_precursor(Node* n);
+Node* bstree_successor(Node* n);
 
 Node* insert_bstree(BSTree t, int key);
 Node* delete_bstree(BSTree t, int key);

@@ -102,15 +102,32 @@ Node* bstree_maximum(BSTree tree)
 }
 
 
-Node* bstree_next(Node* n)
+Node* bstree_successor(Node* n)
 {
     return NULL;
 }
 
 
-Node* bstree_previous(Node* n)
+Node* bstree_precursor(Node* n)
 {
-    return NULL;
+    Node* y = n -> father;
+    if(y == NULL)
+    {
+        return NULL;
+    }
+
+    if(n -> left != NULL) return bstree_maximum(n -> left);
+    if(y -> right == n) return y; 
+    
+    while((y != NULL) && (y -> right == NULL))
+    {
+        n = y;
+        y = y -> father;
+    }
+
+    return y -> right;
+    
+
 }
 
 

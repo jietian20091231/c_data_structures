@@ -28,7 +28,7 @@ int main()
     printf("\nFnd bst minimum's %d.", n -> key);
 
 
-    int searchKey = 1;
+    int searchKey = 6;
     n = iterative_bstree_search(bst, searchKey);
     if(NULL == n)
     {
@@ -37,6 +37,9 @@ int main()
     else
     {
         printf("\nthe key[%d] is found in bstree.", n -> key);
+        Node* precursor = bstree_precursor(n);
+        if( precursor != NULL)
+            printf("\nthe Node[%d]'s prcursor is Node[%d].", n -> key, precursor -> key);
     }
 
     printf("\nshow bstree :\n");
