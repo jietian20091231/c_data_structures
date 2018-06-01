@@ -104,29 +104,28 @@ Node* bstree_maximum(BSTree tree)
 
 Node* bstree_successor(Node* n)
 {
-    return NULL;
+
 }
 
 
 Node* bstree_precursor(Node* n)
 {
-    Node* y = n -> father;
-    if(y == NULL)
-    {
-        return NULL;
-    }
+    if(n -> father == NULL && n -> left == NULL && n -> right == NULL) return NULL;
 
     if(n -> left != NULL) return bstree_maximum(n -> left);
-    if(y -> right == n) return y; 
-    
-    while((y != NULL) && (y -> right == NULL))
-    {
-        n = y;
-        y = y -> father;
-    }
 
-    return y -> right;
+    Node* f = n -> father;
+    if(f != NULL && f -> right == n) return f;
+
+    Node* result = NULL;
+
+    while((f != NULL) && (f -> right == NULL))  f = f -> father;
+        
     
+    if(f != NULL && f -> father != NULL) result = f -> father;
+
+
+    return result;
 
 }
 
@@ -163,11 +162,28 @@ void print_bstree(BSTree t, int key, int direction)
     {
         if( 0 == direction)
         {
-            printf("%2d is root.\n", key);
+            if( t -> left == NULL && t -> right == NULL)
+            {
+                printf("%2d is root, has not precursor, has not successor(root is a single node).\n", key);
+            }
+            else
+            {
+                Node* p = bstree_precursor(t);
+                if(p != NULL)
+                    printf("%2d is root, has a precursor Node[%d]\n", t -> key, p -> key);
+                else
+                    printf("%2d is root, has not precurosr.\n", t -> key);
+            }
+            
+            
         }
         else
         {
-            printf("%2d is %2d's %s child.\n", t -> key, key, (direction == 1) ? "left" : "right" );
+            Node* p = bstree_precursor(t);
+            if(p != NULL)
+                printf("%2d is %2d's %s child, has a precursor Node[%d]\n", t -> key, key, (direction == 1) ? "left" : "right", p -> key);
+            else
+                printf("%2d is %2d's %s child.\n", t -> key, key, (direction == 1) ? "left" : "right");
         }
 
         print_bstree(t -> left, t -> key, 1);

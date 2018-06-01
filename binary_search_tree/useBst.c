@@ -37,10 +37,13 @@ int main()
     else
     {
         printf("\nthe key[%d] is found in bstree.", n -> key);
-        Node* precursor = bstree_precursor(n);
-        if( precursor != NULL)
-            printf("\nthe Node[%d]'s prcursor is Node[%d].", n -> key, precursor -> key);
+        Node* p = bstree_precursor(n);
+        if(NULL != p)
+        {
+            printf("Node[%d] has a precursor Node[%d].\n", n -> key, p -> key);
+        }
     }
+
 
     printf("\nshow bstree :\n");
     print_bstree(bst, bst -> key, 0);
