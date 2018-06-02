@@ -104,29 +104,23 @@ Node* bstree_maximum(BSTree tree)
 
 Node* bstree_successor(Node* n)
 {
-
+    return NULL;
 }
 
 
-Node* bstree_precursor(Node* n)
-{
-    if(n -> father == NULL && n -> left == NULL && n -> right == NULL) return NULL;
-
-    if(n -> left != NULL) return bstree_maximum(n -> left);
-
-    Node* f = n -> father;
-    if(f != NULL && f -> right == n) return f;
-
-    Node* result = NULL;
-
-    while((f != NULL) && (f -> right == NULL))  f = f -> father;
-        
+Node* bstree_precursor(Node* x)
+{    
+    if(x -> left)
+        return bstree_maximum(x -> left);
     
-    if(f != NULL && f -> father != NULL) result = f -> father;
+    Node* y = x -> father;
+    while((y != NULL) && (x != y -> right))
+    {
+        x = y;
+        y = y -> father;
+    }
 
-
-    return result;
-
+    return y;
 }
 
 

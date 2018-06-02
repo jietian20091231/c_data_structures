@@ -3,12 +3,12 @@
 
 int main()
 {
-    int numbers[] = { 1, 5, 4, 3, 2, 6 };
+    int numbers[] = { 5, 7, 6, 8 };
 
     BSTree bst = NULL;
 
     int i;
-    for( i = 0; i < 6; i++)
+    for( i = 0; i < 4; i++)
         bst = insert_bstree(bst, numbers[i]);
 
     printf("preorder traversal:\n");
@@ -28,7 +28,7 @@ int main()
     printf("\nFnd bst minimum's %d.", n -> key);
 
 
-    int searchKey = 6;
+    int searchKey = 2;
     n = iterative_bstree_search(bst, searchKey);
     if(NULL == n)
     {
