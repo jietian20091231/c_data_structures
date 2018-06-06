@@ -28,5 +28,7 @@ void destroy_bstree(BSTree t);
 
 void print_bstree(BSTree t, int key, int direction);
 
+int get_node_type(Node* n);
+
 
 #endif

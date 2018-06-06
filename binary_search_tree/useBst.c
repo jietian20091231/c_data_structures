@@ -3,12 +3,12 @@
 
 int main()
 {
-    int numbers[] = { 5, 7, 6, 8 };
+    int numbers[] = { 8, 1, 9, 0, 5, 10, 4, 7, 11, 2, 6, 3 };
 
     BSTree bst = NULL;
 
     int i;
-    for( i = 0; i < 4; i++)
+    for( i = 0; i < 12; i++)
         bst = insert_bstree(bst, numbers[i]);
 
     printf("preorder traversal:\n");
@@ -28,8 +28,8 @@ int main()
     printf("\nFnd bst minimum's %d.", n -> key);
 
 
-    int searchKey = 2;
-    n = iterative_bstree_search(bst, searchKey);
+    int searchKey = 7;
+    n = bstree_search(bst, searchKey);
     if(NULL == n)
     {
         printf("\nCan't found %d in bstree.", searchKey );
@@ -47,6 +47,16 @@ int main()
 
     printf("\nshow bstree :\n");
     print_bstree(bst, bst -> key, 0);
+
+    printf("\ndelete 7.\n");
+    Node* t = delete_bstree(bst, 7);
+
+    printf("\nshow bstree :\n");
+    print_bstree(t, t -> key, 0);   
+
+    n = bstree_search(bst, 6) ;
+    if(n != NULL && n -> father != NULL)
+        printf("n -> father -> key = %d.\n", n -> father -> key);
 
 
     printf("\nDestory bstree.\n");
