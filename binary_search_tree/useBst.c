@@ -44,6 +44,7 @@ int main()
         }
     }
 
+    printf("bst address = %p.\n", bst);
 
     printf("\nshow bstree :\n");
     print_bstree(bst, bst -> key, 0);
@@ -51,10 +52,19 @@ int main()
     for(i = 0; i < 12; i++)
     {
         printf("delete %d\n", i);
-        delete_bstree(bst, i);
+        bst = delete_bstree(bst, i);
+        if(NULL == bst)
+        {
+            printf("bstree is none.\n");
+            break;
+        }
         print_bstree(bst, bst -> key, 0);
     }
 
+    printf("bst address = %p.\n", bst);
+
+    if(NULL == bst)
+        printf("bst is NULL.\n");
 
     printf("\nDestory bstree.\n");
     destroy_bstree(bst);
