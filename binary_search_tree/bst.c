@@ -240,6 +240,7 @@ static Node* bstree_insert(BSTree t, Node* n)
 static Node* bstree_delete(BSTree t, Node* n)
 {   
     int type = get_node_type(n);
+    printf("%d type's %d.\n", n -> key, type);
     if(0 == type) return NULL;
     if(1 == type)
     {
@@ -266,7 +267,10 @@ static Node* bstree_delete(BSTree t, Node* n)
                 n -> key = p -> key;
                 if(4 == get_node_type(p))
                 {
-                    p -> father -> right = NULL;
+                    if(p -> father -> left == p)
+                        p -> father -> left = NULL;
+                    else
+                        p -> father -> right = NULL;
                 }
                 else
                 {
@@ -285,7 +289,7 @@ static Node* bstree_delete(BSTree t, Node* n)
                 }
                 else
                 {
-                    s -> father -> left = s -> right;
+                    s -> father -> right = s -> right;
                     s -> right -> father = s -> father;
                 }
                 free(s);
@@ -310,11 +314,18 @@ static Node* bstree_delete(BSTree t, Node* n)
                 n -> key = s -> key;
                 if(4 == get_node_type(s))
                 {
-                    s -> father -> left = NULL;
+                    if(s -> father -> left == s )
+                        s -> father -> left = NULL;
+                    else
+                       s -> father -> right = NULL;
                 }
                 else
                 {
-                    s -> father -> left = s -> right;
+                    if(s -> father -> left == s)
+                        s -> father -> left = s -> right;
+                    else
+                        s -> father -> right =  s -> right;
+
                     s -> right -> father = s -> father;
                 }
 
