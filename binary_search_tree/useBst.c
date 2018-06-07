@@ -48,15 +48,16 @@ int main()
     printf("\nshow bstree :\n");
     print_bstree(bst, bst -> key, 0);
 
-    printf("\ndelete 7.\n");
-    Node* t = delete_bstree(bst, 7);
+    printf("\ndelete 5.\n");
+    Node* t = delete_bstree(bst, 5);
 
     printf("\nshow bstree :\n");
     print_bstree(t, t -> key, 0);   
 
-    n = bstree_search(bst, 6) ;
+    searchKey = 6;
+    n = bstree_search(bst, searchKey) ;
     if(n != NULL && n -> father != NULL)
-        printf("n -> father -> key = %d.\n", n -> father -> key);
+        printf("%d -> father -> key = %d.\n", searchKey, n -> father -> key);
 
 
     printf("\nDestory bstree.\n");

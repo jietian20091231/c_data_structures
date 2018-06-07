@@ -293,12 +293,36 @@ static Node* bstree_delete(BSTree t, Node* n)
         }
         else
         {
-            
+            if(NULL != n -> left && NULL == n -> right)
+            {
+                if(n -> father -> left == n)
+                    n -> father -> left = n -> left;
+                else
+                    n -> father -> right = n -> left;
+                
+                n -> left -> father = n -> father;
+
+                free(n);
+            }
+            else
+            {
+                Node* s = bstree_successor(n);
+                n -> key = s -> key;
+                if(4 == get_node_type(s))
+                {
+                    s -> father -> left = NULL;
+                }
+                else
+                {
+                    s -> father -> left = s -> right;
+                    s -> right -> father = s -> father;
+                }
+
+                free(s);
+            }
         }
 
     }
-
-
 
     return t;
     
