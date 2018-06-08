@@ -240,6 +240,96 @@ static Node* bstree_insert(BSTree t, Node* n)
 static Node* bstree_delete(BSTree t, Node* n)
 {   
     int type = get_node_type(n);
+    if(0 == type) return NULL;
+    printf("%d 's type %d\n", n -> key, type);    
+    if(1 == type)
+    {
+        free(n);
+        return NULL;
+    }
+
+    if(4 == type)
+    {
+        if( n -> father -> left == n)
+            n -> father -> left = NULL;
+        else
+            n -> father -> right = NULL;
+        
+        free(n);
+    }
+    else// if(2 == type)
+    {
+        if(n -> left != NULL && n -> right == NULL)
+        {
+            Node* p = bstree_precursor(n);
+            if(4 == get_node_type(p))
+            {
+                if(p -> father -> left == p)
+                    p -> father -> left = NULL;
+                else
+                    p -> father -> right = NULL;
+            }
+            else
+            {
+                if(p -> left != NULL)
+                {
+                    if(p -> father -> left == p)
+                        p -> father -> left = p -> left;
+                    else
+                        p -> father -> right = p -> left;
+                    
+                    p -> left -> father = p -> father;
+                }
+                else
+                {
+                    if(p -> father -> left == p)
+                        p -> father -> left = p -> right;
+                    else
+                        p -> father -> right = p -> right;                    
+                    
+                    p -> right -> father = p -> father;
+                }
+            }
+
+            n -> key = p -> key;
+            free(p);
+        }
+        else if(n -> right != NULL)
+        {
+            Node* s = bstree_successor(n);
+            if(4 == get_node_type(s))
+            {
+                if(s -> father -> left == s)
+                    s -> father -> left = NULL;
+                else
+                    s -> father -> right = NULL;
+            }
+            else
+            {
+                if(s -> left != NULL)
+                {
+                    if(s -> father -> left == s)
+                        s -> father -> left = s -> left;
+                    else
+                        s -> father -> right = s -> left;
+
+                    s -> left -> father = s -> father;
+                }
+                else
+                {
+                    if(s -> father -> left == s)
+                        s -> father -> left = s -> right;
+                    else
+                        s -> father -> right = s -> right;
+
+                    s -> right -> father = s -> father;
+                }
+            }
+
+            n -> key = s -> key;
+            free(s);
+        }
+    }
 
     return t;
     

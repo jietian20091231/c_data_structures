@@ -6,7 +6,7 @@
 
 #define MAX 150
 #define MIN 1
-#define M 1
+#define M 100
 #define N 10
 
 void buildRandomMat( int (*p)[N], int length);
@@ -14,13 +14,17 @@ void testBst(int* p);
 
 int main()
 {
-    int mat[5][N] = { {0}, {0}, {0}, {0}, {0} };
+    int mat[M][N] = { {0}, {0}, {0}, {0}, {0} };
 
     buildRandomMat(mat, M);
 
     int i;
     for(i = 0; i < M; i++)
+    {
+        printf("============>testBst[#%d]:\n", i);
         testBst(mat[i]);
+    }
+        
 
     return 0;
 }
