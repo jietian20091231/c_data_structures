@@ -246,13 +246,37 @@ static Node* avltree_delete(AvlTree t, Node* n)
 
 int get_node_height(Node* n)
 {
-    return 0;
+    int type = get_node_type(n);
+    if(0 == n) return -1;
+    if(1 == n) return 0;
+
+    int height = 0;
+    if(NULL != n)
+    {
+        int left = get_node_height(n -> left);
+        int right = get_node_height(n -> right);
+        height = (left >= right) ? left + 1 : right + 1;
+    }
+
+    return height;
 }
 
 
 int get_node_deepth(Node* n)
 {
-    return 0;
+    int type = get_node_type(n);
+    if(0 == type) return -1;
+    if(1 == type) return 0;
+
+    Node* temp = n;
+    int depth = 0;
+    while(n -> father != NULL)
+    {
+        depth++;
+        n = n -> father;
+    }
+
+    return depth;
 }
 
 
