@@ -3,10 +3,14 @@
 #include <string.h>
 #include "avl_tree.h"
 
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+
 static Node* create_avltree_node(int key, Node* father, Node* left, Node* right);
 static Node* avltree_insert(AvlTree t, Node* n);
 static Node* avltree_delete(AvlTree t, Node* n);
 static void  printInfo(Node* n, int key, int direction);
+static Node* left_left_rotation(Node* t);
+static Node* right_right_rotation(Node* t);
 
 const char* root_format = "%2d is root";
 const char* node_type_format = "the type of node is %s";
@@ -238,13 +242,19 @@ static Node* avltree_insert(AvlTree t, Node* n)
 }
 
 static Node* avltree_delete(AvlTree t, Node* n)
-{  
+{
 
     return NULL;
 }
 
 
 int get_node_height(Node* n)
+{
+    if(NULL == n ) return -1;
+    return n -> height;
+}
+
+int get_node_height_calc(Node* n)
 {
     int type = get_node_type(n);
     if(0 == n) return -1;
@@ -253,8 +263,8 @@ int get_node_height(Node* n)
     int height = 0;
     if(NULL != n)
     {
-        int left = get_node_height(n -> left);
-        int right = get_node_height(n -> right);
+        int left = get_node_height_calc(n -> left);
+        int right = get_node_height_calc(n -> right);
         height = (left >= right) ? left + 1 : right + 1;
     }
 
@@ -401,4 +411,60 @@ static void printInfo(Node* n, int key, int direction)
         }        
     }
 
+}
+
+/*
+  This function can be called only if k2 has a left child
+  Perform a rotate between a node (K2) and its left child
+  Update heights, then return new root.
+ */
+static Node* left_left_rotation(Node* k2)
+{
+    Node* k1;
+
+    //node changed
+    k1 = k2 -> left;
+    k2 -> left = k1 -> right;
+    k1 -> right = k2;
+
+    //father changed
+
+    Node* k2_father = k2 -> father;
+    if(NULL != k2_father)
+    {
+        if(k2_father -> left == k2)
+            k2 -> father -> left = k1;
+        else
+            k2 -> father -> right = k1;
+    }
+    k1 -> father = k2_father;
+
+    // TO DO : update node's father.
+
+
+    //height updated
+    k2 -> height = MAX(get_node_height(k2 -> left), get_node_height(k2 -> right)) + 1;
+    k1 -> height = MAX(get_node_height(k1 -> left), get_node_height(k1 ->right)) + 1;
+
+    return k1;
+}
+
+static Node* right_right_rotation(Node* k1)
+{
+    Node* k2;
+
+    //node changed
+    k2 = k1 -> right;
+    k1 -> right = k2 -> left;
+    k2 -> left = k1;
+
+    //father changed
+    // TO DO : update node's father.
+
+    //height updated
+    k1 -> height = MAX(get_node_height(k1 ->left), get_node_height(k1 -> right)) + 1;
+    k2 -> height = MAX(get_node_height(k2 ->left), get_node_height(k2 -> right)) + 1;
+
+
+    return k2;
 }

@@ -31,6 +31,7 @@ void print_avltree(AvlTree t, int key, int direction);
 
 int get_node_type(Node* n);
 
+int get_node_height_calc(Node* n);
 int get_node_height(Node* n);
 int get_node_deepth(Node* n);
 
