@@ -3,12 +3,12 @@
 
 int main()
 {
-    int numbers[] = { 51, 26, 97, 54, 16, 31, 130, 23, 27, 109 };
+    int numbers[] = { 51, 26, 97, 54, 16, 31, 130, 23, 27, 109, 13 };
 
     BSTree bst = NULL;
 
     int i;
-    for( i = 0; i < 10; i++)
+    for( i = 0; i < sizeof( numbers ) / sizeof( int ); i++ )
         bst = insert_bstree(bst, numbers[i]);
 
     printf("preorder traversal:\n");
@@ -16,7 +16,7 @@ int main()
 
     printf("\ninorder traversal:\n");
     inorder_bstree(bst);
-  
+
     printf("\npostorder traversal:\n");
     postorder_bstree(bst);
 
@@ -44,18 +44,21 @@ int main()
         }
     }
 
-    printf("bst address = %p.\n", bst);
+    printf("bst address = %p, ", bst);
+    printf( "bstree deepth : %d\n", deepth_bstree( bst ) );
 
     printf("\nshow bstree :\n");
+
     print_bstree(bst, bst -> key, 0);
 
-    for(i = 0; i < 10; i++)
+    for(i = 0; i < i < sizeof( numbers ) / sizeof( int ); i++)
     {
         n = bstree_search(bst, 76);
         if(n != NULL && n -> father != NULL)
             printf("%d -> father -> key = %d.\n", n -> key,  n -> father -> key);
         printf("delete %d\n", numbers[i]);
         bst = delete_bstree(bst, numbers[i]);
+        printf( ">>> bstree deepth : %d\n", deepth_bstree( bst ) );
         if(NULL == bst)
         {
             printf("bstree is none.\n");
