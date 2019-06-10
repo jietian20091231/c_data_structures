@@ -13,7 +13,7 @@ const char* precursor_format = "precursor %2d";
 const char* successor_format = "successor %2d";
 const char* child_format = "%2d is %2d's %s child";
 
-const char* NODE_TYPE[5] = { "NULL", "SINGEL", "ROOT", "FATHER", "LEAF" };
+const char* NODE_TYPE[5] = { "NULL", "SINGEL", "ROOT", "TRUNK", "LEAF" };
 
 
 void preorder_bstree(BSTree t)

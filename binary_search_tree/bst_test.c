@@ -24,7 +24,7 @@ int main()
         printf("============>testBst[#%d]:\n", i);
         testBst(mat[i]);
     }
-        
+
 
     return 0;
 }
@@ -40,8 +40,8 @@ void testBst(int* p)
         printf("%d ", p[i]);
         bst = insert_bstree(bst, p[i]);
     }
-        
-    
+
+
     printf("\ninorder traversal:\n");
     inorder_bstree(bst);
 
@@ -79,7 +79,7 @@ void buildRandomMat( int (*p)[N], int length)
             flag = 0;
             if(t == N)
                 break;
-            
+
             randNum = (rand() % (MAX - MIN)) + MIN;
             for(i = 0; i < t; i++)
             {
