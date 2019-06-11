@@ -8,6 +8,8 @@ typedef struct _node {
     struct _node * father;
 } Node, *BSTree;
 
+int deepth_bstree(Node* t);
+
 void preorder_bstree(BSTree t);
 void inorder_bstree(BSTree t);
 void postorder_bstree(BSTree t);

@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "bst.h"
@@ -14,7 +13,7 @@ const char* precursor_format = "precursor %2d";
 const char* successor_format = "successor %2d";
 const char* child_format = "%2d is %2d's %s child";
 
-const char* NODE_TYPE[5] = { "NULL", "SINGLE", "ROOT", "FATHER", "LEAF"};
+const char* NODE_TYPE[5] = { "NULL", "SINGEL", "ROOT", "TRUNK", "LEAF" };
 
 
 void preorder_bstree(BSTree t)
@@ -58,10 +57,10 @@ Node* bstree_search(BSTree t, int key)
             return bstree_search(t -> left, key);
         else if(t -> key < key )
             return bstree_search(t -> right, key);
-        else 
+        else
             return t;
     }
-    
+
     return NULL;
 
 }
@@ -88,7 +87,7 @@ Node* iterative_bstree_search(BSTree t, int key)
 Node* bstree_minimum(BSTree tree)
 {
     if(NULL == tree) return NULL;
-    
+
     Node* result = tree;
     while( result -> left != NULL)
         result = result -> left;
@@ -101,22 +100,22 @@ Node* bstree_minimum(BSTree tree)
 Node* bstree_maximum(BSTree tree)
 {
     if(NULL == tree) return NULL;
-    
+
     Node* result = tree;
     while(result -> right != NULL)
     {
         result = result -> right;
     }
-        
+
     return result;
 }
 
 
 Node* bstree_successor(Node* n)
 {
-    if(n -> right) 
+    if(n -> right)
         return bstree_minimum(n -> right);
-    
+
     Node* y = n -> father;
     while((y != NULL) && (n != y -> left))
     {
@@ -129,10 +128,10 @@ Node* bstree_successor(Node* n)
 
 
 Node* bstree_precursor(Node* x)
-{    
+{
     if(x -> left)
         return bstree_maximum(x -> left);
-    
+
     Node* y = x -> father;
     while((y != NULL) && (x != y -> right))
     {
@@ -183,6 +182,26 @@ void print_bstree(BSTree t, int key, int direction)
         print_bstree(t -> left, t -> key, 1);
         print_bstree(t -> right, t -> key, 2);
     }
+
+}
+
+int deepth_bstree(Node* t)
+{
+    int tree_deepth;
+    int left_deepth;
+    int right_deepth;
+
+    if( NULL == t ) {
+        tree_deepth = 0;
+        return tree_deepth;
+    }
+
+    left_deepth = deepth_bstree( t -> left );
+    right_deepth = deepth_bstree( t -> right );
+
+    tree_deepth = 1 + (left_deepth > right_deepth ? left_deepth : right_deepth );
+
+    return tree_deepth;
 
 }
 
@@ -238,10 +257,10 @@ static Node* bstree_insert(BSTree t, Node* n)
 }
 
 static Node* bstree_delete(BSTree t, Node* n)
-{   
+{
     int type = get_node_type(n);
     if(0 == type) return NULL;
-    printf("%d 's type %d\n", n -> key, type);    
+    printf("%d 's type %d\n", n -> key, type);
     if(1 == type)
     {
         free(n);
@@ -254,7 +273,7 @@ static Node* bstree_delete(BSTree t, Node* n)
             n -> father -> left = NULL;
         else
             n -> father -> right = NULL;
-        
+
         free(n);
     }
     else// if(2 == type)
@@ -277,7 +296,7 @@ static Node* bstree_delete(BSTree t, Node* n)
                         p -> father -> left = p -> left;
                     else
                         p -> father -> right = p -> left;
-                    
+
                     p -> left -> father = p -> father;
                 }
                 else
@@ -285,8 +304,8 @@ static Node* bstree_delete(BSTree t, Node* n)
                     if(p -> father -> left == p)
                         p -> father -> left = p -> right;
                     else
-                        p -> father -> right = p -> right;                    
-                    
+                        p -> father -> right = p -> right;
+
                     p -> right -> father = p -> father;
                 }
             }
@@ -332,7 +351,7 @@ static Node* bstree_delete(BSTree t, Node* n)
     }
 
     return t;
-    
+
 }
 
 int get_node_type(Node* n)
@@ -351,7 +370,7 @@ int get_node_type(Node* n)
         {
             if(NULL == n -> left && NULL == n -> right)
                 type = 4;
-            else 
+            else
                 type = 3;
         }
     }
@@ -402,7 +421,7 @@ static void printInfo(Node* n, int key, int direction)
             strcat(format, precursor_format);
 
             sprintf(buffer, format, key, NODE_TYPE[type], p -> key);
-            printf("%s.\n", buffer);            
+            printf("%s.\n", buffer);
         }
         else
         {
@@ -410,7 +429,7 @@ static void printInfo(Node* n, int key, int direction)
             strcat(format, successor_format);
 
             sprintf(buffer, format, key, NODE_TYPE[type], s -> key);
-            printf("%s.\n", buffer);                        
+            printf("%s.\n", buffer);
         }
 
     }
@@ -423,9 +442,9 @@ static void printInfo(Node* n, int key, int direction)
         strcat(format, node_type_format);
 
         char* left_right = "";
-        if(1 == direction) 
+        if(1 == direction)
             left_right = "left";
-        else 
+        else
             left_right = "right";
 
         if(NULL != p && NULL != s)
@@ -444,7 +463,7 @@ static void printInfo(Node* n, int key, int direction)
             strcat(format, precursor_format);
 
             sprintf(buffer, format, n -> key, key, left_right, NODE_TYPE[type], p -> key);
-            printf("%s.\n", buffer);            
+            printf("%s.\n", buffer);
         }
         else
         {
@@ -452,8 +471,8 @@ static void printInfo(Node* n, int key, int direction)
             strcat(format, successor_format);
 
             sprintf(buffer, format, n -> key, key, left_right, NODE_TYPE[type], s -> key);
-            printf("%s.\n", buffer);                        
-        }        
+            printf("%s.\n", buffer);
+        }
     }
 
 }
