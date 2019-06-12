@@ -46,7 +46,7 @@ void inorder_avltree( AvlTree t )
 void postorder_avltree( AvlTree t )
 {
     if ( NULL != t ) {
-        postorder_avltree( t -> left );        
+        postorder_avltree( t -> left );
         postorder_avltree( t -> right );
         printf( "%d ", t -> key );
     }
@@ -63,7 +63,7 @@ Node* avltree_search( AvlTree t, int key )
         else
             return t;
     }
-    
+
     return NULL;
 
 }
@@ -86,7 +86,7 @@ Node* iterative_avltree_search( AvlTree t, int key )
 Node* avltree_minimum( AvlTree tree )
 {
     if ( NULL == tree ) return NULL;
-    
+
     Node* result = tree;
     while( result -> left != NULL )
         result = result -> left;
@@ -99,20 +99,20 @@ Node* avltree_minimum( AvlTree tree )
 Node* avltree_maximum( AvlTree tree )
 {
     if( NULL == tree ) return NULL;
-    
+
     Node* result = tree;
     while( result -> right != NULL )
         result = result -> right;
-        
+
     return result;
 }
 
 
 Node* avltree_successor( Node* n )
 {
-    if( n -> right ) 
+    if( n -> right )
         return avltree_minimum( n -> right );
-    
+
     Node* y = n -> father;
     while( ( y != NULL ) && ( n != y -> left ) ) {
         n = y;
@@ -124,10 +124,10 @@ Node* avltree_successor( Node* n )
 
 
 Node* avltree_precursor( Node* n )
-{    
+{
     if( n -> left )
         return avltree_maximum( n -> left );
-    
+
     Node* y = n -> father;
     while( ( y != NULL ) && ( n != y -> right)) {
         n = y;
@@ -149,7 +149,7 @@ Node* insert_avltree( AvlTree t, int key )
 
 Node* delete_avltree( AvlTree t, int key )
 {
-
+    return NULL;
 }
 
 
@@ -215,7 +215,7 @@ int get_node_height_calc( Node* n ) {
     if( NULL != n ) {
         int left = get_node_height_calc( n -> left );
         int right = get_node_height_calc( n -> right );
-        height = ( left >= right ) ? left + 1 : right + 1;
+        height = 1 + ( left >= right ) ? left  : right ;
     }
 
     return height;
@@ -251,7 +251,7 @@ int get_node_type( Node* n )
         } else {
             if( NULL == n -> left && NULL == n -> right )
                 type = 4;
-            else 
+            else
                 type = 3;
         }
     }
@@ -298,14 +298,14 @@ static void printInfo( Node* n, int key, int direction )
             strcat( format, precursor_format );
 
             sprintf( buffer, format, key, NODE_TYPE[ type ], p -> key );
-            printf( "%s.\n", buffer );            
+            printf( "%s.\n", buffer );
         }
         else {
             strcat( format, ", " );
             strcat( format, successor_format );
 
             sprintf( buffer, format, key, NODE_TYPE[ type ], s -> key );
-            printf( "%s.\n", buffer );                        
+            printf( "%s.\n", buffer );
         }
 
     } else {
@@ -316,9 +316,9 @@ static void printInfo( Node* n, int key, int direction )
         strcat( format, node_type_format );
 
         char* left_right = "";
-        if( 1 == direction ) 
+        if( 1 == direction )
             left_right = "left";
-        else 
+        else
             left_right = "right";
 
         if( NULL != p && NULL != s ) {
@@ -335,14 +335,14 @@ static void printInfo( Node* n, int key, int direction )
             strcat( format, precursor_format );
 
             sprintf( buffer, format, n -> key, key, left_right, NODE_TYPE[type], p -> key );
-            printf( "%s.\n", buffer );            
+            printf( "%s.\n", buffer );
         } else {
             strcat( format, ", " );
             strcat( format, successor_format );
 
             sprintf( buffer, format, n -> key, key, left_right, NODE_TYPE[ type ], s -> key );
-            printf( "%s.\n", buffer );                        
-        }        
+            printf( "%s.\n", buffer );
+        }
     }
 }
 
