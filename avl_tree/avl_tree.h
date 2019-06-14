@@ -3,7 +3,6 @@
 
 typedef struct _node {
     int key;
-    int height;
     struct _node * left;
     struct _node * right;
     struct _node * father;
@@ -29,7 +28,7 @@ void destroy_avltree( AvlTree t );
 
 int get_node_type( Node* n );
 
-int get_node_height_calc( Node* n );
+
 int get_node_height( Node* n );
 int get_node_deepth( Node* n );
 

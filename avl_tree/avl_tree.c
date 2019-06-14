@@ -14,6 +14,8 @@ static Node* right_right_rotation( Node* t );   //rr
 static Node* left_right_rotation( Node* t );    //lr
 static Node* right_left_rotation( Node* t);     //rl
 
+static int check_node_type( Node* t );  // 0 NULL, 1 Single, 2, root, 3, left child, 4 right child
+
 const char* root_format = "%2d is root";
 const char* node_type_format = "the type of node is %s";
 const char* precursor_format = "precursor %2d";
@@ -201,12 +203,9 @@ static Node* avltree_delete( AvlTree t, Node* n )
 }
 
 
-int get_node_height( Node* n ) {
-    if( NULL == n ) return -1;
-    return n -> height;
-}
 
-int get_node_height_calc( Node* n ) {
+
+int get_node_height( Node* n ) {
     int type = get_node_type( n );
     if( 0 == type ) return -1;
     if( 1 == type ) return 0;
@@ -346,19 +345,59 @@ static void printInfo( Node* n, int key, int direction )
     }
 }
 
-/*
-  This function can be called only if k2 has a left child
-  Perform a rotate between a node (K2) and its left child
-  Update heights, then return new root.
- */
-static Node* left_left_rotation(Node* k2)
+
+static Node* left_left_rotation( Node* k1 )
 {
-    return NULL;
+    int type = check_node_type( Node * k1 );
+    int left_height = get_node_height( k1 -> left );
+
+    Node* k2 = k1 -> right;
+    k2 -> father = k1 -> father;
+
+    if ( 1 == left_height ) {
+        Node* k3 = k2 -> left;
+        k1 -> right = k3;
+        k3 -> father = k1;
+    }
+
+    k2 -> left = k1;
+    k1 -> father = k2;
+
+    if ( 3 == type ) {
+        k2 -> father -> left  = k2;
+    } else if ( 4 == type ) {
+        k2 -> father -> right  = k2;
+    }
+
+    return k2;
+
 }
 
 static Node* right_right_rotation(Node* k1)
 {
-    return NULL;
+
+    int type = check_node_type( Node * k1 );
+    int left_height = get_node_height( k1 -> left );
+
+    Node* k2 = k1 -> left;
+    k2 -> father = k1 -> father;
+
+    if ( 1 == left_height ) {
+        Node* k3 = k2 -> right;
+        k1 -> left = k3;
+        k3 -> father = k1;
+    }
+
+    k2 -> right = k1;
+    k1 -> father = k2;
+
+    if ( 3 == type ) {
+        k2 -> father -> left  = k2;
+    } else if ( 4 == type ) {
+        k2 -> father -> right  = k2;
+    }
+
+    return k2;
 }
 
 static Node* left_right_rotation( Node* t )
@@ -370,4 +409,28 @@ static Node* left_right_rotation( Node* t )
 static Node* right_left_rotation( Node* t)
 {
     return NULL;
+}
+
+// 0 NULL, 1 Single, 2, root, 3, left child, 4 right child
+static int check_node_type( Node* t )
+{
+    if ( t == NULL ) return 0;
+
+    int type;
+
+    if ( NULL == t -> father ) {
+        if ( NULL == t -> left && NULL == t -> right )
+            type = 1;
+        else
+            type = 2;
+
+    } else {
+        if ( t ==  t -> father -> left ) {
+            type = 3;
+        } else if ( t ==  t -> father -> right ) {
+            type = 4;
+        }
+    }
+
+    return type;
 }
