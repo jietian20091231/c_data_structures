@@ -9,10 +9,15 @@ static Node* create_avltree_node( int key, Node* father, Node* left, Node* right
 static Node* avltree_insert( AvlTree t, Node* n );
 static Node* avltree_delete( AvlTree t, Node* n );
 static void  printInfo( Node* n, int key, int direction );
-static Node* left_left_rotation( Node* t );     //ll
-static Node* right_right_rotation( Node* t );   //rr
+static Node* left_rotation( Node* t );     //ll
+static Node* right_rotation( Node* t );   //rr
 static Node* left_right_rotation( Node* t );    //lr
 static Node* right_left_rotation( Node* t);     //rl
+
+static Node* bstree_insert( Node* t );
+
+static Node* lost_balance_node( Node * t );
+
 
 static int check_node_type( Node* t );  // 0 NULL, 1 Single, 2, root, 3, left child, 4 right child
 
@@ -193,7 +198,33 @@ static Node* create_avltree_node( int key, Node* father, Node* left, Node* right
 
 static Node* avltree_insert( AvlTree t, Node* n )
 {
-    return NULL;
+    t = bstree_insert( t, n );
+
+    if ( t != NULL ) {
+        if( get_node_height_calc( t -> left ) - get_node_height_calc( t -> right ) == -2 ) {
+            //left rotation
+            Node* k1 = lost_balance_node( n );
+            if ( get_node_height_calc( t -> left ) == 0 ) {
+                k1 = left_rotation( k1 );
+                if ( NULL == k1 -> father ) t = k1; //change root node
+            } else {
+                k1 = right_left_rotation( k1 );
+                if ( NULL == k1 -> father ) t = k1;
+            }
+
+        } else if( get_node_height_calc( t -> left ) - get_node_height_calc( t -> right ) == 2 ) {
+            //right_rotation
+            Node* k1 = lost_balance_node( n );
+            if ( get_node_height_calc( t -> right )  == 0 ) {
+                k1 = right_rotation( k1 );
+                if ( NULL == k1 -> father ) t = k1; //change root node
+            } else {
+
+            }
+        }
+    }
+
+    return t;
 }
 
 
@@ -201,7 +232,6 @@ static Node* avltree_delete( AvlTree t, Node* n )
 {
     return NULL;
 }
-
 
 
 
@@ -346,9 +376,9 @@ static void printInfo( Node* n, int key, int direction )
 }
 
 
-static Node* left_left_rotation( Node* k1 )
+static Node* left_rotation( Node* k1 )
 {
-    int type = check_node_type( Node * k1 );
+    int type = check_node_type( k1 );
     int left_height = get_node_height( k1 -> left );
 
     Node* k2 = k1 -> right;
@@ -373,10 +403,11 @@ static Node* left_left_rotation( Node* k1 )
 
 }
 
-static Node* right_right_rotation(Node* k1)
+
+static Node* right_rotation(Node* k1)
 {
 
-    int type = check_node_type( Node * k1 );
+    int type = check_node_type(  k1 );
     int left_height = get_node_height( k1 -> left );
 
     Node* k2 = k1 -> left;
@@ -402,14 +433,17 @@ static Node* right_right_rotation(Node* k1)
 
 static Node* left_right_rotation( Node* t )
 {
-    return NULL;
+    t -> left = right_rotation( t -> left );
+    return left_rotation( t );
 }
 
 
 static Node* right_left_rotation( Node* t)
 {
-    return NULL;
+    t -> right = left_rotation( t -> right );
+    return right_rotation( t );
 }
+
 
 // 0 NULL, 1 Single, 2, root, 3, left child, 4 right child
 static int check_node_type( Node* t )
@@ -433,4 +467,54 @@ static int check_node_type( Node* t )
     }
 
     return type;
+}
+
+static Node* bstree_insert(BSTree t, Node* n)
+{
+    Node* y = NULL;
+    Node* x = t;
+
+    while(x != NULL)
+    {
+        y = x;
+
+        if(n -> key < x -> key)
+        {
+            x = x -> left;
+        }
+        else if(n -> key > x -> key)
+        {
+            x = x -> right;
+        }
+    }
+
+    n -> father = y;
+    if(NULL == y)
+    {
+        t = n;
+    }
+    else if(n -> key < y -> key)
+    {
+        y -> left = n;
+    }
+    else if(n ->key > y -> key)
+    {
+        y -> right = n;
+    }
+
+    return t;
+
+}
+
+
+static Node* lost_balance_node( Node * t )
+{
+    Node ret = t -> father;
+    int diff = get_node_height_calc( t -> left ) - get_node_height_calc( t -> right );
+    while( abs( diff ) < 2 ) {
+        ret = t -> father;
+        diff = get_node_height_calc( t -> left ) - get_node_height_calc( t -> right );
+    }
+
+    return ret;
 }
