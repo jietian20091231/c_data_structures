@@ -25,7 +25,6 @@ int main()
         testBst(mat[i]);
     }
 
-
     return 0;
 }
 
