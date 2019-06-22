@@ -16,6 +16,28 @@ int main(int argc, char const *argv[])
     t = insert_avltree( t, arr[ 2 ] );
     print_avltree( t, t->key, 0 );
 
+    t = insert_avltree( t, arr[ 3 ] );
+    print_avltree( t, t->key, 0 );
+
+    t = insert_avltree( t, arr[ 4 ] );
+    print_avltree( t, t -> key , 0 );
+
+    t = insert_avltree( t, arr[ 5 ] );
+    print_avltree( t, t->key, 0 );
+
+    // t = insert_avltree( t, arr[ 6 ] );
+    // print_avltree( t, t->key, 0 );
+
+    // t = insert_avltree( t, arr[ 7 ] );
+    // print_avltree( t, t->key, 0 );
+
+    // t = insert_avltree( t, arr[ 8 ] );
+    // print_avltree( t, t->key, 0 );
+
+    // t = insert_avltree( t, arr[ 9 ] );
+    // print_avltree( t, t->key, 0 );
+
+
     destroy_avltree( t );
 
     return 0;
