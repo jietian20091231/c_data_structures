@@ -422,6 +422,8 @@ static Node* left_rotation( Node* k1 )
     } else {
 
         Node* k2 = k1 -> right;
+        int k1_has_left = ( k1 -> left ) ? 1 : 0;
+        printf( "[left_right_rotation] k1_has_left = %d\n", k1_has_left );
 
         printf( "[left_right_rotation] left_rotation k1 -> key = %d, k1 address = %p\n", k1 -> key, k1 );
         printf( "[left_right_rotation] left_rotation k2 -> key = %d, k2 address = %p\n", k2 -> key, k2 );
@@ -433,11 +435,16 @@ static Node* left_rotation( Node* k1 )
         k2 -> left = k1;
         k1 -> father = k2;
 
-        k1 -> left = k1 -> right = NULL;
+        if ( k1_has_left ) {
+            k1 -> right = NULL;
+        } else {
+            k1 -> left = k1 -> right = NULL;
+        }
 
-        if ( 3 == stat ) {
-            k1 -> right  = k3;
-            k3 -> father = k1;
+        if ( 3 == stat )
+        {
+            k1->right = k3;
+            k3->father = k1;
         }
 
         ret = k2;
@@ -483,6 +490,9 @@ static Node* right_rotation( Node* k1 )
     } else {
 
         Node* k2 = k1 -> left;
+        int k1_has_right = ( k1 -> right ) ? 1 : 0;
+        
+        printf( "[right_left_rotation] k1_has_right = %d\n", k1_has_right );
 
         printf( "[right_left_rotation] right_rotation k1 -> key = %d, k1 address = %p\n", k1 -> key, k1 );
         printf( "[right_left_rotation] right_rotation k2 -> key = %d, k2 address = %p\n", k2 -> key, k2 );
@@ -495,12 +505,16 @@ static Node* right_rotation( Node* k1 )
         k2->right = k1;
         k1->father = k2;
 
-        k1 -> left = k1 -> right = NULL;
+        if ( k1_has_right ) {
+            k1 -> left = NULL;
+        } else {
+            k1 -> left = k2 -> right = NULL;
+        } 
 
-        if ( 4 == stat ) {
-            k1 -> left = k3;
-            k3 -> father = k1;
-            k3 -> left = k3 -> right = NULL;
+        if ( 4 == stat )
+        {
+            k1->left = k3;
+            k3->father = k1;
         }
 
         ret = k2;
@@ -590,7 +604,7 @@ static Node* lost_balance_node( Node * t )
 {
     Node* ret = t -> father;
     int diff = get_node_height( t -> left ) - get_node_height( t -> right );
-    while( abs( diff ) < 2 ) {
+    while ( abs( diff ) < 2 ) {
         ret = ret -> father;
         diff = get_node_height( ret -> left ) - get_node_height( ret -> right );
     }
