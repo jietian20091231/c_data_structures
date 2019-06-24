@@ -4,7 +4,7 @@
 
 #include "avl_tree.h"
 
-#define ROW  1
+#define ROW  10
 #define COL  10
 
 int array[ ROW ][ COL ];
