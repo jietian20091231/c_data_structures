@@ -45,20 +45,11 @@ static void randomGen( int r[] )
 int main(int argc, char const *argv[])
 {
     int i, j;
-    srand( time( NULL  ) );
+    srand( time( NULL ) );
 
     for ( i = 0; i < ROW; i++ ) {
         randomGen( array [ i ] );
     }
-
-    // for ( i = 0; i < ROW; i++ ) {
-    //     printf( "[ %d ] : ", i );
-    //     for ( j = 0; j < COL; j++ ) {
-    //         printf( "%d ", array[ i ][ j ] );
-    //     }
-    //     printf( "\n" );
-    // }
-
 
     for( i = 0 ; i < ROW; i++ ) {
         printf( "====================Avl tree [%d]====================\n", i );
