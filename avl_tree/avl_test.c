@@ -3,24 +3,50 @@
 
 int main(int argc, char const *argv[])
 {
-    //int arr[ 10 ] = { 25, 88, 70, 18, 21, 45, 42, 97, 22, 11 };
-    //int arr[ 10  ] = { 62, 33, 86, 69, 84, 53, 20, 80, 48, 68 };
-    //int arr[ 10 ] = { 16, 29, 40, 36, 33, 68, 42, 49, 50, 52 };
+  int array[ 10 ][ 10 ] = {
+        { 95, 66, 73, 97, 83, 35, 79, 78, 28, 80 },
+        { 75, 37, 85, 28, 84, 33, 93, 17, 65, 57 },
+        { 30, 74, 84, 26, 35, 89, 22, 63, 59, 85 },
+        { 20, 25, 70, 61, 98, 49, 39, 26, 82, 66 },
+        { 54, 67, 85, 38, 52, 78, 45, 17, 36, 27 },
+        { 43, 62, 63, 22, 87, 52, 34, 12, 11, 71 },
+        { 22, 27, 44, 40, 42, 84, 31, 58, 66, 88 },
+        { 12, 85, 73, 92, 89, 13, 96, 39, 17, 91 },
+        { 53, 70, 65, 40, 23, 90, 42, 24, 17, 93 },
+        { 57, 51, 85, 89, 87, 17, 10, 15, 95, 12 }
+    };
 
-    int arr[ 10 ] = { 33, 28, 94, 16, 39, 81, 44, 34, 66, 74 };
-
-    int i;
+    int i, j;
 
     AvlTree t = NULL;
-
-    for ( i = 0; i < 10; i++ ) {
-        t = insert_avltree( t, arr[ i ] );
+    for( j = 0; j < 10; j++ ) {
+        t = insert_avltree( t, array[ 0 ][ j ] );
         printf( "[Main]\n" );
         print_avltree( t, t -> key , 0 );
         printf( "\n" );
     }
-
     destroy_avltree( t );
+
+
+
+    // for ( i = 0; i < 10; i++ ) {
+    //     printf( "==========array[%d]==========\n", i );
+    //     printf( "Input Numbers : " );
+    //     for( j = 0; j < 10; j++ ) {
+    //         printf( "%d ", array[ i ][ j ] );
+    //     }
+    //     printf( "\n\n" );
+
+    //     AvlTree t = NULL;
+    //     for ( j = 0; j < 10; j++ ) {
+    //         t = insert_avltree( t, array[ i ][ j ] );
+    //         printf( "[Main]\n" );
+    //         print_avltree( t, t -> key , 0 );
+    //         printf( "\n" );
+    //     }
+    //     destroy_avltree( t );
+
+    // }
 
     return 0;
 }

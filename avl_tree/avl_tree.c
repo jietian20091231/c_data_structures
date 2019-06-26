@@ -482,14 +482,15 @@ static Node* left_rotation( Node* k1 )
     } else {
 
         Node* k2 = k1 -> right;
+        printf( "[left_right_rotation, left_rotation] k2 -> left = %p\n", k2 -> left );
         int k1_has_left = ( k1 -> left ) ? 1 : 0;
-        printf( "[left_right_rotation, left_rotation] k1_has_left = %d\n", k1_has_left );
 
-        printf( "[left_right_rotation, left_rotation]  k1 -> key = %d, k1 address = %p\n", k1 -> key, k1 );
-        printf( "[left_right_rotation, left_rotation]  k2 -> key = %d, k2 address = %p\n", k2 -> key, k2 );
+        printf( "[left_right_rotation, left_rotation] k1_has_left = %d\n", k1_has_left );
+        printf( "[left_right_rotation, left_rotation] k1 -> key = %d, k1 address = %p\n", k1 -> key, k1 );
+        printf( "[left_right_rotation, left_rotation] k2 -> key = %d, k2 address = %p\n", k2 -> key, k2 );
 
         Node* k3 = k2 -> left;
-        int stat = check_node_type( k2 );
+        int stat = check_node_type( k3 );
         printf( "[left_right_rotation, left_rotation] stat = %d\n", stat );
         k2 -> father = k1 -> father;
         k2 -> left = k1;
@@ -508,6 +509,10 @@ static Node* left_rotation( Node* k1 )
         }
 
         ret = k2;
+        printf( "[left_right_rotation, left_rotation] ret -> left = %p\n", ret -> left );
+        if( k2 -> left ) {
+            printf( "[left_right_rotation, left_rotation] k2 -> left -> key = %d\n", k2 -> left -> key );
+        }
         printf( "[left_right_rotation, left_rotation] ret -> key = %d( %p )\n", ret -> key, ret );
         printf( "[left_right_rotation, left_rotation]\n");
         print_avltree( ret, ret -> key, 0 );
@@ -527,6 +532,7 @@ static Node* right_rotation( Node* k1 )
     printf( "[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = %d\n", get_node_height( k1 -> left ) - get_node_height( k1 -> right ) );
     if ( 2 == get_node_height( k1 -> left ) - get_node_height( k1 -> right ) ) {
         Node* k2 = k1 -> left;
+        printf( "[right_rotation,  singel] k1 -> key = %d, k2 -> key = %d\n", k1 -> key, k2 -> key );
         if ( 0 == get_node_height( k1 -> right ) && 0 == get_node_height( k2 -> right ) ) {
             k2 -> father = k1 -> father;
             k1 -> left = NULL;
@@ -540,6 +546,11 @@ static Node* right_rotation( Node* k1 )
             k1 -> father = k2;
             k1 -> left = k3;
             k3 -> father = k1;
+        } else if ( 1 == get_node_height( k1 -> right ) && 0 == get_node_height( k2 -> right )  ) {
+            printf( "<=======================>\n" );
+            // k2 -> father = k1 -> father;
+            // k2 -> right = k1;
+            // k1 -> father = k2;
         }
 
         if ( 3 == type ) {
@@ -564,7 +575,7 @@ static Node* right_rotation( Node* k1 )
         printf( "[right_left_rotation, right_rotation]  k2 -> key = %d, k2 address = %p\n", k2 -> key, k2 );
 
         Node* k3 = k2 -> right;
-        int stat = check_node_type( k2 );
+        int stat = check_node_type( k3 );
         printf( "[right_left_rotation, right_rotation] stat = %d\n", stat );
 
         k2->father = k1->father;
