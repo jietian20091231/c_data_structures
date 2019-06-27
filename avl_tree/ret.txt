@@ -1,0 +1,3215 @@
+==========array[0]==========
+Input Numbers : 95 66 73 97 83 35 79 78 28 80 
+
+n -> key = 95
+[avltree_insert, bstree_insert]
+95 is a single node.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 0
+[avltree_insert] t = 0x1c60010, t -> key = 95
+[lost_balance_node] t -> key = 95( 0x1c60010 )
+[lost_balance_node] ret = (nil)
+[Main]
+95 is a single node.
+
+n -> key = 66
+[avltree_insert, bstree_insert]
+95 is root, the type of node is ROOT, precursor 66.
+66 is 95's left child, the type of node is LEAF, successor 95.
+[avltree_insert] get_node_height( t -> left ) = 1
+[avltree_insert] get_node_height( t -> right ) = 0
+[avltree_insert] t = 0x1c60010, t -> key = 95
+[lost_balance_node] t -> key = 66( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 95( 0x1c60010 )
+[lost_balance_node] t -> key = 66( 0x1c60040 )
+[lost_balance_node] ret = (nil)
+[Main]
+95 is root, the type of node is ROOT, precursor 66.
+66 is 95's left child, the type of node is LEAF, successor 95.
+
+n -> key = 73
+[avltree_insert, bstree_insert]
+95 is root, the type of node is ROOT, precursor 73.
+66 is 95's left child, the type of node is TRUNK, successor 73.
+73 is 66's right child, the type of node is LEAF, precursor 66, successor 95.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 0
+[avltree_insert] t = 0x1c60010, t -> key = 95
+[lost_balance_node] t -> key = 73( 0x1c60070 )
+[lost_balance_node] t -> father -> key = 66( 0x1c60040 )
+[lost_balance_node] t -> key = 73( 0x1c60070 )
+[lost_balance_node] t -> father -> key = 66( 0x1c60040 )
+[lost_balance_node]  found lost blance Node address is 0x1c60010, value is 95
+[lost_balance_node] ret = 0x1c60010
+====================> k1 -> key  = 95
+====================> get_node_height( k1 -> left  ) = 2
+====================> get_node_height( k1 -> right  ) = 0
+====================> get_node_height( k1 -> left -> right ) = 1
+====================> get_node_height( k1 -> right ) = 0
+[avltree_insert left right rotation]
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 1
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 1
+[left_right_rotation, left_rotation] k2 -> left = (nil)
+[left_right_rotation, left_rotation] k1_has_left = 0
+[left_right_rotation, left_rotation] k1 -> key = 66, k1 address = 0x1c60040
+[left_right_rotation, left_rotation] k2 -> key = 73, k2 address = 0x1c60070
+[left_right_rotation, left_rotation] stat = 0
+[left_right_rotation, left_rotation] ret -> left = 0x1c60040
+[left_right_rotation, left_rotation] k2 -> left -> key = 66
+[left_right_rotation, left_rotation] ret -> key = 73( 0x1c60070 )
+[left_right_rotation, left_rotation]
+73 is 73's right child, the type of node is TRUNK, precursor 66.
+66 is 73's left child, the type of node is LEAF, successor 73.
+
+============[left_right_rotation]============
+95 is root, the type of node is ROOT, precursor 73.
+73 is 95's left child, the type of node is TRUNK, precursor 66, successor 95.
+66 is 73's left child, the type of node is LEAF, successor 73.
+
+[right_rotation] get_node_height( k1 -> right ) = 2, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 2
+[right_rotation]  type = 2
+[right_rotation,  singel] k1 -> key = 95, k2 -> key = 73
+[right_rotation]
+73 is root, the type of node is ROOT, precursor 66, successor 95.
+66 is 73's left child, the type of node is LEAF, successor 73.
+95 is 73's right child, the type of node is LEAF, precursor 73.
+
+[Main]
+73 is root, the type of node is ROOT, precursor 66, successor 95.
+66 is 73's left child, the type of node is LEAF, successor 73.
+95 is 73's right child, the type of node is LEAF, precursor 73.
+
+n -> key = 97
+[avltree_insert, bstree_insert]
+73 is root, the type of node is ROOT, precursor 66, successor 95.
+66 is 73's left child, the type of node is LEAF, successor 73.
+95 is 73's right child, the type of node is TRUNK, precursor 73, successor 97.
+97 is 95's right child, the type of node is LEAF, precursor 95.
+[avltree_insert] get_node_height( t -> left ) = 1
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60070, t -> key = 73
+[lost_balance_node] t -> key = 97( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 95( 0x1c60010 )
+[lost_balance_node] t -> key = 97( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 95( 0x1c60010 )
+[lost_balance_node] t -> key = 97( 0x1c600a0 )
+[lost_balance_node] ret = (nil)
+[Main]
+73 is root, the type of node is ROOT, precursor 66, successor 95.
+66 is 73's left child, the type of node is LEAF, successor 73.
+95 is 73's right child, the type of node is TRUNK, precursor 73, successor 97.
+97 is 95's right child, the type of node is LEAF, precursor 95.
+
+n -> key = 83
+[avltree_insert, bstree_insert]
+73 is root, the type of node is ROOT, precursor 66, successor 83.
+66 is 73's left child, the type of node is LEAF, successor 73.
+95 is 73's right child, the type of node is TRUNK, precursor 83, successor 97.
+83 is 95's left child, the type of node is LEAF, precursor 73, successor 95.
+97 is 95's right child, the type of node is LEAF, precursor 95.
+[avltree_insert] get_node_height( t -> left ) = 1
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60070, t -> key = 73
+[lost_balance_node] t -> key = 83( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 95( 0x1c60010 )
+[lost_balance_node] t -> key = 83( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 95( 0x1c60010 )
+[lost_balance_node] t -> key = 83( 0x1c600d0 )
+[lost_balance_node] ret = (nil)
+[Main]
+73 is root, the type of node is ROOT, precursor 66, successor 83.
+66 is 73's left child, the type of node is LEAF, successor 73.
+95 is 73's right child, the type of node is TRUNK, precursor 83, successor 97.
+83 is 95's left child, the type of node is LEAF, precursor 73, successor 95.
+97 is 95's right child, the type of node is LEAF, precursor 95.
+
+n -> key = 35
+[avltree_insert, bstree_insert]
+73 is root, the type of node is ROOT, precursor 66, successor 83.
+66 is 73's left child, the type of node is TRUNK, precursor 35, successor 73.
+35 is 66's left child, the type of node is LEAF, successor 66.
+95 is 73's right child, the type of node is TRUNK, precursor 83, successor 97.
+83 is 95's left child, the type of node is LEAF, precursor 73, successor 95.
+97 is 95's right child, the type of node is LEAF, precursor 95.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60070, t -> key = 73
+[lost_balance_node] t -> key = 35( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 66( 0x1c60040 )
+[lost_balance_node] t -> key = 35( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 66( 0x1c60040 )
+[lost_balance_node] t -> key = 35( 0x1c60100 )
+[lost_balance_node] ret = (nil)
+[Main]
+73 is root, the type of node is ROOT, precursor 66, successor 83.
+66 is 73's left child, the type of node is TRUNK, precursor 35, successor 73.
+35 is 66's left child, the type of node is LEAF, successor 66.
+95 is 73's right child, the type of node is TRUNK, precursor 83, successor 97.
+83 is 95's left child, the type of node is LEAF, precursor 73, successor 95.
+97 is 95's right child, the type of node is LEAF, precursor 95.
+
+n -> key = 79
+[avltree_insert, bstree_insert]
+73 is root, the type of node is ROOT, precursor 66, successor 79.
+66 is 73's left child, the type of node is TRUNK, precursor 35, successor 73.
+35 is 66's left child, the type of node is LEAF, successor 66.
+95 is 73's right child, the type of node is TRUNK, precursor 83, successor 97.
+83 is 95's left child, the type of node is TRUNK, precursor 79, successor 95.
+79 is 83's left child, the type of node is LEAF, precursor 73, successor 83.
+97 is 95's right child, the type of node is LEAF, precursor 95.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c60070, t -> key = 73
+[lost_balance_node] t -> key = 79( 0x1c60130 )
+[lost_balance_node] t -> father -> key = 83( 0x1c600d0 )
+[lost_balance_node] t -> key = 79( 0x1c60130 )
+[lost_balance_node] t -> father -> key = 83( 0x1c600d0 )
+[lost_balance_node] t -> key = 79( 0x1c60130 )
+[lost_balance_node] t -> father -> key = 83( 0x1c600d0 )
+[lost_balance_node] t -> key = 79( 0x1c60130 )
+[lost_balance_node] ret = (nil)
+[Main]
+73 is root, the type of node is ROOT, precursor 66, successor 79.
+66 is 73's left child, the type of node is TRUNK, precursor 35, successor 73.
+35 is 66's left child, the type of node is LEAF, successor 66.
+95 is 73's right child, the type of node is TRUNK, precursor 83, successor 97.
+83 is 95's left child, the type of node is TRUNK, precursor 79, successor 95.
+79 is 83's left child, the type of node is LEAF, precursor 73, successor 83.
+97 is 95's right child, the type of node is LEAF, precursor 95.
+
+n -> key = 78
+[avltree_insert, bstree_insert]
+73 is root, the type of node is ROOT, precursor 66, successor 78.
+66 is 73's left child, the type of node is TRUNK, precursor 35, successor 73.
+35 is 66's left child, the type of node is LEAF, successor 66.
+95 is 73's right child, the type of node is TRUNK, precursor 83, successor 97.
+83 is 95's left child, the type of node is TRUNK, precursor 79, successor 95.
+79 is 83's left child, the type of node is TRUNK, precursor 78, successor 83.
+78 is 79's left child, the type of node is LEAF, precursor 73, successor 79.
+97 is 95's right child, the type of node is LEAF, precursor 95.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 4
+[avltree_insert] t = 0x1c60070, t -> key = 73
+[lost_balance_node] t -> key = 78( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 79( 0x1c60130 )
+[lost_balance_node] t -> key = 78( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 79( 0x1c60130 )
+[lost_balance_node]  found lost blance Node address is 0x1c600d0, value is 83
+[lost_balance_node] ret = 0x1c600d0
+====================> k1 -> key  = 83
+====================> get_node_height( k1 -> left  ) = 2
+====================> get_node_height( k1 -> right  ) = 0
+====================> get_node_height( k1 -> left -> right ) = 0
+====================> get_node_height( k1 -> right ) = 0
+[avltree_insert singel left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 2, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 2
+[right_rotation]  type = 3
+[right_rotation,  singel] k1 -> key = 83, k2 -> key = 79
+[right_rotation]
+79 is 79's right child, the type of node is TRUNK, precursor 78, successor 83.
+78 is 79's left child, the type of node is LEAF, precursor 73, successor 79.
+83 is 79's right child, the type of node is LEAF, precursor 79, successor 95.
+
+[Main]
+73 is root, the type of node is ROOT, precursor 66, successor 78.
+66 is 73's left child, the type of node is TRUNK, precursor 35, successor 73.
+35 is 66's left child, the type of node is LEAF, successor 66.
+95 is 73's right child, the type of node is TRUNK, precursor 83, successor 97.
+79 is 95's left child, the type of node is TRUNK, precursor 78, successor 83.
+78 is 79's left child, the type of node is LEAF, precursor 73, successor 79.
+83 is 79's right child, the type of node is LEAF, precursor 79, successor 95.
+97 is 95's right child, the type of node is LEAF, precursor 95.
+
+n -> key = 28
+[avltree_insert, bstree_insert]
+73 is root, the type of node is ROOT, precursor 66, successor 78.
+66 is 73's left child, the type of node is TRUNK, precursor 35, successor 73.
+35 is 66's left child, the type of node is TRUNK, precursor 28, successor 66.
+28 is 35's left child, the type of node is LEAF, successor 35.
+95 is 73's right child, the type of node is TRUNK, precursor 83, successor 97.
+79 is 95's left child, the type of node is TRUNK, precursor 78, successor 83.
+78 is 79's left child, the type of node is LEAF, precursor 73, successor 79.
+83 is 79's right child, the type of node is LEAF, precursor 79, successor 95.
+97 is 95's right child, the type of node is LEAF, precursor 95.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c60070, t -> key = 73
+[lost_balance_node] t -> key = 28( 0x1c60190 )
+[lost_balance_node] t -> father -> key = 35( 0x1c60100 )
+[lost_balance_node] t -> key = 28( 0x1c60190 )
+[lost_balance_node] t -> father -> key = 35( 0x1c60100 )
+[lost_balance_node]  found lost blance Node address is 0x1c60040, value is 66
+[lost_balance_node] ret = 0x1c60040
+====================> k1 -> key  = 66
+====================> get_node_height( k1 -> left  ) = 2
+====================> get_node_height( k1 -> right  ) = 0
+====================> get_node_height( k1 -> left -> right ) = 0
+====================> get_node_height( k1 -> right ) = 0
+[avltree_insert singel left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 2, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 2
+[right_rotation]  type = 3
+[right_rotation,  singel] k1 -> key = 66, k2 -> key = 35
+[right_rotation]
+35 is 35's right child, the type of node is TRUNK, precursor 28, successor 66.
+28 is 35's left child, the type of node is LEAF, successor 35.
+66 is 35's right child, the type of node is LEAF, precursor 35, successor 73.
+
+[Main]
+73 is root, the type of node is ROOT, precursor 66, successor 78.
+35 is 73's left child, the type of node is TRUNK, precursor 28, successor 66.
+28 is 35's left child, the type of node is LEAF, successor 35.
+66 is 35's right child, the type of node is LEAF, precursor 35, successor 73.
+95 is 73's right child, the type of node is TRUNK, precursor 83, successor 97.
+79 is 95's left child, the type of node is TRUNK, precursor 78, successor 83.
+78 is 79's left child, the type of node is LEAF, precursor 73, successor 79.
+83 is 79's right child, the type of node is LEAF, precursor 79, successor 95.
+97 is 95's right child, the type of node is LEAF, precursor 95.
+
+n -> key = 80
+[avltree_insert, bstree_insert]
+73 is root, the type of node is ROOT, precursor 66, successor 78.
+35 is 73's left child, the type of node is TRUNK, precursor 28, successor 66.
+28 is 35's left child, the type of node is LEAF, successor 35.
+66 is 35's right child, the type of node is LEAF, precursor 35, successor 73.
+95 is 73's right child, the type of node is TRUNK, precursor 83, successor 97.
+79 is 95's left child, the type of node is TRUNK, precursor 78, successor 80.
+78 is 79's left child, the type of node is LEAF, precursor 73, successor 79.
+83 is 79's right child, the type of node is TRUNK, precursor 80, successor 95.
+80 is 83's left child, the type of node is LEAF, precursor 79, successor 83.
+97 is 95's right child, the type of node is LEAF, precursor 95.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 4
+[avltree_insert] t = 0x1c60070, t -> key = 73
+[lost_balance_node] t -> key = 80( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 83( 0x1c600d0 )
+[lost_balance_node] t -> key = 80( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 83( 0x1c600d0 )
+[lost_balance_node] t -> key = 80( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 83( 0x1c600d0 )
+[lost_balance_node]  found lost blance Node address is 0x1c60010, value is 95
+[lost_balance_node] ret = 0x1c60010
+====================> k1 -> key  = 95
+====================> get_node_height( k1 -> left  ) = 3
+====================> get_node_height( k1 -> right  ) = 1
+====================> get_node_height( k1 -> left -> right ) = 2
+====================> get_node_height( k1 -> right ) = 1
+[avltree_insert left right rotation]
+[left_rotation] get_node_height( k1 -> right ) = 1, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 1
+[left_right_rotation, left_rotation] k2 -> left = 0x1c601c0
+[left_right_rotation, left_rotation] k1_has_left = 1
+[left_right_rotation, left_rotation] k1 -> key = 79, k1 address = 0x1c60130
+[left_right_rotation, left_rotation] k2 -> key = 83, k2 address = 0x1c600d0
+[left_right_rotation, left_rotation] stat = 3
+[left_right_rotation, left_rotation] ret -> left = 0x1c60130
+[left_right_rotation, left_rotation] k2 -> left -> key = 79
+[left_right_rotation, left_rotation] ret -> key = 83( 0x1c600d0 )
+[left_right_rotation, left_rotation]
+83 is 83's right child, the type of node is TRUNK, precursor 80.
+79 is 83's left child, the type of node is TRUNK, precursor 78, successor 80.
+78 is 79's left child, the type of node is LEAF, precursor 73, successor 79.
+80 is 79's right child, the type of node is LEAF, precursor 79, successor 83.
+
+============[left_right_rotation]============
+95 is 95's right child, the type of node is TRUNK, precursor 83, successor 97.
+83 is 95's left child, the type of node is TRUNK, precursor 80, successor 95.
+79 is 83's left child, the type of node is TRUNK, precursor 78, successor 80.
+78 is 79's left child, the type of node is LEAF, precursor 73, successor 79.
+80 is 79's right child, the type of node is LEAF, precursor 79, successor 83.
+97 is 95's right child, the type of node is LEAF, precursor 95.
+
+[right_rotation] get_node_height( k1 -> right ) = 3, get_node_height( k1 -> left ) = 1
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 2
+[right_rotation]  type = 4
+[right_rotation,  singel] k1 -> key = 95, k2 -> key = 83
+<=======================>
+[right_rotation]
+83 is 83's right child, the type of node is TRUNK, precursor 80, successor 95.
+79 is 83's left child, the type of node is TRUNK, precursor 78, successor 80.
+78 is 79's left child, the type of node is LEAF, precursor 73, successor 79.
+80 is 79's right child, the type of node is LEAF, precursor 79, successor 83.
+95 is 83's right child, the type of node is TRUNK, precursor 83, successor 97.
+97 is 95's right child, the type of node is LEAF, precursor 95.
+
+[Main]
+73 is root, the type of node is ROOT, precursor 66, successor 78.
+35 is 73's left child, the type of node is TRUNK, precursor 28, successor 66.
+28 is 35's left child, the type of node is LEAF, successor 35.
+66 is 35's right child, the type of node is LEAF, precursor 35, successor 73.
+83 is 73's right child, the type of node is TRUNK, precursor 80, successor 95.
+79 is 83's left child, the type of node is TRUNK, precursor 78, successor 80.
+78 is 79's left child, the type of node is LEAF, precursor 73, successor 79.
+80 is 79's right child, the type of node is LEAF, precursor 79, successor 83.
+95 is 83's right child, the type of node is TRUNK, precursor 83, successor 97.
+97 is 95's right child, the type of node is LEAF, precursor 95.
+
+==========array[1]==========
+Input Numbers : 75 37 85 28 84 33 93 17 65 57 
+
+n -> key = 75
+[avltree_insert, bstree_insert]
+75 is a single node.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 0
+[avltree_insert] t = 0x1c60070, t -> key = 75
+[lost_balance_node] t -> key = 75( 0x1c60070 )
+[lost_balance_node] ret = (nil)
+[Main]
+75 is a single node.
+
+n -> key = 37
+[avltree_insert, bstree_insert]
+75 is root, the type of node is ROOT, precursor 37.
+37 is 75's left child, the type of node is LEAF, successor 75.
+[avltree_insert] get_node_height( t -> left ) = 1
+[avltree_insert] get_node_height( t -> right ) = 0
+[avltree_insert] t = 0x1c60070, t -> key = 75
+[lost_balance_node] t -> key = 37( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 75( 0x1c60070 )
+[lost_balance_node] t -> key = 37( 0x1c600d0 )
+[lost_balance_node] ret = (nil)
+[Main]
+75 is root, the type of node is ROOT, precursor 37.
+37 is 75's left child, the type of node is LEAF, successor 75.
+
+n -> key = 85
+[avltree_insert, bstree_insert]
+75 is root, the type of node is ROOT, precursor 37, successor 85.
+37 is 75's left child, the type of node is LEAF, successor 75.
+85 is 75's right child, the type of node is LEAF, precursor 75.
+[avltree_insert] get_node_height( t -> left ) = 1
+[avltree_insert] get_node_height( t -> right ) = 1
+[avltree_insert] t = 0x1c60070, t -> key = 75
+[lost_balance_node] t -> key = 85( 0x1c60010 )
+[lost_balance_node] t -> father -> key = 75( 0x1c60070 )
+[lost_balance_node] t -> key = 85( 0x1c60010 )
+[lost_balance_node] ret = (nil)
+[Main]
+75 is root, the type of node is ROOT, precursor 37, successor 85.
+37 is 75's left child, the type of node is LEAF, successor 75.
+85 is 75's right child, the type of node is LEAF, precursor 75.
+
+n -> key = 28
+[avltree_insert, bstree_insert]
+75 is root, the type of node is ROOT, precursor 37, successor 85.
+37 is 75's left child, the type of node is TRUNK, precursor 28, successor 75.
+28 is 37's left child, the type of node is LEAF, successor 37.
+85 is 75's right child, the type of node is LEAF, precursor 75.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 1
+[avltree_insert] t = 0x1c60070, t -> key = 75
+[lost_balance_node] t -> key = 28( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 37( 0x1c600d0 )
+[lost_balance_node] t -> key = 28( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 37( 0x1c600d0 )
+[lost_balance_node] t -> key = 28( 0x1c600a0 )
+[lost_balance_node] ret = (nil)
+[Main]
+75 is root, the type of node is ROOT, precursor 37, successor 85.
+37 is 75's left child, the type of node is TRUNK, precursor 28, successor 75.
+28 is 37's left child, the type of node is LEAF, successor 37.
+85 is 75's right child, the type of node is LEAF, precursor 75.
+
+n -> key = 84
+[avltree_insert, bstree_insert]
+75 is root, the type of node is ROOT, precursor 37, successor 84.
+37 is 75's left child, the type of node is TRUNK, precursor 28, successor 75.
+28 is 37's left child, the type of node is LEAF, successor 37.
+85 is 75's right child, the type of node is TRUNK, precursor 84.
+84 is 85's left child, the type of node is LEAF, precursor 75, successor 85.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60070, t -> key = 75
+[lost_balance_node] t -> key = 84( 0x1c60130 )
+[lost_balance_node] t -> father -> key = 85( 0x1c60010 )
+[lost_balance_node] t -> key = 84( 0x1c60130 )
+[lost_balance_node] t -> father -> key = 85( 0x1c60010 )
+[lost_balance_node] t -> key = 84( 0x1c60130 )
+[lost_balance_node] ret = (nil)
+[Main]
+75 is root, the type of node is ROOT, precursor 37, successor 84.
+37 is 75's left child, the type of node is TRUNK, precursor 28, successor 75.
+28 is 37's left child, the type of node is LEAF, successor 37.
+85 is 75's right child, the type of node is TRUNK, precursor 84.
+84 is 85's left child, the type of node is LEAF, precursor 75, successor 85.
+
+n -> key = 33
+[avltree_insert, bstree_insert]
+75 is root, the type of node is ROOT, precursor 37, successor 84.
+37 is 75's left child, the type of node is TRUNK, precursor 33, successor 75.
+28 is 37's left child, the type of node is TRUNK, successor 33.
+33 is 28's right child, the type of node is LEAF, precursor 28, successor 37.
+85 is 75's right child, the type of node is TRUNK, precursor 84.
+84 is 85's left child, the type of node is LEAF, precursor 75, successor 85.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60070, t -> key = 75
+[lost_balance_node] t -> key = 33( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 28( 0x1c600a0 )
+[lost_balance_node] t -> key = 33( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 28( 0x1c600a0 )
+[lost_balance_node]  found lost blance Node address is 0x1c600d0, value is 37
+[lost_balance_node] ret = 0x1c600d0
+====================> k1 -> key  = 37
+====================> get_node_height( k1 -> left  ) = 2
+====================> get_node_height( k1 -> right  ) = 0
+====================> get_node_height( k1 -> left -> right ) = 1
+====================> get_node_height( k1 -> right ) = 0
+[avltree_insert left right rotation]
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 1
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 1
+[left_right_rotation, left_rotation] k2 -> left = (nil)
+[left_right_rotation, left_rotation] k1_has_left = 0
+[left_right_rotation, left_rotation] k1 -> key = 28, k1 address = 0x1c600a0
+[left_right_rotation, left_rotation] k2 -> key = 33, k2 address = 0x1c601c0
+[left_right_rotation, left_rotation] stat = 0
+[left_right_rotation, left_rotation] ret -> left = 0x1c600a0
+[left_right_rotation, left_rotation] k2 -> left -> key = 28
+[left_right_rotation, left_rotation] ret -> key = 33( 0x1c601c0 )
+[left_right_rotation, left_rotation]
+33 is 33's right child, the type of node is TRUNK, precursor 28, successor 75.
+28 is 33's left child, the type of node is LEAF, successor 33.
+
+============[left_right_rotation]============
+37 is 37's right child, the type of node is TRUNK, precursor 33, successor 75.
+33 is 37's left child, the type of node is TRUNK, precursor 28, successor 37.
+28 is 33's left child, the type of node is LEAF, successor 33.
+
+[right_rotation] get_node_height( k1 -> right ) = 2, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 2
+[right_rotation]  type = 3
+[right_rotation,  singel] k1 -> key = 37, k2 -> key = 33
+[right_rotation]
+33 is 33's right child, the type of node is TRUNK, precursor 28, successor 37.
+28 is 33's left child, the type of node is LEAF, successor 33.
+37 is 33's right child, the type of node is LEAF, precursor 33, successor 75.
+
+[Main]
+75 is root, the type of node is ROOT, precursor 37, successor 84.
+33 is 75's left child, the type of node is TRUNK, precursor 28, successor 37.
+28 is 33's left child, the type of node is LEAF, successor 33.
+37 is 33's right child, the type of node is LEAF, precursor 33, successor 75.
+85 is 75's right child, the type of node is TRUNK, precursor 84.
+84 is 85's left child, the type of node is LEAF, precursor 75, successor 85.
+
+n -> key = 93
+[avltree_insert, bstree_insert]
+75 is root, the type of node is ROOT, precursor 37, successor 84.
+33 is 75's left child, the type of node is TRUNK, precursor 28, successor 37.
+28 is 33's left child, the type of node is LEAF, successor 33.
+37 is 33's right child, the type of node is LEAF, precursor 33, successor 75.
+85 is 75's right child, the type of node is TRUNK, precursor 84, successor 93.
+84 is 85's left child, the type of node is LEAF, precursor 75, successor 85.
+93 is 85's right child, the type of node is LEAF, precursor 85.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60070, t -> key = 75
+[lost_balance_node] t -> key = 93( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 85( 0x1c60010 )
+[lost_balance_node] t -> key = 93( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 85( 0x1c60010 )
+[lost_balance_node] t -> key = 93( 0x1c60160 )
+[lost_balance_node] ret = (nil)
+[Main]
+75 is root, the type of node is ROOT, precursor 37, successor 84.
+33 is 75's left child, the type of node is TRUNK, precursor 28, successor 37.
+28 is 33's left child, the type of node is LEAF, successor 33.
+37 is 33's right child, the type of node is LEAF, precursor 33, successor 75.
+85 is 75's right child, the type of node is TRUNK, precursor 84, successor 93.
+84 is 85's left child, the type of node is LEAF, precursor 75, successor 85.
+93 is 85's right child, the type of node is LEAF, precursor 85.
+
+n -> key = 17
+[avltree_insert, bstree_insert]
+75 is root, the type of node is ROOT, precursor 37, successor 84.
+33 is 75's left child, the type of node is TRUNK, precursor 28, successor 37.
+28 is 33's left child, the type of node is TRUNK, precursor 17, successor 33.
+17 is 28's left child, the type of node is LEAF, successor 28.
+37 is 33's right child, the type of node is LEAF, precursor 33, successor 75.
+85 is 75's right child, the type of node is TRUNK, precursor 84, successor 93.
+84 is 85's left child, the type of node is LEAF, precursor 75, successor 85.
+93 is 85's right child, the type of node is LEAF, precursor 85.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60070, t -> key = 75
+[lost_balance_node] t -> key = 17( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 28( 0x1c600a0 )
+[lost_balance_node] t -> key = 17( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 28( 0x1c600a0 )
+[lost_balance_node] t -> key = 17( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 28( 0x1c600a0 )
+[lost_balance_node] t -> key = 17( 0x1c60100 )
+[lost_balance_node] ret = (nil)
+[Main]
+75 is root, the type of node is ROOT, precursor 37, successor 84.
+33 is 75's left child, the type of node is TRUNK, precursor 28, successor 37.
+28 is 33's left child, the type of node is TRUNK, precursor 17, successor 33.
+17 is 28's left child, the type of node is LEAF, successor 28.
+37 is 33's right child, the type of node is LEAF, precursor 33, successor 75.
+85 is 75's right child, the type of node is TRUNK, precursor 84, successor 93.
+84 is 85's left child, the type of node is LEAF, precursor 75, successor 85.
+93 is 85's right child, the type of node is LEAF, precursor 85.
+
+n -> key = 65
+[avltree_insert, bstree_insert]
+75 is root, the type of node is ROOT, precursor 65, successor 84.
+33 is 75's left child, the type of node is TRUNK, precursor 28, successor 37.
+28 is 33's left child, the type of node is TRUNK, precursor 17, successor 33.
+17 is 28's left child, the type of node is LEAF, successor 28.
+37 is 33's right child, the type of node is TRUNK, precursor 33, successor 65.
+65 is 37's right child, the type of node is LEAF, precursor 37, successor 75.
+85 is 75's right child, the type of node is TRUNK, precursor 84, successor 93.
+84 is 85's left child, the type of node is LEAF, precursor 75, successor 85.
+93 is 85's right child, the type of node is LEAF, precursor 85.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60070, t -> key = 75
+[lost_balance_node] t -> key = 65( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 37( 0x1c600d0 )
+[lost_balance_node] t -> key = 65( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 37( 0x1c600d0 )
+[lost_balance_node] t -> key = 65( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 37( 0x1c600d0 )
+[lost_balance_node] t -> key = 65( 0x1c60040 )
+[lost_balance_node] ret = (nil)
+[Main]
+75 is root, the type of node is ROOT, precursor 65, successor 84.
+33 is 75's left child, the type of node is TRUNK, precursor 28, successor 37.
+28 is 33's left child, the type of node is TRUNK, precursor 17, successor 33.
+17 is 28's left child, the type of node is LEAF, successor 28.
+37 is 33's right child, the type of node is TRUNK, precursor 33, successor 65.
+65 is 37's right child, the type of node is LEAF, precursor 37, successor 75.
+85 is 75's right child, the type of node is TRUNK, precursor 84, successor 93.
+84 is 85's left child, the type of node is LEAF, precursor 75, successor 85.
+93 is 85's right child, the type of node is LEAF, precursor 85.
+
+n -> key = 57
+[avltree_insert, bstree_insert]
+75 is root, the type of node is ROOT, precursor 65, successor 84.
+33 is 75's left child, the type of node is TRUNK, precursor 28, successor 37.
+28 is 33's left child, the type of node is TRUNK, precursor 17, successor 33.
+17 is 28's left child, the type of node is LEAF, successor 28.
+37 is 33's right child, the type of node is TRUNK, precursor 33, successor 57.
+65 is 37's right child, the type of node is TRUNK, precursor 57, successor 75.
+57 is 65's left child, the type of node is LEAF, precursor 37, successor 65.
+85 is 75's right child, the type of node is TRUNK, precursor 84, successor 93.
+84 is 85's left child, the type of node is LEAF, precursor 75, successor 85.
+93 is 85's right child, the type of node is LEAF, precursor 85.
+[avltree_insert] get_node_height( t -> left ) = 4
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60070, t -> key = 75
+[lost_balance_node] t -> key = 57( 0x1c60190 )
+[lost_balance_node] t -> father -> key = 65( 0x1c60040 )
+[lost_balance_node] t -> key = 57( 0x1c60190 )
+[lost_balance_node] t -> father -> key = 65( 0x1c60040 )
+[lost_balance_node]  found lost blance Node address is 0x1c600d0, value is 37
+[lost_balance_node] ret = 0x1c600d0
+====================> k1 -> key  = 37
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 1
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert right left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 1, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 1
+[right_rotation]  type = 4
+[right_left_rotation, right_rotation] k1_has_right = 0
+[right_left_rotation, right_rotation]  k1 -> key = 65, k1 address = 0x1c60040
+[right_left_rotation, right_rotation]  k2 -> key = 57, k2 address = 0x1c60190
+[right_left_rotation, right_rotation] stat = 0
+[right_left_rotation, right_rotation] ret -> key = 57( 0x1c60190 )
+[right_left_rotation, right_rotation]
+57 is 57's right child, the type of node is TRUNK, precursor 33, successor 65.
+65 is 57's right child, the type of node is LEAF, precursor 57, successor 75.
+
+============[right_left_rotation]============
+37 is 37's right child, the type of node is TRUNK, precursor 33, successor 57.
+57 is 37's right child, the type of node is TRUNK, precursor 37, successor 65.
+65 is 57's right child, the type of node is LEAF, precursor 57, successor 75.
+
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+57 is 57's right child, the type of node is TRUNK, precursor 37, successor 65.
+37 is 57's left child, the type of node is LEAF, precursor 33, successor 57.
+65 is 57's right child, the type of node is LEAF, precursor 57, successor 75.
+
+[Main]
+75 is root, the type of node is ROOT, precursor 65, successor 84.
+33 is 75's left child, the type of node is TRUNK, precursor 28, successor 37.
+28 is 33's left child, the type of node is TRUNK, precursor 17, successor 33.
+17 is 28's left child, the type of node is LEAF, successor 28.
+57 is 33's right child, the type of node is TRUNK, precursor 37, successor 65.
+37 is 57's left child, the type of node is LEAF, precursor 33, successor 57.
+65 is 57's right child, the type of node is LEAF, precursor 57, successor 75.
+85 is 75's right child, the type of node is TRUNK, precursor 84, successor 93.
+84 is 85's left child, the type of node is LEAF, precursor 75, successor 85.
+93 is 85's right child, the type of node is LEAF, precursor 85.
+
+==========array[2]==========
+Input Numbers : 30 74 84 26 35 89 22 63 59 85 
+
+n -> key = 30
+[avltree_insert, bstree_insert]
+30 is a single node.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 0
+[avltree_insert] t = 0x1c60070, t -> key = 30
+[lost_balance_node] t -> key = 30( 0x1c60070 )
+[lost_balance_node] ret = (nil)
+[Main]
+30 is a single node.
+
+n -> key = 74
+[avltree_insert, bstree_insert]
+30 is root, the type of node is ROOT, successor 74.
+74 is 30's right child, the type of node is LEAF, precursor 30.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 1
+[avltree_insert] t = 0x1c60070, t -> key = 30
+[lost_balance_node] t -> key = 74( 0x1c60010 )
+[lost_balance_node] t -> father -> key = 30( 0x1c60070 )
+[lost_balance_node] t -> key = 74( 0x1c60010 )
+[lost_balance_node] ret = (nil)
+[Main]
+30 is root, the type of node is ROOT, successor 74.
+74 is 30's right child, the type of node is LEAF, precursor 30.
+
+n -> key = 84
+[avltree_insert, bstree_insert]
+30 is root, the type of node is ROOT, successor 74.
+74 is 30's right child, the type of node is TRUNK, precursor 30, successor 84.
+84 is 74's right child, the type of node is LEAF, precursor 74.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60070, t -> key = 30
+[lost_balance_node] t -> key = 84( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 74( 0x1c60010 )
+[lost_balance_node] t -> key = 84( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 74( 0x1c60010 )
+[lost_balance_node]  found lost blance Node address is 0x1c60070, value is 30
+[lost_balance_node] ret = 0x1c60070
+====================> k1 -> key  = 30
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 0
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert singel right rotation]
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+74 is root, the type of node is ROOT, precursor 30, successor 84.
+30 is 74's left child, the type of node is LEAF, successor 74.
+84 is 74's right child, the type of node is LEAF, precursor 74.
+
+[Main]
+74 is root, the type of node is ROOT, precursor 30, successor 84.
+30 is 74's left child, the type of node is LEAF, successor 74.
+84 is 74's right child, the type of node is LEAF, precursor 74.
+
+n -> key = 26
+[avltree_insert, bstree_insert]
+74 is root, the type of node is ROOT, precursor 30, successor 84.
+30 is 74's left child, the type of node is TRUNK, precursor 26, successor 74.
+26 is 30's left child, the type of node is LEAF, successor 30.
+84 is 74's right child, the type of node is LEAF, precursor 74.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 1
+[avltree_insert] t = 0x1c60010, t -> key = 74
+[lost_balance_node] t -> key = 26( 0x1c60130 )
+[lost_balance_node] t -> father -> key = 30( 0x1c60070 )
+[lost_balance_node] t -> key = 26( 0x1c60130 )
+[lost_balance_node] t -> father -> key = 30( 0x1c60070 )
+[lost_balance_node] t -> key = 26( 0x1c60130 )
+[lost_balance_node] ret = (nil)
+[Main]
+74 is root, the type of node is ROOT, precursor 30, successor 84.
+30 is 74's left child, the type of node is TRUNK, precursor 26, successor 74.
+26 is 30's left child, the type of node is LEAF, successor 30.
+84 is 74's right child, the type of node is LEAF, precursor 74.
+
+n -> key = 35
+[avltree_insert, bstree_insert]
+74 is root, the type of node is ROOT, precursor 35, successor 84.
+30 is 74's left child, the type of node is TRUNK, precursor 26, successor 35.
+26 is 30's left child, the type of node is LEAF, successor 30.
+35 is 30's right child, the type of node is LEAF, precursor 30, successor 74.
+84 is 74's right child, the type of node is LEAF, precursor 74.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 1
+[avltree_insert] t = 0x1c60010, t -> key = 74
+[lost_balance_node] t -> key = 35( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 30( 0x1c60070 )
+[lost_balance_node] t -> key = 35( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 30( 0x1c60070 )
+[lost_balance_node] t -> key = 35( 0x1c601c0 )
+[lost_balance_node] ret = (nil)
+[Main]
+74 is root, the type of node is ROOT, precursor 35, successor 84.
+30 is 74's left child, the type of node is TRUNK, precursor 26, successor 35.
+26 is 30's left child, the type of node is LEAF, successor 30.
+35 is 30's right child, the type of node is LEAF, precursor 30, successor 74.
+84 is 74's right child, the type of node is LEAF, precursor 74.
+
+n -> key = 89
+[avltree_insert, bstree_insert]
+74 is root, the type of node is ROOT, precursor 35, successor 84.
+30 is 74's left child, the type of node is TRUNK, precursor 26, successor 35.
+26 is 30's left child, the type of node is LEAF, successor 30.
+35 is 30's right child, the type of node is LEAF, precursor 30, successor 74.
+84 is 74's right child, the type of node is TRUNK, precursor 74, successor 89.
+89 is 84's right child, the type of node is LEAF, precursor 84.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60010, t -> key = 74
+[lost_balance_node] t -> key = 89( 0x1c60190 )
+[lost_balance_node] t -> father -> key = 84( 0x1c60160 )
+[lost_balance_node] t -> key = 89( 0x1c60190 )
+[lost_balance_node] t -> father -> key = 84( 0x1c60160 )
+[lost_balance_node] t -> key = 89( 0x1c60190 )
+[lost_balance_node] ret = (nil)
+[Main]
+74 is root, the type of node is ROOT, precursor 35, successor 84.
+30 is 74's left child, the type of node is TRUNK, precursor 26, successor 35.
+26 is 30's left child, the type of node is LEAF, successor 30.
+35 is 30's right child, the type of node is LEAF, precursor 30, successor 74.
+84 is 74's right child, the type of node is TRUNK, precursor 74, successor 89.
+89 is 84's right child, the type of node is LEAF, precursor 84.
+
+n -> key = 22
+[avltree_insert, bstree_insert]
+74 is root, the type of node is ROOT, precursor 35, successor 84.
+30 is 74's left child, the type of node is TRUNK, precursor 26, successor 35.
+26 is 30's left child, the type of node is TRUNK, precursor 22, successor 30.
+22 is 26's left child, the type of node is LEAF, successor 26.
+35 is 30's right child, the type of node is LEAF, precursor 30, successor 74.
+84 is 74's right child, the type of node is TRUNK, precursor 74, successor 89.
+89 is 84's right child, the type of node is LEAF, precursor 84.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60010, t -> key = 74
+[lost_balance_node] t -> key = 22( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 26( 0x1c60130 )
+[lost_balance_node] t -> key = 22( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 26( 0x1c60130 )
+[lost_balance_node] t -> key = 22( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 26( 0x1c60130 )
+[lost_balance_node] t -> key = 22( 0x1c60040 )
+[lost_balance_node] ret = (nil)
+[Main]
+74 is root, the type of node is ROOT, precursor 35, successor 84.
+30 is 74's left child, the type of node is TRUNK, precursor 26, successor 35.
+26 is 30's left child, the type of node is TRUNK, precursor 22, successor 30.
+22 is 26's left child, the type of node is LEAF, successor 26.
+35 is 30's right child, the type of node is LEAF, precursor 30, successor 74.
+84 is 74's right child, the type of node is TRUNK, precursor 74, successor 89.
+89 is 84's right child, the type of node is LEAF, precursor 84.
+
+n -> key = 63
+[avltree_insert, bstree_insert]
+74 is root, the type of node is ROOT, precursor 63, successor 84.
+30 is 74's left child, the type of node is TRUNK, precursor 26, successor 35.
+26 is 30's left child, the type of node is TRUNK, precursor 22, successor 30.
+22 is 26's left child, the type of node is LEAF, successor 26.
+35 is 30's right child, the type of node is TRUNK, precursor 30, successor 63.
+63 is 35's right child, the type of node is LEAF, precursor 35, successor 74.
+84 is 74's right child, the type of node is TRUNK, precursor 74, successor 89.
+89 is 84's right child, the type of node is LEAF, precursor 84.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60010, t -> key = 74
+[lost_balance_node] t -> key = 63( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 35( 0x1c601c0 )
+[lost_balance_node] t -> key = 63( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 35( 0x1c601c0 )
+[lost_balance_node] t -> key = 63( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 35( 0x1c601c0 )
+[lost_balance_node] t -> key = 63( 0x1c600d0 )
+[lost_balance_node] ret = (nil)
+[Main]
+74 is root, the type of node is ROOT, precursor 63, successor 84.
+30 is 74's left child, the type of node is TRUNK, precursor 26, successor 35.
+26 is 30's left child, the type of node is TRUNK, precursor 22, successor 30.
+22 is 26's left child, the type of node is LEAF, successor 26.
+35 is 30's right child, the type of node is TRUNK, precursor 30, successor 63.
+63 is 35's right child, the type of node is LEAF, precursor 35, successor 74.
+84 is 74's right child, the type of node is TRUNK, precursor 74, successor 89.
+89 is 84's right child, the type of node is LEAF, precursor 84.
+
+n -> key = 59
+[avltree_insert, bstree_insert]
+74 is root, the type of node is ROOT, precursor 63, successor 84.
+30 is 74's left child, the type of node is TRUNK, precursor 26, successor 35.
+26 is 30's left child, the type of node is TRUNK, precursor 22, successor 30.
+22 is 26's left child, the type of node is LEAF, successor 26.
+35 is 30's right child, the type of node is TRUNK, precursor 30, successor 59.
+63 is 35's right child, the type of node is TRUNK, precursor 59, successor 74.
+59 is 63's left child, the type of node is LEAF, precursor 35, successor 63.
+84 is 74's right child, the type of node is TRUNK, precursor 74, successor 89.
+89 is 84's right child, the type of node is LEAF, precursor 84.
+[avltree_insert] get_node_height( t -> left ) = 4
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60010, t -> key = 74
+[lost_balance_node] t -> key = 59( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 63( 0x1c600d0 )
+[lost_balance_node] t -> key = 59( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 63( 0x1c600d0 )
+[lost_balance_node]  found lost blance Node address is 0x1c601c0, value is 35
+[lost_balance_node] ret = 0x1c601c0
+====================> k1 -> key  = 35
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 1
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert right left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 1, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 1
+[right_rotation]  type = 4
+[right_left_rotation, right_rotation] k1_has_right = 0
+[right_left_rotation, right_rotation]  k1 -> key = 63, k1 address = 0x1c600d0
+[right_left_rotation, right_rotation]  k2 -> key = 59, k2 address = 0x1c600a0
+[right_left_rotation, right_rotation] stat = 0
+[right_left_rotation, right_rotation] ret -> key = 59( 0x1c600a0 )
+[right_left_rotation, right_rotation]
+59 is 59's right child, the type of node is TRUNK, precursor 30, successor 63.
+63 is 59's right child, the type of node is LEAF, precursor 59, successor 74.
+
+============[right_left_rotation]============
+35 is 35's right child, the type of node is TRUNK, precursor 30, successor 59.
+59 is 35's right child, the type of node is TRUNK, precursor 35, successor 63.
+63 is 59's right child, the type of node is LEAF, precursor 59, successor 74.
+
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+59 is 59's right child, the type of node is TRUNK, precursor 35, successor 63.
+35 is 59's left child, the type of node is LEAF, precursor 30, successor 59.
+63 is 59's right child, the type of node is LEAF, precursor 59, successor 74.
+
+[Main]
+74 is root, the type of node is ROOT, precursor 63, successor 84.
+30 is 74's left child, the type of node is TRUNK, precursor 26, successor 35.
+26 is 30's left child, the type of node is TRUNK, precursor 22, successor 30.
+22 is 26's left child, the type of node is LEAF, successor 26.
+59 is 30's right child, the type of node is TRUNK, precursor 35, successor 63.
+35 is 59's left child, the type of node is LEAF, precursor 30, successor 59.
+63 is 59's right child, the type of node is LEAF, precursor 59, successor 74.
+84 is 74's right child, the type of node is TRUNK, precursor 74, successor 89.
+89 is 84's right child, the type of node is LEAF, precursor 84.
+
+n -> key = 85
+[avltree_insert, bstree_insert]
+74 is root, the type of node is ROOT, precursor 63, successor 84.
+30 is 74's left child, the type of node is TRUNK, precursor 26, successor 35.
+26 is 30's left child, the type of node is TRUNK, precursor 22, successor 30.
+22 is 26's left child, the type of node is LEAF, successor 26.
+59 is 30's right child, the type of node is TRUNK, precursor 35, successor 63.
+35 is 59's left child, the type of node is LEAF, precursor 30, successor 59.
+63 is 59's right child, the type of node is LEAF, precursor 59, successor 74.
+84 is 74's right child, the type of node is TRUNK, precursor 74, successor 85.
+89 is 84's right child, the type of node is TRUNK, precursor 85.
+85 is 89's left child, the type of node is LEAF, precursor 84, successor 89.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c60010, t -> key = 74
+[lost_balance_node] t -> key = 85( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 89( 0x1c60190 )
+[lost_balance_node] t -> key = 85( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 89( 0x1c60190 )
+[lost_balance_node]  found lost blance Node address is 0x1c60160, value is 84
+[lost_balance_node] ret = 0x1c60160
+====================> k1 -> key  = 84
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 1
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert right left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 1, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 1
+[right_rotation]  type = 4
+[right_left_rotation, right_rotation] k1_has_right = 0
+[right_left_rotation, right_rotation]  k1 -> key = 89, k1 address = 0x1c60190
+[right_left_rotation, right_rotation]  k2 -> key = 85, k2 address = 0x1c60100
+[right_left_rotation, right_rotation] stat = 0
+[right_left_rotation, right_rotation] ret -> key = 85( 0x1c60100 )
+[right_left_rotation, right_rotation]
+85 is 85's right child, the type of node is TRUNK, precursor 74, successor 89.
+89 is 85's right child, the type of node is LEAF, precursor 85.
+
+============[right_left_rotation]============
+84 is 84's right child, the type of node is TRUNK, precursor 74, successor 85.
+85 is 84's right child, the type of node is TRUNK, precursor 84, successor 89.
+89 is 85's right child, the type of node is LEAF, precursor 85.
+
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+85 is 85's right child, the type of node is TRUNK, precursor 84, successor 89.
+84 is 85's left child, the type of node is LEAF, precursor 74, successor 85.
+89 is 85's right child, the type of node is LEAF, precursor 85.
+
+[Main]
+74 is root, the type of node is ROOT, precursor 63, successor 84.
+30 is 74's left child, the type of node is TRUNK, precursor 26, successor 35.
+26 is 30's left child, the type of node is TRUNK, precursor 22, successor 30.
+22 is 26's left child, the type of node is LEAF, successor 26.
+59 is 30's right child, the type of node is TRUNK, precursor 35, successor 63.
+35 is 59's left child, the type of node is LEAF, precursor 30, successor 59.
+63 is 59's right child, the type of node is LEAF, precursor 59, successor 74.
+85 is 74's right child, the type of node is TRUNK, precursor 84, successor 89.
+84 is 85's left child, the type of node is LEAF, precursor 74, successor 85.
+89 is 85's right child, the type of node is LEAF, precursor 85.
+
+==========array[3]==========
+Input Numbers : 20 25 70 61 98 49 39 26 82 66 
+
+n -> key = 20
+[avltree_insert, bstree_insert]
+20 is a single node.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 0
+[avltree_insert] t = 0x1c60010, t -> key = 20
+[lost_balance_node] t -> key = 20( 0x1c60010 )
+[lost_balance_node] ret = (nil)
+[Main]
+20 is a single node.
+
+n -> key = 25
+[avltree_insert, bstree_insert]
+20 is root, the type of node is ROOT, successor 25.
+25 is 20's right child, the type of node is LEAF, precursor 20.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 1
+[avltree_insert] t = 0x1c60010, t -> key = 20
+[lost_balance_node] t -> key = 25( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 20( 0x1c60010 )
+[lost_balance_node] t -> key = 25( 0x1c60100 )
+[lost_balance_node] ret = (nil)
+[Main]
+20 is root, the type of node is ROOT, successor 25.
+25 is 20's right child, the type of node is LEAF, precursor 20.
+
+n -> key = 70
+[avltree_insert, bstree_insert]
+20 is root, the type of node is ROOT, successor 25.
+25 is 20's right child, the type of node is TRUNK, precursor 20, successor 70.
+70 is 25's right child, the type of node is LEAF, precursor 25.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60010, t -> key = 20
+[lost_balance_node] t -> key = 70( 0x1c60190 )
+[lost_balance_node] t -> father -> key = 25( 0x1c60100 )
+[lost_balance_node] t -> key = 70( 0x1c60190 )
+[lost_balance_node] t -> father -> key = 25( 0x1c60100 )
+[lost_balance_node]  found lost blance Node address is 0x1c60010, value is 20
+[lost_balance_node] ret = 0x1c60010
+====================> k1 -> key  = 20
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 0
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert singel right rotation]
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+25 is root, the type of node is ROOT, precursor 20, successor 70.
+20 is 25's left child, the type of node is LEAF, successor 25.
+70 is 25's right child, the type of node is LEAF, precursor 25.
+
+[Main]
+25 is root, the type of node is ROOT, precursor 20, successor 70.
+20 is 25's left child, the type of node is LEAF, successor 25.
+70 is 25's right child, the type of node is LEAF, precursor 25.
+
+n -> key = 61
+[avltree_insert, bstree_insert]
+25 is root, the type of node is ROOT, precursor 20, successor 61.
+20 is 25's left child, the type of node is LEAF, successor 25.
+70 is 25's right child, the type of node is TRUNK, precursor 61.
+61 is 70's left child, the type of node is LEAF, precursor 25, successor 70.
+[avltree_insert] get_node_height( t -> left ) = 1
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60100, t -> key = 25
+[lost_balance_node] t -> key = 61( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 70( 0x1c60190 )
+[lost_balance_node] t -> key = 61( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 70( 0x1c60190 )
+[lost_balance_node] t -> key = 61( 0x1c60160 )
+[lost_balance_node] ret = (nil)
+[Main]
+25 is root, the type of node is ROOT, precursor 20, successor 61.
+20 is 25's left child, the type of node is LEAF, successor 25.
+70 is 25's right child, the type of node is TRUNK, precursor 61.
+61 is 70's left child, the type of node is LEAF, precursor 25, successor 70.
+
+n -> key = 98
+[avltree_insert, bstree_insert]
+25 is root, the type of node is ROOT, precursor 20, successor 61.
+20 is 25's left child, the type of node is LEAF, successor 25.
+70 is 25's right child, the type of node is TRUNK, precursor 61, successor 98.
+61 is 70's left child, the type of node is LEAF, precursor 25, successor 70.
+98 is 70's right child, the type of node is LEAF, precursor 70.
+[avltree_insert] get_node_height( t -> left ) = 1
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60100, t -> key = 25
+[lost_balance_node] t -> key = 98( 0x1c60070 )
+[lost_balance_node] t -> father -> key = 70( 0x1c60190 )
+[lost_balance_node] t -> key = 98( 0x1c60070 )
+[lost_balance_node] t -> father -> key = 70( 0x1c60190 )
+[lost_balance_node] t -> key = 98( 0x1c60070 )
+[lost_balance_node] ret = (nil)
+[Main]
+25 is root, the type of node is ROOT, precursor 20, successor 61.
+20 is 25's left child, the type of node is LEAF, successor 25.
+70 is 25's right child, the type of node is TRUNK, precursor 61, successor 98.
+61 is 70's left child, the type of node is LEAF, precursor 25, successor 70.
+98 is 70's right child, the type of node is LEAF, precursor 70.
+
+n -> key = 49
+[avltree_insert, bstree_insert]
+25 is root, the type of node is ROOT, precursor 20, successor 49.
+20 is 25's left child, the type of node is LEAF, successor 25.
+70 is 25's right child, the type of node is TRUNK, precursor 61, successor 98.
+61 is 70's left child, the type of node is TRUNK, precursor 49, successor 70.
+49 is 61's left child, the type of node is LEAF, precursor 25, successor 61.
+98 is 70's right child, the type of node is LEAF, precursor 70.
+[avltree_insert] get_node_height( t -> left ) = 1
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c60100, t -> key = 25
+[lost_balance_node] t -> key = 49( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 61( 0x1c60160 )
+[lost_balance_node] t -> key = 49( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 61( 0x1c60160 )
+[lost_balance_node] t -> key = 49( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 61( 0x1c60160 )
+[lost_balance_node]  found lost blance Node address is 0x1c60100, value is 25
+[lost_balance_node] ret = 0x1c60100
+====================> k1 -> key  = 25
+====================> get_node_height( k1 -> left  ) = 1
+====================> get_node_height( k1 -> right  ) = 3
+====================> get_node_height( k1 -> right -> left ) = 2
+====================> get_node_height( k1 -> left ) = 1
+[avltree_insert right left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 2, get_node_height( k1 -> left ) = 1
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 1
+[right_rotation]  type = 4
+[right_left_rotation, right_rotation] k1_has_right = 1
+[right_left_rotation, right_rotation]  k1 -> key = 70, k1 address = 0x1c60190
+[right_left_rotation, right_rotation]  k2 -> key = 61, k2 address = 0x1c60160
+[right_left_rotation, right_rotation] stat = 0
+[right_left_rotation, right_rotation] ret -> key = 61( 0x1c60160 )
+[right_left_rotation, right_rotation]
+61 is 61's right child, the type of node is TRUNK, precursor 49, successor 70.
+49 is 61's left child, the type of node is LEAF, successor 61.
+70 is 61's right child, the type of node is TRUNK, precursor 61, successor 98.
+98 is 70's right child, the type of node is LEAF, precursor 70.
+
+============[right_left_rotation]============
+25 is root, the type of node is ROOT, precursor 20, successor 49.
+20 is 25's left child, the type of node is LEAF, successor 25.
+61 is 25's right child, the type of node is TRUNK, precursor 49, successor 70.
+49 is 61's left child, the type of node is LEAF, precursor 25, successor 61.
+70 is 61's right child, the type of node is TRUNK, precursor 61, successor 98.
+98 is 70's right child, the type of node is LEAF, precursor 70.
+
+[left_rotation] get_node_height( k1 -> right ) = 1, get_node_height( k1 -> left ) = 3
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+61 is root, the type of node is ROOT, precursor 49, successor 70.
+25 is 61's left child, the type of node is TRUNK, precursor 20, successor 49.
+20 is 25's left child, the type of node is LEAF, successor 25.
+49 is 25's right child, the type of node is LEAF, precursor 25, successor 61.
+70 is 61's right child, the type of node is TRUNK, precursor 61, successor 98.
+98 is 70's right child, the type of node is LEAF, precursor 70.
+
+[Main]
+61 is root, the type of node is ROOT, precursor 49, successor 70.
+25 is 61's left child, the type of node is TRUNK, precursor 20, successor 49.
+20 is 25's left child, the type of node is LEAF, successor 25.
+49 is 25's right child, the type of node is LEAF, precursor 25, successor 61.
+70 is 61's right child, the type of node is TRUNK, precursor 61, successor 98.
+98 is 70's right child, the type of node is LEAF, precursor 70.
+
+n -> key = 39
+[avltree_insert, bstree_insert]
+61 is root, the type of node is ROOT, precursor 49, successor 70.
+25 is 61's left child, the type of node is TRUNK, precursor 20, successor 39.
+20 is 25's left child, the type of node is LEAF, successor 25.
+49 is 25's right child, the type of node is TRUNK, precursor 39, successor 61.
+39 is 49's left child, the type of node is LEAF, precursor 25, successor 49.
+70 is 61's right child, the type of node is TRUNK, precursor 61, successor 98.
+98 is 70's right child, the type of node is LEAF, precursor 70.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60160, t -> key = 61
+[lost_balance_node] t -> key = 39( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 49( 0x1c600a0 )
+[lost_balance_node] t -> key = 39( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 49( 0x1c600a0 )
+[lost_balance_node] t -> key = 39( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 49( 0x1c600a0 )
+[lost_balance_node] t -> key = 39( 0x1c600d0 )
+[lost_balance_node] ret = (nil)
+[Main]
+61 is root, the type of node is ROOT, precursor 49, successor 70.
+25 is 61's left child, the type of node is TRUNK, precursor 20, successor 39.
+20 is 25's left child, the type of node is LEAF, successor 25.
+49 is 25's right child, the type of node is TRUNK, precursor 39, successor 61.
+39 is 49's left child, the type of node is LEAF, precursor 25, successor 49.
+70 is 61's right child, the type of node is TRUNK, precursor 61, successor 98.
+98 is 70's right child, the type of node is LEAF, precursor 70.
+
+n -> key = 26
+[avltree_insert, bstree_insert]
+61 is root, the type of node is ROOT, precursor 49, successor 70.
+25 is 61's left child, the type of node is TRUNK, precursor 20, successor 26.
+20 is 25's left child, the type of node is LEAF, successor 25.
+49 is 25's right child, the type of node is TRUNK, precursor 39, successor 61.
+39 is 49's left child, the type of node is TRUNK, precursor 26, successor 49.
+26 is 39's left child, the type of node is LEAF, precursor 25, successor 39.
+70 is 61's right child, the type of node is TRUNK, precursor 61, successor 98.
+98 is 70's right child, the type of node is LEAF, precursor 70.
+[avltree_insert] get_node_height( t -> left ) = 4
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60160, t -> key = 61
+[lost_balance_node] t -> key = 26( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 39( 0x1c600d0 )
+[lost_balance_node] t -> key = 26( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 39( 0x1c600d0 )
+[lost_balance_node]  found lost blance Node address is 0x1c600a0, value is 49
+[lost_balance_node] ret = 0x1c600a0
+====================> k1 -> key  = 49
+====================> get_node_height( k1 -> left  ) = 2
+====================> get_node_height( k1 -> right  ) = 0
+====================> get_node_height( k1 -> left -> right ) = 0
+====================> get_node_height( k1 -> right ) = 0
+[avltree_insert singel left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 2, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 2
+[right_rotation]  type = 4
+[right_rotation,  singel] k1 -> key = 49, k2 -> key = 39
+[right_rotation]
+39 is 39's right child, the type of node is TRUNK, precursor 26, successor 49.
+26 is 39's left child, the type of node is LEAF, precursor 25, successor 39.
+49 is 39's right child, the type of node is LEAF, precursor 39, successor 61.
+
+[Main]
+61 is root, the type of node is ROOT, precursor 49, successor 70.
+25 is 61's left child, the type of node is TRUNK, precursor 20, successor 26.
+20 is 25's left child, the type of node is LEAF, successor 25.
+39 is 25's right child, the type of node is TRUNK, precursor 26, successor 49.
+26 is 39's left child, the type of node is LEAF, precursor 25, successor 39.
+49 is 39's right child, the type of node is LEAF, precursor 39, successor 61.
+70 is 61's right child, the type of node is TRUNK, precursor 61, successor 98.
+98 is 70's right child, the type of node is LEAF, precursor 70.
+
+n -> key = 82
+[avltree_insert, bstree_insert]
+61 is root, the type of node is ROOT, precursor 49, successor 70.
+25 is 61's left child, the type of node is TRUNK, precursor 20, successor 26.
+20 is 25's left child, the type of node is LEAF, successor 25.
+39 is 25's right child, the type of node is TRUNK, precursor 26, successor 49.
+26 is 39's left child, the type of node is LEAF, precursor 25, successor 39.
+49 is 39's right child, the type of node is LEAF, precursor 39, successor 61.
+70 is 61's right child, the type of node is TRUNK, precursor 61, successor 82.
+98 is 70's right child, the type of node is TRUNK, precursor 82.
+82 is 98's left child, the type of node is LEAF, precursor 70, successor 98.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c60160, t -> key = 61
+[lost_balance_node] t -> key = 82( 0x1c60130 )
+[lost_balance_node] t -> father -> key = 98( 0x1c60070 )
+[lost_balance_node] t -> key = 82( 0x1c60130 )
+[lost_balance_node] t -> father -> key = 98( 0x1c60070 )
+[lost_balance_node]  found lost blance Node address is 0x1c60190, value is 70
+[lost_balance_node] ret = 0x1c60190
+====================> k1 -> key  = 70
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 1
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert right left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 1, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 1
+[right_rotation]  type = 4
+[right_left_rotation, right_rotation] k1_has_right = 0
+[right_left_rotation, right_rotation]  k1 -> key = 98, k1 address = 0x1c60070
+[right_left_rotation, right_rotation]  k2 -> key = 82, k2 address = 0x1c60130
+[right_left_rotation, right_rotation] stat = 0
+[right_left_rotation, right_rotation] ret -> key = 82( 0x1c60130 )
+[right_left_rotation, right_rotation]
+82 is 82's right child, the type of node is TRUNK, precursor 61, successor 98.
+98 is 82's right child, the type of node is LEAF, precursor 82.
+
+============[right_left_rotation]============
+70 is 70's right child, the type of node is TRUNK, precursor 61, successor 82.
+82 is 70's right child, the type of node is TRUNK, precursor 70, successor 98.
+98 is 82's right child, the type of node is LEAF, precursor 82.
+
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+82 is 82's right child, the type of node is TRUNK, precursor 70, successor 98.
+70 is 82's left child, the type of node is LEAF, precursor 61, successor 82.
+98 is 82's right child, the type of node is LEAF, precursor 82.
+
+[Main]
+61 is root, the type of node is ROOT, precursor 49, successor 70.
+25 is 61's left child, the type of node is TRUNK, precursor 20, successor 26.
+20 is 25's left child, the type of node is LEAF, successor 25.
+39 is 25's right child, the type of node is TRUNK, precursor 26, successor 49.
+26 is 39's left child, the type of node is LEAF, precursor 25, successor 39.
+49 is 39's right child, the type of node is LEAF, precursor 39, successor 61.
+82 is 61's right child, the type of node is TRUNK, precursor 70, successor 98.
+70 is 82's left child, the type of node is LEAF, precursor 61, successor 82.
+98 is 82's right child, the type of node is LEAF, precursor 82.
+
+n -> key = 66
+[avltree_insert, bstree_insert]
+61 is root, the type of node is ROOT, precursor 49, successor 66.
+25 is 61's left child, the type of node is TRUNK, precursor 20, successor 26.
+20 is 25's left child, the type of node is LEAF, successor 25.
+39 is 25's right child, the type of node is TRUNK, precursor 26, successor 49.
+26 is 39's left child, the type of node is LEAF, precursor 25, successor 39.
+49 is 39's right child, the type of node is LEAF, precursor 39, successor 61.
+82 is 61's right child, the type of node is TRUNK, precursor 70, successor 98.
+70 is 82's left child, the type of node is TRUNK, precursor 66, successor 82.
+66 is 70's left child, the type of node is LEAF, precursor 61, successor 70.
+98 is 82's right child, the type of node is LEAF, precursor 82.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c60160, t -> key = 61
+[lost_balance_node] t -> key = 66( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 70( 0x1c60190 )
+[lost_balance_node] t -> key = 66( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 70( 0x1c60190 )
+[lost_balance_node] t -> key = 66( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 70( 0x1c60190 )
+[lost_balance_node] t -> key = 66( 0x1c60040 )
+[lost_balance_node] ret = (nil)
+[Main]
+61 is root, the type of node is ROOT, precursor 49, successor 66.
+25 is 61's left child, the type of node is TRUNK, precursor 20, successor 26.
+20 is 25's left child, the type of node is LEAF, successor 25.
+39 is 25's right child, the type of node is TRUNK, precursor 26, successor 49.
+26 is 39's left child, the type of node is LEAF, precursor 25, successor 39.
+49 is 39's right child, the type of node is LEAF, precursor 39, successor 61.
+82 is 61's right child, the type of node is TRUNK, precursor 70, successor 98.
+70 is 82's left child, the type of node is TRUNK, precursor 66, successor 82.
+66 is 70's left child, the type of node is LEAF, precursor 61, successor 70.
+98 is 82's right child, the type of node is LEAF, precursor 82.
+
+==========array[4]==========
+Input Numbers : 54 67 85 38 52 78 45 17 36 27 
+
+n -> key = 54
+[avltree_insert, bstree_insert]
+54 is a single node.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 0
+[avltree_insert] t = 0x1c60160, t -> key = 54
+[lost_balance_node] t -> key = 54( 0x1c60160 )
+[lost_balance_node] ret = (nil)
+[Main]
+54 is a single node.
+
+n -> key = 67
+[avltree_insert, bstree_insert]
+54 is root, the type of node is ROOT, successor 67.
+67 is 54's right child, the type of node is LEAF, precursor 54.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 1
+[avltree_insert] t = 0x1c60160, t -> key = 54
+[lost_balance_node] t -> key = 67( 0x1c60130 )
+[lost_balance_node] t -> father -> key = 54( 0x1c60160 )
+[lost_balance_node] t -> key = 67( 0x1c60130 )
+[lost_balance_node] ret = (nil)
+[Main]
+54 is root, the type of node is ROOT, successor 67.
+67 is 54's right child, the type of node is LEAF, precursor 54.
+
+n -> key = 85
+[avltree_insert, bstree_insert]
+54 is root, the type of node is ROOT, successor 67.
+67 is 54's right child, the type of node is TRUNK, precursor 54, successor 85.
+85 is 67's right child, the type of node is LEAF, precursor 67.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60160, t -> key = 54
+[lost_balance_node] t -> key = 85( 0x1c60070 )
+[lost_balance_node] t -> father -> key = 67( 0x1c60130 )
+[lost_balance_node] t -> key = 85( 0x1c60070 )
+[lost_balance_node] t -> father -> key = 67( 0x1c60130 )
+[lost_balance_node]  found lost blance Node address is 0x1c60160, value is 54
+[lost_balance_node] ret = 0x1c60160
+====================> k1 -> key  = 54
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 0
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert singel right rotation]
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+67 is root, the type of node is ROOT, precursor 54, successor 85.
+54 is 67's left child, the type of node is LEAF, successor 67.
+85 is 67's right child, the type of node is LEAF, precursor 67.
+
+[Main]
+67 is root, the type of node is ROOT, precursor 54, successor 85.
+54 is 67's left child, the type of node is LEAF, successor 67.
+85 is 67's right child, the type of node is LEAF, precursor 67.
+
+n -> key = 38
+[avltree_insert, bstree_insert]
+67 is root, the type of node is ROOT, precursor 54, successor 85.
+54 is 67's left child, the type of node is TRUNK, precursor 38, successor 67.
+38 is 54's left child, the type of node is LEAF, successor 54.
+85 is 67's right child, the type of node is LEAF, precursor 67.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 1
+[avltree_insert] t = 0x1c60130, t -> key = 67
+[lost_balance_node] t -> key = 38( 0x1c60190 )
+[lost_balance_node] t -> father -> key = 54( 0x1c60160 )
+[lost_balance_node] t -> key = 38( 0x1c60190 )
+[lost_balance_node] t -> father -> key = 54( 0x1c60160 )
+[lost_balance_node] t -> key = 38( 0x1c60190 )
+[lost_balance_node] ret = (nil)
+[Main]
+67 is root, the type of node is ROOT, precursor 54, successor 85.
+54 is 67's left child, the type of node is TRUNK, precursor 38, successor 67.
+38 is 54's left child, the type of node is LEAF, successor 54.
+85 is 67's right child, the type of node is LEAF, precursor 67.
+
+n -> key = 52
+[avltree_insert, bstree_insert]
+67 is root, the type of node is ROOT, precursor 54, successor 85.
+54 is 67's left child, the type of node is TRUNK, precursor 52, successor 67.
+38 is 54's left child, the type of node is TRUNK, successor 52.
+52 is 38's right child, the type of node is LEAF, precursor 38, successor 54.
+85 is 67's right child, the type of node is LEAF, precursor 67.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 1
+[avltree_insert] t = 0x1c60130, t -> key = 67
+[lost_balance_node] t -> key = 52( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 38( 0x1c60190 )
+[lost_balance_node] t -> key = 52( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 38( 0x1c60190 )
+[lost_balance_node]  found lost blance Node address is 0x1c60160, value is 54
+[lost_balance_node] ret = 0x1c60160
+====================> k1 -> key  = 54
+====================> get_node_height( k1 -> left  ) = 2
+====================> get_node_height( k1 -> right  ) = 0
+====================> get_node_height( k1 -> left -> right ) = 1
+====================> get_node_height( k1 -> right ) = 0
+[avltree_insert left right rotation]
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 1
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 1
+[left_right_rotation, left_rotation] k2 -> left = (nil)
+[left_right_rotation, left_rotation] k1_has_left = 0
+[left_right_rotation, left_rotation] k1 -> key = 38, k1 address = 0x1c60190
+[left_right_rotation, left_rotation] k2 -> key = 52, k2 address = 0x1c60040
+[left_right_rotation, left_rotation] stat = 0
+[left_right_rotation, left_rotation] ret -> left = 0x1c60190
+[left_right_rotation, left_rotation] k2 -> left -> key = 38
+[left_right_rotation, left_rotation] ret -> key = 52( 0x1c60040 )
+[left_right_rotation, left_rotation]
+52 is 52's right child, the type of node is TRUNK, precursor 38, successor 67.
+38 is 52's left child, the type of node is LEAF, successor 52.
+
+============[left_right_rotation]============
+54 is 54's right child, the type of node is TRUNK, precursor 52, successor 67.
+52 is 54's left child, the type of node is TRUNK, precursor 38, successor 54.
+38 is 52's left child, the type of node is LEAF, successor 52.
+
+[right_rotation] get_node_height( k1 -> right ) = 2, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 2
+[right_rotation]  type = 3
+[right_rotation,  singel] k1 -> key = 54, k2 -> key = 52
+[right_rotation]
+52 is 52's right child, the type of node is TRUNK, precursor 38, successor 54.
+38 is 52's left child, the type of node is LEAF, successor 52.
+54 is 52's right child, the type of node is LEAF, precursor 52, successor 67.
+
+[Main]
+67 is root, the type of node is ROOT, precursor 54, successor 85.
+52 is 67's left child, the type of node is TRUNK, precursor 38, successor 54.
+38 is 52's left child, the type of node is LEAF, successor 52.
+54 is 52's right child, the type of node is LEAF, precursor 52, successor 67.
+85 is 67's right child, the type of node is LEAF, precursor 67.
+
+n -> key = 78
+[avltree_insert, bstree_insert]
+67 is root, the type of node is ROOT, precursor 54, successor 78.
+52 is 67's left child, the type of node is TRUNK, precursor 38, successor 54.
+38 is 52's left child, the type of node is LEAF, successor 52.
+54 is 52's right child, the type of node is LEAF, precursor 52, successor 67.
+85 is 67's right child, the type of node is TRUNK, precursor 78.
+78 is 85's left child, the type of node is LEAF, precursor 67, successor 85.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60130, t -> key = 67
+[lost_balance_node] t -> key = 78( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 85( 0x1c60070 )
+[lost_balance_node] t -> key = 78( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 85( 0x1c60070 )
+[lost_balance_node] t -> key = 78( 0x1c60100 )
+[lost_balance_node] ret = (nil)
+[Main]
+67 is root, the type of node is ROOT, precursor 54, successor 78.
+52 is 67's left child, the type of node is TRUNK, precursor 38, successor 54.
+38 is 52's left child, the type of node is LEAF, successor 52.
+54 is 52's right child, the type of node is LEAF, precursor 52, successor 67.
+85 is 67's right child, the type of node is TRUNK, precursor 78.
+78 is 85's left child, the type of node is LEAF, precursor 67, successor 85.
+
+n -> key = 45
+[avltree_insert, bstree_insert]
+67 is root, the type of node is ROOT, precursor 54, successor 78.
+52 is 67's left child, the type of node is TRUNK, precursor 45, successor 54.
+38 is 52's left child, the type of node is TRUNK, successor 45.
+45 is 38's right child, the type of node is LEAF, precursor 38, successor 52.
+54 is 52's right child, the type of node is LEAF, precursor 52, successor 67.
+85 is 67's right child, the type of node is TRUNK, precursor 78.
+78 is 85's left child, the type of node is LEAF, precursor 67, successor 85.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60130, t -> key = 67
+[lost_balance_node] t -> key = 45( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 38( 0x1c60190 )
+[lost_balance_node] t -> key = 45( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 38( 0x1c60190 )
+[lost_balance_node] t -> key = 45( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 38( 0x1c60190 )
+[lost_balance_node] t -> key = 45( 0x1c600d0 )
+[lost_balance_node] ret = (nil)
+[Main]
+67 is root, the type of node is ROOT, precursor 54, successor 78.
+52 is 67's left child, the type of node is TRUNK, precursor 45, successor 54.
+38 is 52's left child, the type of node is TRUNK, successor 45.
+45 is 38's right child, the type of node is LEAF, precursor 38, successor 52.
+54 is 52's right child, the type of node is LEAF, precursor 52, successor 67.
+85 is 67's right child, the type of node is TRUNK, precursor 78.
+78 is 85's left child, the type of node is LEAF, precursor 67, successor 85.
+
+n -> key = 17
+[avltree_insert, bstree_insert]
+67 is root, the type of node is ROOT, precursor 54, successor 78.
+52 is 67's left child, the type of node is TRUNK, precursor 45, successor 54.
+38 is 52's left child, the type of node is TRUNK, precursor 17, successor 45.
+17 is 38's left child, the type of node is LEAF, successor 38.
+45 is 38's right child, the type of node is LEAF, precursor 38, successor 52.
+54 is 52's right child, the type of node is LEAF, precursor 52, successor 67.
+85 is 67's right child, the type of node is TRUNK, precursor 78.
+78 is 85's left child, the type of node is LEAF, precursor 67, successor 85.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60130, t -> key = 67
+[lost_balance_node] t -> key = 17( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 38( 0x1c60190 )
+[lost_balance_node] t -> key = 17( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 38( 0x1c60190 )
+[lost_balance_node] t -> key = 17( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 38( 0x1c60190 )
+[lost_balance_node] t -> key = 17( 0x1c600a0 )
+[lost_balance_node] ret = (nil)
+[Main]
+67 is root, the type of node is ROOT, precursor 54, successor 78.
+52 is 67's left child, the type of node is TRUNK, precursor 45, successor 54.
+38 is 52's left child, the type of node is TRUNK, precursor 17, successor 45.
+17 is 38's left child, the type of node is LEAF, successor 38.
+45 is 38's right child, the type of node is LEAF, precursor 38, successor 52.
+54 is 52's right child, the type of node is LEAF, precursor 52, successor 67.
+85 is 67's right child, the type of node is TRUNK, precursor 78.
+78 is 85's left child, the type of node is LEAF, precursor 67, successor 85.
+
+n -> key = 36
+[avltree_insert, bstree_insert]
+67 is root, the type of node is ROOT, precursor 54, successor 78.
+52 is 67's left child, the type of node is TRUNK, precursor 45, successor 54.
+38 is 52's left child, the type of node is TRUNK, precursor 36, successor 45.
+17 is 38's left child, the type of node is TRUNK, successor 36.
+36 is 17's right child, the type of node is LEAF, precursor 17, successor 38.
+45 is 38's right child, the type of node is LEAF, precursor 38, successor 52.
+54 is 52's right child, the type of node is LEAF, precursor 52, successor 67.
+85 is 67's right child, the type of node is TRUNK, precursor 78.
+78 is 85's left child, the type of node is LEAF, precursor 67, successor 85.
+[avltree_insert] get_node_height( t -> left ) = 4
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60130, t -> key = 67
+[lost_balance_node] t -> key = 36( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 17( 0x1c600a0 )
+[lost_balance_node] t -> key = 36( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 17( 0x1c600a0 )
+[lost_balance_node] t -> key = 36( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 17( 0x1c600a0 )
+[lost_balance_node]  found lost blance Node address is 0x1c60040, value is 52
+[lost_balance_node] ret = 0x1c60040
+====================> k1 -> key  = 52
+====================> get_node_height( k1 -> left  ) = 3
+====================> get_node_height( k1 -> right  ) = 1
+====================> get_node_height( k1 -> left -> right ) = 1
+====================> get_node_height( k1 -> right ) = 1
+[avltree_insert singel left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 3, get_node_height( k1 -> left ) = 1
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 2
+[right_rotation]  type = 3
+[right_rotation,  singel] k1 -> key = 52, k2 -> key = 38
+[right_rotation]
+38 is 38's right child, the type of node is TRUNK, precursor 36, successor 45.
+17 is 38's left child, the type of node is TRUNK, successor 36.
+36 is 17's right child, the type of node is LEAF, precursor 17, successor 38.
+52 is 38's right child, the type of node is TRUNK, precursor 45, successor 54.
+45 is 52's left child, the type of node is LEAF, precursor 38, successor 52.
+54 is 52's right child, the type of node is LEAF, precursor 52, successor 67.
+
+[Main]
+67 is root, the type of node is ROOT, precursor 54, successor 78.
+38 is 67's left child, the type of node is TRUNK, precursor 36, successor 45.
+17 is 38's left child, the type of node is TRUNK, successor 36.
+36 is 17's right child, the type of node is LEAF, precursor 17, successor 38.
+52 is 38's right child, the type of node is TRUNK, precursor 45, successor 54.
+45 is 52's left child, the type of node is LEAF, precursor 38, successor 52.
+54 is 52's right child, the type of node is LEAF, precursor 52, successor 67.
+85 is 67's right child, the type of node is TRUNK, precursor 78.
+78 is 85's left child, the type of node is LEAF, precursor 67, successor 85.
+
+n -> key = 27
+[avltree_insert, bstree_insert]
+67 is root, the type of node is ROOT, precursor 54, successor 78.
+38 is 67's left child, the type of node is TRUNK, precursor 36, successor 45.
+17 is 38's left child, the type of node is TRUNK, successor 27.
+36 is 17's right child, the type of node is TRUNK, precursor 27, successor 38.
+27 is 36's left child, the type of node is LEAF, precursor 17, successor 36.
+52 is 38's right child, the type of node is TRUNK, precursor 45, successor 54.
+45 is 52's left child, the type of node is LEAF, precursor 38, successor 52.
+54 is 52's right child, the type of node is LEAF, precursor 52, successor 67.
+85 is 67's right child, the type of node is TRUNK, precursor 78.
+78 is 85's left child, the type of node is LEAF, precursor 67, successor 85.
+[avltree_insert] get_node_height( t -> left ) = 4
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60130, t -> key = 67
+[lost_balance_node] t -> key = 27( 0x1c60010 )
+[lost_balance_node] t -> father -> key = 36( 0x1c601c0 )
+[lost_balance_node] t -> key = 27( 0x1c60010 )
+[lost_balance_node] t -> father -> key = 36( 0x1c601c0 )
+[lost_balance_node]  found lost blance Node address is 0x1c600a0, value is 17
+[lost_balance_node] ret = 0x1c600a0
+====================> k1 -> key  = 17
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 1
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert right left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 1, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 1
+[right_rotation]  type = 4
+[right_left_rotation, right_rotation] k1_has_right = 0
+[right_left_rotation, right_rotation]  k1 -> key = 36, k1 address = 0x1c601c0
+[right_left_rotation, right_rotation]  k2 -> key = 27, k2 address = 0x1c60010
+[right_left_rotation, right_rotation] stat = 0
+[right_left_rotation, right_rotation] ret -> key = 27( 0x1c60010 )
+[right_left_rotation, right_rotation]
+27 is 27's right child, the type of node is TRUNK, successor 36.
+36 is 27's right child, the type of node is LEAF, precursor 27, successor 38.
+
+============[right_left_rotation]============
+17 is 17's right child, the type of node is TRUNK, successor 27.
+27 is 17's right child, the type of node is TRUNK, precursor 17, successor 36.
+36 is 27's right child, the type of node is LEAF, precursor 27, successor 38.
+
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+27 is 27's right child, the type of node is TRUNK, precursor 17, successor 36.
+17 is 27's left child, the type of node is LEAF, successor 27.
+36 is 27's right child, the type of node is LEAF, precursor 27, successor 38.
+
+[Main]
+67 is root, the type of node is ROOT, precursor 54, successor 78.
+38 is 67's left child, the type of node is TRUNK, precursor 36, successor 45.
+27 is 38's left child, the type of node is TRUNK, precursor 17, successor 36.
+17 is 27's left child, the type of node is LEAF, successor 27.
+36 is 27's right child, the type of node is LEAF, precursor 27, successor 38.
+52 is 38's right child, the type of node is TRUNK, precursor 45, successor 54.
+45 is 52's left child, the type of node is LEAF, precursor 38, successor 52.
+54 is 52's right child, the type of node is LEAF, precursor 52, successor 67.
+85 is 67's right child, the type of node is TRUNK, precursor 78.
+78 is 85's left child, the type of node is LEAF, precursor 67, successor 85.
+
+==========array[5]==========
+Input Numbers : 43 62 63 22 87 52 34 12 11 71 
+
+n -> key = 43
+[avltree_insert, bstree_insert]
+43 is a single node.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 0
+[avltree_insert] t = 0x1c60130, t -> key = 43
+[lost_balance_node] t -> key = 43( 0x1c60130 )
+[lost_balance_node] ret = (nil)
+[Main]
+43 is a single node.
+
+n -> key = 62
+[avltree_insert, bstree_insert]
+43 is root, the type of node is ROOT, successor 62.
+62 is 43's right child, the type of node is LEAF, precursor 43.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 1
+[avltree_insert] t = 0x1c60130, t -> key = 43
+[lost_balance_node] t -> key = 62( 0x1c60070 )
+[lost_balance_node] t -> father -> key = 43( 0x1c60130 )
+[lost_balance_node] t -> key = 62( 0x1c60070 )
+[lost_balance_node] ret = (nil)
+[Main]
+43 is root, the type of node is ROOT, successor 62.
+62 is 43's right child, the type of node is LEAF, precursor 43.
+
+n -> key = 63
+[avltree_insert, bstree_insert]
+43 is root, the type of node is ROOT, successor 62.
+62 is 43's right child, the type of node is TRUNK, precursor 43, successor 63.
+63 is 62's right child, the type of node is LEAF, precursor 62.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60130, t -> key = 43
+[lost_balance_node] t -> key = 63( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 62( 0x1c60070 )
+[lost_balance_node] t -> key = 63( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 62( 0x1c60070 )
+[lost_balance_node]  found lost blance Node address is 0x1c60130, value is 43
+[lost_balance_node] ret = 0x1c60130
+====================> k1 -> key  = 43
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 0
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert singel right rotation]
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+62 is root, the type of node is ROOT, precursor 43, successor 63.
+43 is 62's left child, the type of node is LEAF, successor 62.
+63 is 62's right child, the type of node is LEAF, precursor 62.
+
+[Main]
+62 is root, the type of node is ROOT, precursor 43, successor 63.
+43 is 62's left child, the type of node is LEAF, successor 62.
+63 is 62's right child, the type of node is LEAF, precursor 62.
+
+n -> key = 22
+[avltree_insert, bstree_insert]
+62 is root, the type of node is ROOT, precursor 43, successor 63.
+43 is 62's left child, the type of node is TRUNK, precursor 22, successor 62.
+22 is 43's left child, the type of node is LEAF, successor 43.
+63 is 62's right child, the type of node is LEAF, precursor 62.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 1
+[avltree_insert] t = 0x1c60070, t -> key = 62
+[lost_balance_node] t -> key = 22( 0x1c60190 )
+[lost_balance_node] t -> father -> key = 43( 0x1c60130 )
+[lost_balance_node] t -> key = 22( 0x1c60190 )
+[lost_balance_node] t -> father -> key = 43( 0x1c60130 )
+[lost_balance_node] t -> key = 22( 0x1c60190 )
+[lost_balance_node] ret = (nil)
+[Main]
+62 is root, the type of node is ROOT, precursor 43, successor 63.
+43 is 62's left child, the type of node is TRUNK, precursor 22, successor 62.
+22 is 43's left child, the type of node is LEAF, successor 43.
+63 is 62's right child, the type of node is LEAF, precursor 62.
+
+n -> key = 87
+[avltree_insert, bstree_insert]
+62 is root, the type of node is ROOT, precursor 43, successor 63.
+43 is 62's left child, the type of node is TRUNK, precursor 22, successor 62.
+22 is 43's left child, the type of node is LEAF, successor 43.
+63 is 62's right child, the type of node is TRUNK, precursor 62, successor 87.
+87 is 63's right child, the type of node is LEAF, precursor 63.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60070, t -> key = 62
+[lost_balance_node] t -> key = 87( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 63( 0x1c60100 )
+[lost_balance_node] t -> key = 87( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 63( 0x1c60100 )
+[lost_balance_node] t -> key = 87( 0x1c60040 )
+[lost_balance_node] ret = (nil)
+[Main]
+62 is root, the type of node is ROOT, precursor 43, successor 63.
+43 is 62's left child, the type of node is TRUNK, precursor 22, successor 62.
+22 is 43's left child, the type of node is LEAF, successor 43.
+63 is 62's right child, the type of node is TRUNK, precursor 62, successor 87.
+87 is 63's right child, the type of node is LEAF, precursor 63.
+
+n -> key = 52
+[avltree_insert, bstree_insert]
+62 is root, the type of node is ROOT, precursor 52, successor 63.
+43 is 62's left child, the type of node is TRUNK, precursor 22, successor 52.
+22 is 43's left child, the type of node is LEAF, successor 43.
+52 is 43's right child, the type of node is LEAF, precursor 43, successor 62.
+63 is 62's right child, the type of node is TRUNK, precursor 62, successor 87.
+87 is 63's right child, the type of node is LEAF, precursor 63.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60070, t -> key = 62
+[lost_balance_node] t -> key = 52( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 43( 0x1c60130 )
+[lost_balance_node] t -> key = 52( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 43( 0x1c60130 )
+[lost_balance_node] t -> key = 52( 0x1c60160 )
+[lost_balance_node] ret = (nil)
+[Main]
+62 is root, the type of node is ROOT, precursor 52, successor 63.
+43 is 62's left child, the type of node is TRUNK, precursor 22, successor 52.
+22 is 43's left child, the type of node is LEAF, successor 43.
+52 is 43's right child, the type of node is LEAF, precursor 43, successor 62.
+63 is 62's right child, the type of node is TRUNK, precursor 62, successor 87.
+87 is 63's right child, the type of node is LEAF, precursor 63.
+
+n -> key = 34
+[avltree_insert, bstree_insert]
+62 is root, the type of node is ROOT, precursor 52, successor 63.
+43 is 62's left child, the type of node is TRUNK, precursor 34, successor 52.
+22 is 43's left child, the type of node is TRUNK, successor 34.
+34 is 22's right child, the type of node is LEAF, precursor 22, successor 43.
+52 is 43's right child, the type of node is LEAF, precursor 43, successor 62.
+63 is 62's right child, the type of node is TRUNK, precursor 62, successor 87.
+87 is 63's right child, the type of node is LEAF, precursor 63.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60070, t -> key = 62
+[lost_balance_node] t -> key = 34( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 22( 0x1c60190 )
+[lost_balance_node] t -> key = 34( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 22( 0x1c60190 )
+[lost_balance_node] t -> key = 34( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 22( 0x1c60190 )
+[lost_balance_node] t -> key = 34( 0x1c600d0 )
+[lost_balance_node] ret = (nil)
+[Main]
+62 is root, the type of node is ROOT, precursor 52, successor 63.
+43 is 62's left child, the type of node is TRUNK, precursor 34, successor 52.
+22 is 43's left child, the type of node is TRUNK, successor 34.
+34 is 22's right child, the type of node is LEAF, precursor 22, successor 43.
+52 is 43's right child, the type of node is LEAF, precursor 43, successor 62.
+63 is 62's right child, the type of node is TRUNK, precursor 62, successor 87.
+87 is 63's right child, the type of node is LEAF, precursor 63.
+
+n -> key = 12
+[avltree_insert, bstree_insert]
+62 is root, the type of node is ROOT, precursor 52, successor 63.
+43 is 62's left child, the type of node is TRUNK, precursor 34, successor 52.
+22 is 43's left child, the type of node is TRUNK, precursor 12, successor 34.
+12 is 22's left child, the type of node is LEAF, successor 22.
+34 is 22's right child, the type of node is LEAF, precursor 22, successor 43.
+52 is 43's right child, the type of node is LEAF, precursor 43, successor 62.
+63 is 62's right child, the type of node is TRUNK, precursor 62, successor 87.
+87 is 63's right child, the type of node is LEAF, precursor 63.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60070, t -> key = 62
+[lost_balance_node] t -> key = 12( 0x1c60010 )
+[lost_balance_node] t -> father -> key = 22( 0x1c60190 )
+[lost_balance_node] t -> key = 12( 0x1c60010 )
+[lost_balance_node] t -> father -> key = 22( 0x1c60190 )
+[lost_balance_node] t -> key = 12( 0x1c60010 )
+[lost_balance_node] t -> father -> key = 22( 0x1c60190 )
+[lost_balance_node] t -> key = 12( 0x1c60010 )
+[lost_balance_node] ret = (nil)
+[Main]
+62 is root, the type of node is ROOT, precursor 52, successor 63.
+43 is 62's left child, the type of node is TRUNK, precursor 34, successor 52.
+22 is 43's left child, the type of node is TRUNK, precursor 12, successor 34.
+12 is 22's left child, the type of node is LEAF, successor 22.
+34 is 22's right child, the type of node is LEAF, precursor 22, successor 43.
+52 is 43's right child, the type of node is LEAF, precursor 43, successor 62.
+63 is 62's right child, the type of node is TRUNK, precursor 62, successor 87.
+87 is 63's right child, the type of node is LEAF, precursor 63.
+
+n -> key = 11
+[avltree_insert, bstree_insert]
+62 is root, the type of node is ROOT, precursor 52, successor 63.
+43 is 62's left child, the type of node is TRUNK, precursor 34, successor 52.
+22 is 43's left child, the type of node is TRUNK, precursor 12, successor 34.
+12 is 22's left child, the type of node is TRUNK, precursor 11, successor 22.
+11 is 12's left child, the type of node is LEAF, successor 12.
+34 is 22's right child, the type of node is LEAF, precursor 22, successor 43.
+52 is 43's right child, the type of node is LEAF, precursor 43, successor 62.
+63 is 62's right child, the type of node is TRUNK, precursor 62, successor 87.
+87 is 63's right child, the type of node is LEAF, precursor 63.
+[avltree_insert] get_node_height( t -> left ) = 4
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60070, t -> key = 62
+[lost_balance_node] t -> key = 11( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 12( 0x1c60010 )
+[lost_balance_node] t -> key = 11( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 12( 0x1c60010 )
+[lost_balance_node] t -> key = 11( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 12( 0x1c60010 )
+[lost_balance_node]  found lost blance Node address is 0x1c60130, value is 43
+[lost_balance_node] ret = 0x1c60130
+====================> k1 -> key  = 43
+====================> get_node_height( k1 -> left  ) = 3
+====================> get_node_height( k1 -> right  ) = 1
+====================> get_node_height( k1 -> left -> right ) = 1
+====================> get_node_height( k1 -> right ) = 1
+[avltree_insert singel left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 3, get_node_height( k1 -> left ) = 1
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 2
+[right_rotation]  type = 3
+[right_rotation,  singel] k1 -> key = 43, k2 -> key = 22
+[right_rotation]
+22 is 22's right child, the type of node is TRUNK, precursor 12, successor 34.
+12 is 22's left child, the type of node is TRUNK, precursor 11, successor 22.
+11 is 12's left child, the type of node is LEAF, successor 12.
+43 is 22's right child, the type of node is TRUNK, precursor 34, successor 52.
+34 is 43's left child, the type of node is LEAF, precursor 22, successor 43.
+52 is 43's right child, the type of node is LEAF, precursor 43, successor 62.
+
+[Main]
+62 is root, the type of node is ROOT, precursor 52, successor 63.
+22 is 62's left child, the type of node is TRUNK, precursor 12, successor 34.
+12 is 22's left child, the type of node is TRUNK, precursor 11, successor 22.
+11 is 12's left child, the type of node is LEAF, successor 12.
+43 is 22's right child, the type of node is TRUNK, precursor 34, successor 52.
+34 is 43's left child, the type of node is LEAF, precursor 22, successor 43.
+52 is 43's right child, the type of node is LEAF, precursor 43, successor 62.
+63 is 62's right child, the type of node is TRUNK, precursor 62, successor 87.
+87 is 63's right child, the type of node is LEAF, precursor 63.
+
+n -> key = 71
+[avltree_insert, bstree_insert]
+62 is root, the type of node is ROOT, precursor 52, successor 63.
+22 is 62's left child, the type of node is TRUNK, precursor 12, successor 34.
+12 is 22's left child, the type of node is TRUNK, precursor 11, successor 22.
+11 is 12's left child, the type of node is LEAF, successor 12.
+43 is 22's right child, the type of node is TRUNK, precursor 34, successor 52.
+34 is 43's left child, the type of node is LEAF, precursor 22, successor 43.
+52 is 43's right child, the type of node is LEAF, precursor 43, successor 62.
+63 is 62's right child, the type of node is TRUNK, precursor 62, successor 71.
+87 is 63's right child, the type of node is TRUNK, precursor 71.
+71 is 87's left child, the type of node is LEAF, precursor 63, successor 87.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c60070, t -> key = 62
+[lost_balance_node] t -> key = 71( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 87( 0x1c60040 )
+[lost_balance_node] t -> key = 71( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 87( 0x1c60040 )
+[lost_balance_node]  found lost blance Node address is 0x1c60100, value is 63
+[lost_balance_node] ret = 0x1c60100
+====================> k1 -> key  = 63
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 1
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert right left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 1, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 1
+[right_rotation]  type = 4
+[right_left_rotation, right_rotation] k1_has_right = 0
+[right_left_rotation, right_rotation]  k1 -> key = 87, k1 address = 0x1c60040
+[right_left_rotation, right_rotation]  k2 -> key = 71, k2 address = 0x1c600a0
+[right_left_rotation, right_rotation] stat = 0
+[right_left_rotation, right_rotation] ret -> key = 71( 0x1c600a0 )
+[right_left_rotation, right_rotation]
+71 is 71's right child, the type of node is TRUNK, precursor 62, successor 87.
+87 is 71's right child, the type of node is LEAF, precursor 71.
+
+============[right_left_rotation]============
+63 is 63's right child, the type of node is TRUNK, precursor 62, successor 71.
+71 is 63's right child, the type of node is TRUNK, precursor 63, successor 87.
+87 is 71's right child, the type of node is LEAF, precursor 71.
+
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+71 is 71's right child, the type of node is TRUNK, precursor 63, successor 87.
+63 is 71's left child, the type of node is LEAF, precursor 62, successor 71.
+87 is 71's right child, the type of node is LEAF, precursor 71.
+
+[Main]
+62 is root, the type of node is ROOT, precursor 52, successor 63.
+22 is 62's left child, the type of node is TRUNK, precursor 12, successor 34.
+12 is 22's left child, the type of node is TRUNK, precursor 11, successor 22.
+11 is 12's left child, the type of node is LEAF, successor 12.
+43 is 22's right child, the type of node is TRUNK, precursor 34, successor 52.
+34 is 43's left child, the type of node is LEAF, precursor 22, successor 43.
+52 is 43's right child, the type of node is LEAF, precursor 43, successor 62.
+71 is 62's right child, the type of node is TRUNK, precursor 63, successor 87.
+63 is 71's left child, the type of node is LEAF, precursor 62, successor 71.
+87 is 71's right child, the type of node is LEAF, precursor 71.
+
+==========array[6]==========
+Input Numbers : 22 27 44 40 42 84 31 58 66 88 
+
+n -> key = 22
+[avltree_insert, bstree_insert]
+22 is a single node.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 0
+[avltree_insert] t = 0x1c60070, t -> key = 22
+[lost_balance_node] t -> key = 22( 0x1c60070 )
+[lost_balance_node] ret = (nil)
+[Main]
+22 is a single node.
+
+n -> key = 27
+[avltree_insert, bstree_insert]
+22 is root, the type of node is ROOT, successor 27.
+27 is 22's right child, the type of node is LEAF, precursor 22.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 1
+[avltree_insert] t = 0x1c60070, t -> key = 22
+[lost_balance_node] t -> key = 27( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 22( 0x1c60070 )
+[lost_balance_node] t -> key = 27( 0x1c600a0 )
+[lost_balance_node] ret = (nil)
+[Main]
+22 is root, the type of node is ROOT, successor 27.
+27 is 22's right child, the type of node is LEAF, precursor 22.
+
+n -> key = 44
+[avltree_insert, bstree_insert]
+22 is root, the type of node is ROOT, successor 27.
+27 is 22's right child, the type of node is TRUNK, precursor 22, successor 44.
+44 is 27's right child, the type of node is LEAF, precursor 27.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60070, t -> key = 22
+[lost_balance_node] t -> key = 44( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 27( 0x1c600a0 )
+[lost_balance_node] t -> key = 44( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 27( 0x1c600a0 )
+[lost_balance_node]  found lost blance Node address is 0x1c60070, value is 22
+[lost_balance_node] ret = 0x1c60070
+====================> k1 -> key  = 22
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 0
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert singel right rotation]
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+27 is root, the type of node is ROOT, precursor 22, successor 44.
+22 is 27's left child, the type of node is LEAF, successor 27.
+44 is 27's right child, the type of node is LEAF, precursor 27.
+
+[Main]
+27 is root, the type of node is ROOT, precursor 22, successor 44.
+22 is 27's left child, the type of node is LEAF, successor 27.
+44 is 27's right child, the type of node is LEAF, precursor 27.
+
+n -> key = 40
+[avltree_insert, bstree_insert]
+27 is root, the type of node is ROOT, precursor 22, successor 40.
+22 is 27's left child, the type of node is LEAF, successor 27.
+44 is 27's right child, the type of node is TRUNK, precursor 40.
+40 is 44's left child, the type of node is LEAF, precursor 27, successor 44.
+[avltree_insert] get_node_height( t -> left ) = 1
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c600a0, t -> key = 27
+[lost_balance_node] t -> key = 40( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 44( 0x1c60040 )
+[lost_balance_node] t -> key = 40( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 44( 0x1c60040 )
+[lost_balance_node] t -> key = 40( 0x1c60100 )
+[lost_balance_node] ret = (nil)
+[Main]
+27 is root, the type of node is ROOT, precursor 22, successor 40.
+22 is 27's left child, the type of node is LEAF, successor 27.
+44 is 27's right child, the type of node is TRUNK, precursor 40.
+40 is 44's left child, the type of node is LEAF, precursor 27, successor 44.
+
+n -> key = 42
+[avltree_insert, bstree_insert]
+27 is root, the type of node is ROOT, precursor 22, successor 40.
+22 is 27's left child, the type of node is LEAF, successor 27.
+44 is 27's right child, the type of node is TRUNK, precursor 42.
+40 is 44's left child, the type of node is TRUNK, precursor 27, successor 42.
+42 is 40's right child, the type of node is LEAF, precursor 40, successor 44.
+[avltree_insert] get_node_height( t -> left ) = 1
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c600a0, t -> key = 27
+[lost_balance_node] t -> key = 42( 0x1c60190 )
+[lost_balance_node] t -> father -> key = 40( 0x1c60100 )
+[lost_balance_node] t -> key = 42( 0x1c60190 )
+[lost_balance_node] t -> father -> key = 40( 0x1c60100 )
+[lost_balance_node]  found lost blance Node address is 0x1c60040, value is 44
+[lost_balance_node] ret = 0x1c60040
+====================> k1 -> key  = 44
+====================> get_node_height( k1 -> left  ) = 2
+====================> get_node_height( k1 -> right  ) = 0
+====================> get_node_height( k1 -> left -> right ) = 1
+====================> get_node_height( k1 -> right ) = 0
+[avltree_insert left right rotation]
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 1
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 1
+[left_right_rotation, left_rotation] k2 -> left = (nil)
+[left_right_rotation, left_rotation] k1_has_left = 0
+[left_right_rotation, left_rotation] k1 -> key = 40, k1 address = 0x1c60100
+[left_right_rotation, left_rotation] k2 -> key = 42, k2 address = 0x1c60190
+[left_right_rotation, left_rotation] stat = 0
+[left_right_rotation, left_rotation] ret -> left = 0x1c60100
+[left_right_rotation, left_rotation] k2 -> left -> key = 40
+[left_right_rotation, left_rotation] ret -> key = 42( 0x1c60190 )
+[left_right_rotation, left_rotation]
+42 is 42's right child, the type of node is TRUNK, precursor 40.
+40 is 42's left child, the type of node is LEAF, precursor 27, successor 42.
+
+============[left_right_rotation]============
+44 is 44's right child, the type of node is TRUNK, precursor 42.
+42 is 44's left child, the type of node is TRUNK, precursor 40, successor 44.
+40 is 42's left child, the type of node is LEAF, precursor 27, successor 42.
+
+[right_rotation] get_node_height( k1 -> right ) = 2, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 2
+[right_rotation]  type = 4
+[right_rotation,  singel] k1 -> key = 44, k2 -> key = 42
+[right_rotation]
+42 is 42's right child, the type of node is TRUNK, precursor 40, successor 44.
+40 is 42's left child, the type of node is LEAF, precursor 27, successor 42.
+44 is 42's right child, the type of node is LEAF, precursor 42.
+
+[Main]
+27 is root, the type of node is ROOT, precursor 22, successor 40.
+22 is 27's left child, the type of node is LEAF, successor 27.
+42 is 27's right child, the type of node is TRUNK, precursor 40, successor 44.
+40 is 42's left child, the type of node is LEAF, precursor 27, successor 42.
+44 is 42's right child, the type of node is LEAF, precursor 42.
+
+n -> key = 84
+[avltree_insert, bstree_insert]
+27 is root, the type of node is ROOT, precursor 22, successor 40.
+22 is 27's left child, the type of node is LEAF, successor 27.
+42 is 27's right child, the type of node is TRUNK, precursor 40, successor 44.
+40 is 42's left child, the type of node is LEAF, precursor 27, successor 42.
+44 is 42's right child, the type of node is TRUNK, precursor 42, successor 84.
+84 is 44's right child, the type of node is LEAF, precursor 44.
+[avltree_insert] get_node_height( t -> left ) = 1
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c600a0, t -> key = 27
+[lost_balance_node] t -> key = 84( 0x1c60130 )
+[lost_balance_node] t -> father -> key = 44( 0x1c60040 )
+[lost_balance_node] t -> key = 84( 0x1c60130 )
+[lost_balance_node] t -> father -> key = 44( 0x1c60040 )
+[lost_balance_node] t -> key = 84( 0x1c60130 )
+[lost_balance_node] t -> father -> key = 44( 0x1c60040 )
+[lost_balance_node]  found lost blance Node address is 0x1c600a0, value is 27
+[lost_balance_node] ret = 0x1c600a0
+====================> k1 -> key  = 27
+====================> get_node_height( k1 -> left  ) = 1
+====================> get_node_height( k1 -> right  ) = 3
+====================> get_node_height( k1 -> right -> left ) = 1
+====================> get_node_height( k1 -> left ) = 1
+[avltree_insert singel right rotation]
+[left_rotation] get_node_height( k1 -> right ) = 1, get_node_height( k1 -> left ) = 3
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+42 is root, the type of node is ROOT, precursor 40, successor 44.
+27 is 42's left child, the type of node is TRUNK, precursor 22, successor 40.
+22 is 27's left child, the type of node is LEAF, successor 27.
+40 is 27's right child, the type of node is LEAF, precursor 27, successor 42.
+44 is 42's right child, the type of node is TRUNK, precursor 42, successor 84.
+84 is 44's right child, the type of node is LEAF, precursor 44.
+
+[Main]
+42 is root, the type of node is ROOT, precursor 40, successor 44.
+27 is 42's left child, the type of node is TRUNK, precursor 22, successor 40.
+22 is 27's left child, the type of node is LEAF, successor 27.
+40 is 27's right child, the type of node is LEAF, precursor 27, successor 42.
+44 is 42's right child, the type of node is TRUNK, precursor 42, successor 84.
+84 is 44's right child, the type of node is LEAF, precursor 44.
+
+n -> key = 31
+[avltree_insert, bstree_insert]
+42 is root, the type of node is ROOT, precursor 40, successor 44.
+27 is 42's left child, the type of node is TRUNK, precursor 22, successor 31.
+22 is 27's left child, the type of node is LEAF, successor 27.
+40 is 27's right child, the type of node is TRUNK, precursor 31, successor 42.
+31 is 40's left child, the type of node is LEAF, precursor 27, successor 40.
+44 is 42's right child, the type of node is TRUNK, precursor 42, successor 84.
+84 is 44's right child, the type of node is LEAF, precursor 44.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60190, t -> key = 42
+[lost_balance_node] t -> key = 31( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 40( 0x1c60100 )
+[lost_balance_node] t -> key = 31( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 40( 0x1c60100 )
+[lost_balance_node] t -> key = 31( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 40( 0x1c60100 )
+[lost_balance_node] t -> key = 31( 0x1c60160 )
+[lost_balance_node] ret = (nil)
+[Main]
+42 is root, the type of node is ROOT, precursor 40, successor 44.
+27 is 42's left child, the type of node is TRUNK, precursor 22, successor 31.
+22 is 27's left child, the type of node is LEAF, successor 27.
+40 is 27's right child, the type of node is TRUNK, precursor 31, successor 42.
+31 is 40's left child, the type of node is LEAF, precursor 27, successor 40.
+44 is 42's right child, the type of node is TRUNK, precursor 42, successor 84.
+84 is 44's right child, the type of node is LEAF, precursor 44.
+
+n -> key = 58
+[avltree_insert, bstree_insert]
+42 is root, the type of node is ROOT, precursor 40, successor 44.
+27 is 42's left child, the type of node is TRUNK, precursor 22, successor 31.
+22 is 27's left child, the type of node is LEAF, successor 27.
+40 is 27's right child, the type of node is TRUNK, precursor 31, successor 42.
+31 is 40's left child, the type of node is LEAF, precursor 27, successor 40.
+44 is 42's right child, the type of node is TRUNK, precursor 42, successor 58.
+84 is 44's right child, the type of node is TRUNK, precursor 58.
+58 is 84's left child, the type of node is LEAF, precursor 44, successor 84.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c60190, t -> key = 42
+[lost_balance_node] t -> key = 58( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 84( 0x1c60130 )
+[lost_balance_node] t -> key = 58( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 84( 0x1c60130 )
+[lost_balance_node]  found lost blance Node address is 0x1c60040, value is 44
+[lost_balance_node] ret = 0x1c60040
+====================> k1 -> key  = 44
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 1
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert right left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 1, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 1
+[right_rotation]  type = 4
+[right_left_rotation, right_rotation] k1_has_right = 0
+[right_left_rotation, right_rotation]  k1 -> key = 84, k1 address = 0x1c60130
+[right_left_rotation, right_rotation]  k2 -> key = 58, k2 address = 0x1c600d0
+[right_left_rotation, right_rotation] stat = 0
+[right_left_rotation, right_rotation] ret -> key = 58( 0x1c600d0 )
+[right_left_rotation, right_rotation]
+58 is 58's right child, the type of node is TRUNK, precursor 42, successor 84.
+84 is 58's right child, the type of node is LEAF, precursor 58.
+
+============[right_left_rotation]============
+44 is 44's right child, the type of node is TRUNK, precursor 42, successor 58.
+58 is 44's right child, the type of node is TRUNK, precursor 44, successor 84.
+84 is 58's right child, the type of node is LEAF, precursor 58.
+
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+58 is 58's right child, the type of node is TRUNK, precursor 44, successor 84.
+44 is 58's left child, the type of node is LEAF, precursor 42, successor 58.
+84 is 58's right child, the type of node is LEAF, precursor 58.
+
+[Main]
+42 is root, the type of node is ROOT, precursor 40, successor 44.
+27 is 42's left child, the type of node is TRUNK, precursor 22, successor 31.
+22 is 27's left child, the type of node is LEAF, successor 27.
+40 is 27's right child, the type of node is TRUNK, precursor 31, successor 42.
+31 is 40's left child, the type of node is LEAF, precursor 27, successor 40.
+58 is 42's right child, the type of node is TRUNK, precursor 44, successor 84.
+44 is 58's left child, the type of node is LEAF, precursor 42, successor 58.
+84 is 58's right child, the type of node is LEAF, precursor 58.
+
+n -> key = 66
+[avltree_insert, bstree_insert]
+42 is root, the type of node is ROOT, precursor 40, successor 44.
+27 is 42's left child, the type of node is TRUNK, precursor 22, successor 31.
+22 is 27's left child, the type of node is LEAF, successor 27.
+40 is 27's right child, the type of node is TRUNK, precursor 31, successor 42.
+31 is 40's left child, the type of node is LEAF, precursor 27, successor 40.
+58 is 42's right child, the type of node is TRUNK, precursor 44, successor 66.
+44 is 58's left child, the type of node is LEAF, precursor 42, successor 58.
+84 is 58's right child, the type of node is TRUNK, precursor 66.
+66 is 84's left child, the type of node is LEAF, precursor 58, successor 84.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c60190, t -> key = 42
+[lost_balance_node] t -> key = 66( 0x1c60010 )
+[lost_balance_node] t -> father -> key = 84( 0x1c60130 )
+[lost_balance_node] t -> key = 66( 0x1c60010 )
+[lost_balance_node] t -> father -> key = 84( 0x1c60130 )
+[lost_balance_node] t -> key = 66( 0x1c60010 )
+[lost_balance_node] t -> father -> key = 84( 0x1c60130 )
+[lost_balance_node] t -> key = 66( 0x1c60010 )
+[lost_balance_node] ret = (nil)
+[Main]
+42 is root, the type of node is ROOT, precursor 40, successor 44.
+27 is 42's left child, the type of node is TRUNK, precursor 22, successor 31.
+22 is 27's left child, the type of node is LEAF, successor 27.
+40 is 27's right child, the type of node is TRUNK, precursor 31, successor 42.
+31 is 40's left child, the type of node is LEAF, precursor 27, successor 40.
+58 is 42's right child, the type of node is TRUNK, precursor 44, successor 66.
+44 is 58's left child, the type of node is LEAF, precursor 42, successor 58.
+84 is 58's right child, the type of node is TRUNK, precursor 66.
+66 is 84's left child, the type of node is LEAF, precursor 58, successor 84.
+
+n -> key = 88
+[avltree_insert, bstree_insert]
+42 is root, the type of node is ROOT, precursor 40, successor 44.
+27 is 42's left child, the type of node is TRUNK, precursor 22, successor 31.
+22 is 27's left child, the type of node is LEAF, successor 27.
+40 is 27's right child, the type of node is TRUNK, precursor 31, successor 42.
+31 is 40's left child, the type of node is LEAF, precursor 27, successor 40.
+58 is 42's right child, the type of node is TRUNK, precursor 44, successor 66.
+44 is 58's left child, the type of node is LEAF, precursor 42, successor 58.
+84 is 58's right child, the type of node is TRUNK, precursor 66, successor 88.
+66 is 84's left child, the type of node is LEAF, precursor 58, successor 84.
+88 is 84's right child, the type of node is LEAF, precursor 84.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c60190, t -> key = 42
+[lost_balance_node] t -> key = 88( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 84( 0x1c60130 )
+[lost_balance_node] t -> key = 88( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 84( 0x1c60130 )
+[lost_balance_node] t -> key = 88( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 84( 0x1c60130 )
+[lost_balance_node] t -> key = 88( 0x1c601c0 )
+[lost_balance_node] ret = (nil)
+[Main]
+42 is root, the type of node is ROOT, precursor 40, successor 44.
+27 is 42's left child, the type of node is TRUNK, precursor 22, successor 31.
+22 is 27's left child, the type of node is LEAF, successor 27.
+40 is 27's right child, the type of node is TRUNK, precursor 31, successor 42.
+31 is 40's left child, the type of node is LEAF, precursor 27, successor 40.
+58 is 42's right child, the type of node is TRUNK, precursor 44, successor 66.
+44 is 58's left child, the type of node is LEAF, precursor 42, successor 58.
+84 is 58's right child, the type of node is TRUNK, precursor 66, successor 88.
+66 is 84's left child, the type of node is LEAF, precursor 58, successor 84.
+88 is 84's right child, the type of node is LEAF, precursor 84.
+
+==========array[7]==========
+Input Numbers : 12 85 73 92 89 13 96 39 17 91 
+
+n -> key = 12
+[avltree_insert, bstree_insert]
+12 is a single node.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 0
+[avltree_insert] t = 0x1c60190, t -> key = 12
+[lost_balance_node] t -> key = 12( 0x1c60190 )
+[lost_balance_node] ret = (nil)
+[Main]
+12 is a single node.
+
+n -> key = 85
+[avltree_insert, bstree_insert]
+12 is root, the type of node is ROOT, successor 85.
+85 is 12's right child, the type of node is LEAF, precursor 12.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 1
+[avltree_insert] t = 0x1c60190, t -> key = 12
+[lost_balance_node] t -> key = 85( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 12( 0x1c60190 )
+[lost_balance_node] t -> key = 85( 0x1c600d0 )
+[lost_balance_node] ret = (nil)
+[Main]
+12 is root, the type of node is ROOT, successor 85.
+85 is 12's right child, the type of node is LEAF, precursor 12.
+
+n -> key = 73
+[avltree_insert, bstree_insert]
+12 is root, the type of node is ROOT, successor 73.
+85 is 12's right child, the type of node is TRUNK, precursor 73.
+73 is 85's left child, the type of node is LEAF, precursor 12, successor 85.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60190, t -> key = 12
+[lost_balance_node] t -> key = 73( 0x1c60130 )
+[lost_balance_node] t -> father -> key = 85( 0x1c600d0 )
+[lost_balance_node] t -> key = 73( 0x1c60130 )
+[lost_balance_node] t -> father -> key = 85( 0x1c600d0 )
+[lost_balance_node]  found lost blance Node address is 0x1c60190, value is 12
+[lost_balance_node] ret = 0x1c60190
+====================> k1 -> key  = 12
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 1
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert right left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 1, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 1
+[right_rotation]  type = 4
+[right_left_rotation, right_rotation] k1_has_right = 0
+[right_left_rotation, right_rotation]  k1 -> key = 85, k1 address = 0x1c600d0
+[right_left_rotation, right_rotation]  k2 -> key = 73, k2 address = 0x1c60130
+[right_left_rotation, right_rotation] stat = 0
+[right_left_rotation, right_rotation] ret -> key = 73( 0x1c60130 )
+[right_left_rotation, right_rotation]
+73 is 73's right child, the type of node is TRUNK, successor 85.
+85 is 73's right child, the type of node is LEAF, precursor 73.
+
+============[right_left_rotation]============
+12 is root, the type of node is ROOT, successor 73.
+73 is 12's right child, the type of node is TRUNK, precursor 12, successor 85.
+85 is 73's right child, the type of node is LEAF, precursor 73.
+
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+73 is root, the type of node is ROOT, precursor 12, successor 85.
+12 is 73's left child, the type of node is LEAF, successor 73.
+85 is 73's right child, the type of node is LEAF, precursor 73.
+
+[Main]
+73 is root, the type of node is ROOT, precursor 12, successor 85.
+12 is 73's left child, the type of node is LEAF, successor 73.
+85 is 73's right child, the type of node is LEAF, precursor 73.
+
+n -> key = 92
+[avltree_insert, bstree_insert]
+73 is root, the type of node is ROOT, precursor 12, successor 85.
+12 is 73's left child, the type of node is LEAF, successor 73.
+85 is 73's right child, the type of node is TRUNK, precursor 73, successor 92.
+92 is 85's right child, the type of node is LEAF, precursor 85.
+[avltree_insert] get_node_height( t -> left ) = 1
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60130, t -> key = 73
+[lost_balance_node] t -> key = 92( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 85( 0x1c600d0 )
+[lost_balance_node] t -> key = 92( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 85( 0x1c600d0 )
+[lost_balance_node] t -> key = 92( 0x1c601c0 )
+[lost_balance_node] ret = (nil)
+[Main]
+73 is root, the type of node is ROOT, precursor 12, successor 85.
+12 is 73's left child, the type of node is LEAF, successor 73.
+85 is 73's right child, the type of node is TRUNK, precursor 73, successor 92.
+92 is 85's right child, the type of node is LEAF, precursor 85.
+
+n -> key = 89
+[avltree_insert, bstree_insert]
+73 is root, the type of node is ROOT, precursor 12, successor 85.
+12 is 73's left child, the type of node is LEAF, successor 73.
+85 is 73's right child, the type of node is TRUNK, precursor 73, successor 89.
+92 is 85's right child, the type of node is TRUNK, precursor 89.
+89 is 92's left child, the type of node is LEAF, precursor 85, successor 92.
+[avltree_insert] get_node_height( t -> left ) = 1
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c60130, t -> key = 73
+[lost_balance_node] t -> key = 89( 0x1c60010 )
+[lost_balance_node] t -> father -> key = 92( 0x1c601c0 )
+[lost_balance_node] t -> key = 89( 0x1c60010 )
+[lost_balance_node] t -> father -> key = 92( 0x1c601c0 )
+[lost_balance_node]  found lost blance Node address is 0x1c600d0, value is 85
+[lost_balance_node] ret = 0x1c600d0
+====================> k1 -> key  = 85
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 1
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert right left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 1, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 1
+[right_rotation]  type = 4
+[right_left_rotation, right_rotation] k1_has_right = 0
+[right_left_rotation, right_rotation]  k1 -> key = 92, k1 address = 0x1c601c0
+[right_left_rotation, right_rotation]  k2 -> key = 89, k2 address = 0x1c60010
+[right_left_rotation, right_rotation] stat = 0
+[right_left_rotation, right_rotation] ret -> key = 89( 0x1c60010 )
+[right_left_rotation, right_rotation]
+89 is 89's right child, the type of node is TRUNK, precursor 73, successor 92.
+92 is 89's right child, the type of node is LEAF, precursor 89.
+
+============[right_left_rotation]============
+85 is 85's right child, the type of node is TRUNK, precursor 73, successor 89.
+89 is 85's right child, the type of node is TRUNK, precursor 85, successor 92.
+92 is 89's right child, the type of node is LEAF, precursor 89.
+
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+89 is 89's right child, the type of node is TRUNK, precursor 85, successor 92.
+85 is 89's left child, the type of node is LEAF, precursor 73, successor 89.
+92 is 89's right child, the type of node is LEAF, precursor 89.
+
+[Main]
+73 is root, the type of node is ROOT, precursor 12, successor 85.
+12 is 73's left child, the type of node is LEAF, successor 73.
+89 is 73's right child, the type of node is TRUNK, precursor 85, successor 92.
+85 is 89's left child, the type of node is LEAF, precursor 73, successor 89.
+92 is 89's right child, the type of node is LEAF, precursor 89.
+
+n -> key = 13
+[avltree_insert, bstree_insert]
+73 is root, the type of node is ROOT, precursor 13, successor 85.
+12 is 73's left child, the type of node is TRUNK, successor 13.
+13 is 12's right child, the type of node is LEAF, precursor 12, successor 73.
+89 is 73's right child, the type of node is TRUNK, precursor 85, successor 92.
+85 is 89's left child, the type of node is LEAF, precursor 73, successor 89.
+92 is 89's right child, the type of node is LEAF, precursor 89.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60130, t -> key = 73
+[lost_balance_node] t -> key = 13( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 12( 0x1c60190 )
+[lost_balance_node] t -> key = 13( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 12( 0x1c60190 )
+[lost_balance_node] t -> key = 13( 0x1c60040 )
+[lost_balance_node] ret = (nil)
+[Main]
+73 is root, the type of node is ROOT, precursor 13, successor 85.
+12 is 73's left child, the type of node is TRUNK, successor 13.
+13 is 12's right child, the type of node is LEAF, precursor 12, successor 73.
+89 is 73's right child, the type of node is TRUNK, precursor 85, successor 92.
+85 is 89's left child, the type of node is LEAF, precursor 73, successor 89.
+92 is 89's right child, the type of node is LEAF, precursor 89.
+
+n -> key = 96
+[avltree_insert, bstree_insert]
+73 is root, the type of node is ROOT, precursor 13, successor 85.
+12 is 73's left child, the type of node is TRUNK, successor 13.
+13 is 12's right child, the type of node is LEAF, precursor 12, successor 73.
+89 is 73's right child, the type of node is TRUNK, precursor 85, successor 92.
+85 is 89's left child, the type of node is LEAF, precursor 73, successor 89.
+92 is 89's right child, the type of node is TRUNK, precursor 89, successor 96.
+96 is 92's right child, the type of node is LEAF, precursor 92.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c60130, t -> key = 73
+[lost_balance_node] t -> key = 96( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 92( 0x1c601c0 )
+[lost_balance_node] t -> key = 96( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 92( 0x1c601c0 )
+[lost_balance_node] t -> key = 96( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 92( 0x1c601c0 )
+[lost_balance_node] t -> key = 96( 0x1c600a0 )
+[lost_balance_node] ret = (nil)
+[Main]
+73 is root, the type of node is ROOT, precursor 13, successor 85.
+12 is 73's left child, the type of node is TRUNK, successor 13.
+13 is 12's right child, the type of node is LEAF, precursor 12, successor 73.
+89 is 73's right child, the type of node is TRUNK, precursor 85, successor 92.
+85 is 89's left child, the type of node is LEAF, precursor 73, successor 89.
+92 is 89's right child, the type of node is TRUNK, precursor 89, successor 96.
+96 is 92's right child, the type of node is LEAF, precursor 92.
+
+n -> key = 39
+[avltree_insert, bstree_insert]
+73 is root, the type of node is ROOT, precursor 39, successor 85.
+12 is 73's left child, the type of node is TRUNK, successor 13.
+13 is 12's right child, the type of node is TRUNK, precursor 12, successor 39.
+39 is 13's right child, the type of node is LEAF, precursor 13, successor 73.
+89 is 73's right child, the type of node is TRUNK, precursor 85, successor 92.
+85 is 89's left child, the type of node is LEAF, precursor 73, successor 89.
+92 is 89's right child, the type of node is TRUNK, precursor 89, successor 96.
+96 is 92's right child, the type of node is LEAF, precursor 92.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c60130, t -> key = 73
+[lost_balance_node] t -> key = 39( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 13( 0x1c60040 )
+[lost_balance_node] t -> key = 39( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 13( 0x1c60040 )
+[lost_balance_node]  found lost blance Node address is 0x1c60190, value is 12
+[lost_balance_node] ret = 0x1c60190
+====================> k1 -> key  = 12
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 0
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert singel right rotation]
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+13 is 13's right child, the type of node is TRUNK, precursor 12, successor 39.
+12 is 13's left child, the type of node is LEAF, successor 13.
+39 is 13's right child, the type of node is LEAF, precursor 13, successor 73.
+
+[Main]
+73 is root, the type of node is ROOT, precursor 39, successor 85.
+13 is 73's left child, the type of node is TRUNK, precursor 12, successor 39.
+12 is 13's left child, the type of node is LEAF, successor 13.
+39 is 13's right child, the type of node is LEAF, precursor 13, successor 73.
+89 is 73's right child, the type of node is TRUNK, precursor 85, successor 92.
+85 is 89's left child, the type of node is LEAF, precursor 73, successor 89.
+92 is 89's right child, the type of node is TRUNK, precursor 89, successor 96.
+96 is 92's right child, the type of node is LEAF, precursor 92.
+
+n -> key = 17
+[avltree_insert, bstree_insert]
+73 is root, the type of node is ROOT, precursor 39, successor 85.
+13 is 73's left child, the type of node is TRUNK, precursor 12, successor 17.
+12 is 13's left child, the type of node is LEAF, successor 13.
+39 is 13's right child, the type of node is TRUNK, precursor 17, successor 73.
+17 is 39's left child, the type of node is LEAF, precursor 13, successor 39.
+89 is 73's right child, the type of node is TRUNK, precursor 85, successor 92.
+85 is 89's left child, the type of node is LEAF, precursor 73, successor 89.
+92 is 89's right child, the type of node is TRUNK, precursor 89, successor 96.
+96 is 92's right child, the type of node is LEAF, precursor 92.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c60130, t -> key = 73
+[lost_balance_node] t -> key = 17( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 39( 0x1c60100 )
+[lost_balance_node] t -> key = 17( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 39( 0x1c60100 )
+[lost_balance_node] t -> key = 17( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 39( 0x1c60100 )
+[lost_balance_node] t -> key = 17( 0x1c60160 )
+[lost_balance_node] ret = (nil)
+[Main]
+73 is root, the type of node is ROOT, precursor 39, successor 85.
+13 is 73's left child, the type of node is TRUNK, precursor 12, successor 17.
+12 is 13's left child, the type of node is LEAF, successor 13.
+39 is 13's right child, the type of node is TRUNK, precursor 17, successor 73.
+17 is 39's left child, the type of node is LEAF, precursor 13, successor 39.
+89 is 73's right child, the type of node is TRUNK, precursor 85, successor 92.
+85 is 89's left child, the type of node is LEAF, precursor 73, successor 89.
+92 is 89's right child, the type of node is TRUNK, precursor 89, successor 96.
+96 is 92's right child, the type of node is LEAF, precursor 92.
+
+n -> key = 91
+[avltree_insert, bstree_insert]
+73 is root, the type of node is ROOT, precursor 39, successor 85.
+13 is 73's left child, the type of node is TRUNK, precursor 12, successor 17.
+12 is 13's left child, the type of node is LEAF, successor 13.
+39 is 13's right child, the type of node is TRUNK, precursor 17, successor 73.
+17 is 39's left child, the type of node is LEAF, precursor 13, successor 39.
+89 is 73's right child, the type of node is TRUNK, precursor 85, successor 91.
+85 is 89's left child, the type of node is LEAF, precursor 73, successor 89.
+92 is 89's right child, the type of node is TRUNK, precursor 91, successor 96.
+91 is 92's left child, the type of node is LEAF, precursor 89, successor 92.
+96 is 92's right child, the type of node is LEAF, precursor 92.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c60130, t -> key = 73
+[lost_balance_node] t -> key = 91( 0x1c60070 )
+[lost_balance_node] t -> father -> key = 92( 0x1c601c0 )
+[lost_balance_node] t -> key = 91( 0x1c60070 )
+[lost_balance_node] t -> father -> key = 92( 0x1c601c0 )
+[lost_balance_node] t -> key = 91( 0x1c60070 )
+[lost_balance_node] t -> father -> key = 92( 0x1c601c0 )
+[lost_balance_node] t -> key = 91( 0x1c60070 )
+[lost_balance_node] ret = (nil)
+[Main]
+73 is root, the type of node is ROOT, precursor 39, successor 85.
+13 is 73's left child, the type of node is TRUNK, precursor 12, successor 17.
+12 is 13's left child, the type of node is LEAF, successor 13.
+39 is 13's right child, the type of node is TRUNK, precursor 17, successor 73.
+17 is 39's left child, the type of node is LEAF, precursor 13, successor 39.
+89 is 73's right child, the type of node is TRUNK, precursor 85, successor 91.
+85 is 89's left child, the type of node is LEAF, precursor 73, successor 89.
+92 is 89's right child, the type of node is TRUNK, precursor 91, successor 96.
+91 is 92's left child, the type of node is LEAF, precursor 89, successor 92.
+96 is 92's right child, the type of node is LEAF, precursor 92.
+
+==========array[8]==========
+Input Numbers : 53 70 65 40 23 90 42 24 17 93 
+
+n -> key = 53
+[avltree_insert, bstree_insert]
+53 is a single node.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 0
+[avltree_insert] t = 0x1c60130, t -> key = 53
+[lost_balance_node] t -> key = 53( 0x1c60130 )
+[lost_balance_node] ret = (nil)
+[Main]
+53 is a single node.
+
+n -> key = 70
+[avltree_insert, bstree_insert]
+53 is root, the type of node is ROOT, successor 70.
+70 is 53's right child, the type of node is LEAF, precursor 53.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 1
+[avltree_insert] t = 0x1c60130, t -> key = 53
+[lost_balance_node] t -> key = 70( 0x1c60010 )
+[lost_balance_node] t -> father -> key = 53( 0x1c60130 )
+[lost_balance_node] t -> key = 70( 0x1c60010 )
+[lost_balance_node] ret = (nil)
+[Main]
+53 is root, the type of node is ROOT, successor 70.
+70 is 53's right child, the type of node is LEAF, precursor 53.
+
+n -> key = 65
+[avltree_insert, bstree_insert]
+53 is root, the type of node is ROOT, successor 65.
+70 is 53's right child, the type of node is TRUNK, precursor 65.
+65 is 70's left child, the type of node is LEAF, precursor 53, successor 70.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c60130, t -> key = 53
+[lost_balance_node] t -> key = 65( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 70( 0x1c60010 )
+[lost_balance_node] t -> key = 65( 0x1c601c0 )
+[lost_balance_node] t -> father -> key = 70( 0x1c60010 )
+[lost_balance_node]  found lost blance Node address is 0x1c60130, value is 53
+[lost_balance_node] ret = 0x1c60130
+====================> k1 -> key  = 53
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 1
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert right left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 1, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 1
+[right_rotation]  type = 4
+[right_left_rotation, right_rotation] k1_has_right = 0
+[right_left_rotation, right_rotation]  k1 -> key = 70, k1 address = 0x1c60010
+[right_left_rotation, right_rotation]  k2 -> key = 65, k2 address = 0x1c601c0
+[right_left_rotation, right_rotation] stat = 0
+[right_left_rotation, right_rotation] ret -> key = 65( 0x1c601c0 )
+[right_left_rotation, right_rotation]
+65 is 65's right child, the type of node is TRUNK, successor 70.
+70 is 65's right child, the type of node is LEAF, precursor 65.
+
+============[right_left_rotation]============
+53 is root, the type of node is ROOT, successor 65.
+65 is 53's right child, the type of node is TRUNK, precursor 53, successor 70.
+70 is 65's right child, the type of node is LEAF, precursor 65.
+
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+65 is root, the type of node is ROOT, precursor 53, successor 70.
+53 is 65's left child, the type of node is LEAF, successor 65.
+70 is 65's right child, the type of node is LEAF, precursor 65.
+
+[Main]
+65 is root, the type of node is ROOT, precursor 53, successor 70.
+53 is 65's left child, the type of node is LEAF, successor 65.
+70 is 65's right child, the type of node is LEAF, precursor 65.
+
+n -> key = 40
+[avltree_insert, bstree_insert]
+65 is root, the type of node is ROOT, precursor 53, successor 70.
+53 is 65's left child, the type of node is TRUNK, precursor 40, successor 65.
+40 is 53's left child, the type of node is LEAF, successor 53.
+70 is 65's right child, the type of node is LEAF, precursor 65.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 1
+[avltree_insert] t = 0x1c601c0, t -> key = 65
+[lost_balance_node] t -> key = 40( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 53( 0x1c60130 )
+[lost_balance_node] t -> key = 40( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 53( 0x1c60130 )
+[lost_balance_node] t -> key = 40( 0x1c600a0 )
+[lost_balance_node] ret = (nil)
+[Main]
+65 is root, the type of node is ROOT, precursor 53, successor 70.
+53 is 65's left child, the type of node is TRUNK, precursor 40, successor 65.
+40 is 53's left child, the type of node is LEAF, successor 53.
+70 is 65's right child, the type of node is LEAF, precursor 65.
+
+n -> key = 23
+[avltree_insert, bstree_insert]
+65 is root, the type of node is ROOT, precursor 53, successor 70.
+53 is 65's left child, the type of node is TRUNK, precursor 40, successor 65.
+40 is 53's left child, the type of node is TRUNK, precursor 23, successor 53.
+23 is 40's left child, the type of node is LEAF, successor 40.
+70 is 65's right child, the type of node is LEAF, precursor 65.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 1
+[avltree_insert] t = 0x1c601c0, t -> key = 65
+[lost_balance_node] t -> key = 23( 0x1c60070 )
+[lost_balance_node] t -> father -> key = 40( 0x1c600a0 )
+[lost_balance_node] t -> key = 23( 0x1c60070 )
+[lost_balance_node] t -> father -> key = 40( 0x1c600a0 )
+[lost_balance_node]  found lost blance Node address is 0x1c60130, value is 53
+[lost_balance_node] ret = 0x1c60130
+====================> k1 -> key  = 53
+====================> get_node_height( k1 -> left  ) = 2
+====================> get_node_height( k1 -> right  ) = 0
+====================> get_node_height( k1 -> left -> right ) = 0
+====================> get_node_height( k1 -> right ) = 0
+[avltree_insert singel left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 2, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 2
+[right_rotation]  type = 3
+[right_rotation,  singel] k1 -> key = 53, k2 -> key = 40
+[right_rotation]
+40 is 40's right child, the type of node is TRUNK, precursor 23, successor 53.
+23 is 40's left child, the type of node is LEAF, successor 40.
+53 is 40's right child, the type of node is LEAF, precursor 40, successor 65.
+
+[Main]
+65 is root, the type of node is ROOT, precursor 53, successor 70.
+40 is 65's left child, the type of node is TRUNK, precursor 23, successor 53.
+23 is 40's left child, the type of node is LEAF, successor 40.
+53 is 40's right child, the type of node is LEAF, precursor 40, successor 65.
+70 is 65's right child, the type of node is LEAF, precursor 65.
+
+n -> key = 90
+[avltree_insert, bstree_insert]
+65 is root, the type of node is ROOT, precursor 53, successor 70.
+40 is 65's left child, the type of node is TRUNK, precursor 23, successor 53.
+23 is 40's left child, the type of node is LEAF, successor 40.
+53 is 40's right child, the type of node is LEAF, precursor 40, successor 65.
+70 is 65's right child, the type of node is TRUNK, precursor 65, successor 90.
+90 is 70's right child, the type of node is LEAF, precursor 70.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c601c0, t -> key = 65
+[lost_balance_node] t -> key = 90( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 70( 0x1c60010 )
+[lost_balance_node] t -> key = 90( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 70( 0x1c60010 )
+[lost_balance_node] t -> key = 90( 0x1c600d0 )
+[lost_balance_node] ret = (nil)
+[Main]
+65 is root, the type of node is ROOT, precursor 53, successor 70.
+40 is 65's left child, the type of node is TRUNK, precursor 23, successor 53.
+23 is 40's left child, the type of node is LEAF, successor 40.
+53 is 40's right child, the type of node is LEAF, precursor 40, successor 65.
+70 is 65's right child, the type of node is TRUNK, precursor 65, successor 90.
+90 is 70's right child, the type of node is LEAF, precursor 70.
+
+n -> key = 42
+[avltree_insert, bstree_insert]
+65 is root, the type of node is ROOT, precursor 53, successor 70.
+40 is 65's left child, the type of node is TRUNK, precursor 23, successor 42.
+23 is 40's left child, the type of node is LEAF, successor 40.
+53 is 40's right child, the type of node is TRUNK, precursor 42, successor 65.
+42 is 53's left child, the type of node is LEAF, precursor 40, successor 53.
+70 is 65's right child, the type of node is TRUNK, precursor 65, successor 90.
+90 is 70's right child, the type of node is LEAF, precursor 70.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c601c0, t -> key = 65
+[lost_balance_node] t -> key = 42( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 53( 0x1c60130 )
+[lost_balance_node] t -> key = 42( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 53( 0x1c60130 )
+[lost_balance_node] t -> key = 42( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 53( 0x1c60130 )
+[lost_balance_node] t -> key = 42( 0x1c60040 )
+[lost_balance_node] ret = (nil)
+[Main]
+65 is root, the type of node is ROOT, precursor 53, successor 70.
+40 is 65's left child, the type of node is TRUNK, precursor 23, successor 42.
+23 is 40's left child, the type of node is LEAF, successor 40.
+53 is 40's right child, the type of node is TRUNK, precursor 42, successor 65.
+42 is 53's left child, the type of node is LEAF, precursor 40, successor 53.
+70 is 65's right child, the type of node is TRUNK, precursor 65, successor 90.
+90 is 70's right child, the type of node is LEAF, precursor 70.
+
+n -> key = 24
+[avltree_insert, bstree_insert]
+65 is root, the type of node is ROOT, precursor 53, successor 70.
+40 is 65's left child, the type of node is TRUNK, precursor 24, successor 42.
+23 is 40's left child, the type of node is TRUNK, successor 24.
+24 is 23's right child, the type of node is LEAF, precursor 23, successor 40.
+53 is 40's right child, the type of node is TRUNK, precursor 42, successor 65.
+42 is 53's left child, the type of node is LEAF, precursor 40, successor 53.
+70 is 65's right child, the type of node is TRUNK, precursor 65, successor 90.
+90 is 70's right child, the type of node is LEAF, precursor 70.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c601c0, t -> key = 65
+[lost_balance_node] t -> key = 24( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 23( 0x1c60070 )
+[lost_balance_node] t -> key = 24( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 23( 0x1c60070 )
+[lost_balance_node] t -> key = 24( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 23( 0x1c60070 )
+[lost_balance_node] t -> key = 24( 0x1c60100 )
+[lost_balance_node] ret = (nil)
+[Main]
+65 is root, the type of node is ROOT, precursor 53, successor 70.
+40 is 65's left child, the type of node is TRUNK, precursor 24, successor 42.
+23 is 40's left child, the type of node is TRUNK, successor 24.
+24 is 23's right child, the type of node is LEAF, precursor 23, successor 40.
+53 is 40's right child, the type of node is TRUNK, precursor 42, successor 65.
+42 is 53's left child, the type of node is LEAF, precursor 40, successor 53.
+70 is 65's right child, the type of node is TRUNK, precursor 65, successor 90.
+90 is 70's right child, the type of node is LEAF, precursor 70.
+
+n -> key = 17
+[avltree_insert, bstree_insert]
+65 is root, the type of node is ROOT, precursor 53, successor 70.
+40 is 65's left child, the type of node is TRUNK, precursor 24, successor 42.
+23 is 40's left child, the type of node is TRUNK, precursor 17, successor 24.
+17 is 23's left child, the type of node is LEAF, successor 23.
+24 is 23's right child, the type of node is LEAF, precursor 23, successor 40.
+53 is 40's right child, the type of node is TRUNK, precursor 42, successor 65.
+42 is 53's left child, the type of node is LEAF, precursor 40, successor 53.
+70 is 65's right child, the type of node is TRUNK, precursor 65, successor 90.
+90 is 70's right child, the type of node is LEAF, precursor 70.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c601c0, t -> key = 65
+[lost_balance_node] t -> key = 17( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 23( 0x1c60070 )
+[lost_balance_node] t -> key = 17( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 23( 0x1c60070 )
+[lost_balance_node] t -> key = 17( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 23( 0x1c60070 )
+[lost_balance_node] t -> key = 17( 0x1c60160 )
+[lost_balance_node] ret = (nil)
+[Main]
+65 is root, the type of node is ROOT, precursor 53, successor 70.
+40 is 65's left child, the type of node is TRUNK, precursor 24, successor 42.
+23 is 40's left child, the type of node is TRUNK, precursor 17, successor 24.
+17 is 23's left child, the type of node is LEAF, successor 23.
+24 is 23's right child, the type of node is LEAF, precursor 23, successor 40.
+53 is 40's right child, the type of node is TRUNK, precursor 42, successor 65.
+42 is 53's left child, the type of node is LEAF, precursor 40, successor 53.
+70 is 65's right child, the type of node is TRUNK, precursor 65, successor 90.
+90 is 70's right child, the type of node is LEAF, precursor 70.
+
+n -> key = 93
+[avltree_insert, bstree_insert]
+65 is root, the type of node is ROOT, precursor 53, successor 70.
+40 is 65's left child, the type of node is TRUNK, precursor 24, successor 42.
+23 is 40's left child, the type of node is TRUNK, precursor 17, successor 24.
+17 is 23's left child, the type of node is LEAF, successor 23.
+24 is 23's right child, the type of node is LEAF, precursor 23, successor 40.
+53 is 40's right child, the type of node is TRUNK, precursor 42, successor 65.
+42 is 53's left child, the type of node is LEAF, precursor 40, successor 53.
+70 is 65's right child, the type of node is TRUNK, precursor 65, successor 90.
+90 is 70's right child, the type of node is TRUNK, precursor 70, successor 93.
+93 is 90's right child, the type of node is LEAF, precursor 90.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c601c0, t -> key = 65
+[lost_balance_node] t -> key = 93( 0x1c60190 )
+[lost_balance_node] t -> father -> key = 90( 0x1c600d0 )
+[lost_balance_node] t -> key = 93( 0x1c60190 )
+[lost_balance_node] t -> father -> key = 90( 0x1c600d0 )
+[lost_balance_node]  found lost blance Node address is 0x1c60010, value is 70
+[lost_balance_node] ret = 0x1c60010
+====================> k1 -> key  = 70
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 0
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert singel right rotation]
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+90 is 90's right child, the type of node is TRUNK, precursor 70, successor 93.
+70 is 90's left child, the type of node is LEAF, precursor 65, successor 90.
+93 is 90's right child, the type of node is LEAF, precursor 90.
+
+[Main]
+65 is root, the type of node is ROOT, precursor 53, successor 70.
+40 is 65's left child, the type of node is TRUNK, precursor 24, successor 42.
+23 is 40's left child, the type of node is TRUNK, precursor 17, successor 24.
+17 is 23's left child, the type of node is LEAF, successor 23.
+24 is 23's right child, the type of node is LEAF, precursor 23, successor 40.
+53 is 40's right child, the type of node is TRUNK, precursor 42, successor 65.
+42 is 53's left child, the type of node is LEAF, precursor 40, successor 53.
+90 is 65's right child, the type of node is TRUNK, precursor 70, successor 93.
+70 is 90's left child, the type of node is LEAF, precursor 65, successor 90.
+93 is 90's right child, the type of node is LEAF, precursor 90.
+
+==========array[9]==========
+Input Numbers : 57 51 85 89 87 17 10 15 95 12 
+
+n -> key = 57
+[avltree_insert, bstree_insert]
+57 is a single node.
+[avltree_insert] get_node_height( t -> left ) = 0
+[avltree_insert] get_node_height( t -> right ) = 0
+[avltree_insert] t = 0x1c601c0, t -> key = 57
+[lost_balance_node] t -> key = 57( 0x1c601c0 )
+[lost_balance_node] ret = (nil)
+[Main]
+57 is a single node.
+
+n -> key = 51
+[avltree_insert, bstree_insert]
+57 is root, the type of node is ROOT, precursor 51.
+51 is 57's left child, the type of node is LEAF, successor 57.
+[avltree_insert] get_node_height( t -> left ) = 1
+[avltree_insert] get_node_height( t -> right ) = 0
+[avltree_insert] t = 0x1c601c0, t -> key = 57
+[lost_balance_node] t -> key = 51( 0x1c600d0 )
+[lost_balance_node] t -> father -> key = 57( 0x1c601c0 )
+[lost_balance_node] t -> key = 51( 0x1c600d0 )
+[lost_balance_node] ret = (nil)
+[Main]
+57 is root, the type of node is ROOT, precursor 51.
+51 is 57's left child, the type of node is LEAF, successor 57.
+
+n -> key = 85
+[avltree_insert, bstree_insert]
+57 is root, the type of node is ROOT, precursor 51, successor 85.
+51 is 57's left child, the type of node is LEAF, successor 57.
+85 is 57's right child, the type of node is LEAF, precursor 57.
+[avltree_insert] get_node_height( t -> left ) = 1
+[avltree_insert] get_node_height( t -> right ) = 1
+[avltree_insert] t = 0x1c601c0, t -> key = 57
+[lost_balance_node] t -> key = 85( 0x1c60190 )
+[lost_balance_node] t -> father -> key = 57( 0x1c601c0 )
+[lost_balance_node] t -> key = 85( 0x1c60190 )
+[lost_balance_node] ret = (nil)
+[Main]
+57 is root, the type of node is ROOT, precursor 51, successor 85.
+51 is 57's left child, the type of node is LEAF, successor 57.
+85 is 57's right child, the type of node is LEAF, precursor 57.
+
+n -> key = 89
+[avltree_insert, bstree_insert]
+57 is root, the type of node is ROOT, precursor 51, successor 85.
+51 is 57's left child, the type of node is LEAF, successor 57.
+85 is 57's right child, the type of node is TRUNK, precursor 57, successor 89.
+89 is 85's right child, the type of node is LEAF, precursor 85.
+[avltree_insert] get_node_height( t -> left ) = 1
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c601c0, t -> key = 57
+[lost_balance_node] t -> key = 89( 0x1c60010 )
+[lost_balance_node] t -> father -> key = 85( 0x1c60190 )
+[lost_balance_node] t -> key = 89( 0x1c60010 )
+[lost_balance_node] t -> father -> key = 85( 0x1c60190 )
+[lost_balance_node] t -> key = 89( 0x1c60010 )
+[lost_balance_node] ret = (nil)
+[Main]
+57 is root, the type of node is ROOT, precursor 51, successor 85.
+51 is 57's left child, the type of node is LEAF, successor 57.
+85 is 57's right child, the type of node is TRUNK, precursor 57, successor 89.
+89 is 85's right child, the type of node is LEAF, precursor 85.
+
+n -> key = 87
+[avltree_insert, bstree_insert]
+57 is root, the type of node is ROOT, precursor 51, successor 85.
+51 is 57's left child, the type of node is LEAF, successor 57.
+85 is 57's right child, the type of node is TRUNK, precursor 57, successor 87.
+89 is 85's right child, the type of node is TRUNK, precursor 87.
+87 is 89's left child, the type of node is LEAF, precursor 85, successor 89.
+[avltree_insert] get_node_height( t -> left ) = 1
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c601c0, t -> key = 57
+[lost_balance_node] t -> key = 87( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 89( 0x1c60010 )
+[lost_balance_node] t -> key = 87( 0x1c600a0 )
+[lost_balance_node] t -> father -> key = 89( 0x1c60010 )
+[lost_balance_node]  found lost blance Node address is 0x1c60190, value is 85
+[lost_balance_node] ret = 0x1c60190
+====================> k1 -> key  = 85
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 1
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert right left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 1, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 1
+[right_rotation]  type = 4
+[right_left_rotation, right_rotation] k1_has_right = 0
+[right_left_rotation, right_rotation]  k1 -> key = 89, k1 address = 0x1c60010
+[right_left_rotation, right_rotation]  k2 -> key = 87, k2 address = 0x1c600a0
+[right_left_rotation, right_rotation] stat = 0
+[right_left_rotation, right_rotation] ret -> key = 87( 0x1c600a0 )
+[right_left_rotation, right_rotation]
+87 is 87's right child, the type of node is TRUNK, precursor 57, successor 89.
+89 is 87's right child, the type of node is LEAF, precursor 87.
+
+============[right_left_rotation]============
+85 is 85's right child, the type of node is TRUNK, precursor 57, successor 87.
+87 is 85's right child, the type of node is TRUNK, precursor 85, successor 89.
+89 is 87's right child, the type of node is LEAF, precursor 87.
+
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+87 is 87's right child, the type of node is TRUNK, precursor 85, successor 89.
+85 is 87's left child, the type of node is LEAF, precursor 57, successor 87.
+89 is 87's right child, the type of node is LEAF, precursor 87.
+
+[Main]
+57 is root, the type of node is ROOT, precursor 51, successor 85.
+51 is 57's left child, the type of node is LEAF, successor 57.
+87 is 57's right child, the type of node is TRUNK, precursor 85, successor 89.
+85 is 87's left child, the type of node is LEAF, precursor 57, successor 87.
+89 is 87's right child, the type of node is LEAF, precursor 87.
+
+n -> key = 17
+[avltree_insert, bstree_insert]
+57 is root, the type of node is ROOT, precursor 51, successor 85.
+51 is 57's left child, the type of node is TRUNK, precursor 17, successor 57.
+17 is 51's left child, the type of node is LEAF, successor 51.
+87 is 57's right child, the type of node is TRUNK, precursor 85, successor 89.
+85 is 87's left child, the type of node is LEAF, precursor 57, successor 87.
+89 is 87's right child, the type of node is LEAF, precursor 87.
+[avltree_insert] get_node_height( t -> left ) = 2
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c601c0, t -> key = 57
+[lost_balance_node] t -> key = 17( 0x1c60130 )
+[lost_balance_node] t -> father -> key = 51( 0x1c600d0 )
+[lost_balance_node] t -> key = 17( 0x1c60130 )
+[lost_balance_node] t -> father -> key = 51( 0x1c600d0 )
+[lost_balance_node] t -> key = 17( 0x1c60130 )
+[lost_balance_node] ret = (nil)
+[Main]
+57 is root, the type of node is ROOT, precursor 51, successor 85.
+51 is 57's left child, the type of node is TRUNK, precursor 17, successor 57.
+17 is 51's left child, the type of node is LEAF, successor 51.
+87 is 57's right child, the type of node is TRUNK, precursor 85, successor 89.
+85 is 87's left child, the type of node is LEAF, precursor 57, successor 87.
+89 is 87's right child, the type of node is LEAF, precursor 87.
+
+n -> key = 10
+[avltree_insert, bstree_insert]
+57 is root, the type of node is ROOT, precursor 51, successor 85.
+51 is 57's left child, the type of node is TRUNK, precursor 17, successor 57.
+17 is 51's left child, the type of node is TRUNK, precursor 10, successor 51.
+10 is 17's left child, the type of node is LEAF, successor 17.
+87 is 57's right child, the type of node is TRUNK, precursor 85, successor 89.
+85 is 87's left child, the type of node is LEAF, precursor 57, successor 87.
+89 is 87's right child, the type of node is LEAF, precursor 87.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c601c0, t -> key = 57
+[lost_balance_node] t -> key = 10( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 17( 0x1c60130 )
+[lost_balance_node] t -> key = 10( 0x1c60040 )
+[lost_balance_node] t -> father -> key = 17( 0x1c60130 )
+[lost_balance_node]  found lost blance Node address is 0x1c600d0, value is 51
+[lost_balance_node] ret = 0x1c600d0
+====================> k1 -> key  = 51
+====================> get_node_height( k1 -> left  ) = 2
+====================> get_node_height( k1 -> right  ) = 0
+====================> get_node_height( k1 -> left -> right ) = 0
+====================> get_node_height( k1 -> right ) = 0
+[avltree_insert singel left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 2, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 2
+[right_rotation]  type = 3
+[right_rotation,  singel] k1 -> key = 51, k2 -> key = 17
+[right_rotation]
+17 is 17's right child, the type of node is TRUNK, precursor 10, successor 51.
+10 is 17's left child, the type of node is LEAF, successor 17.
+51 is 17's right child, the type of node is LEAF, precursor 17, successor 57.
+
+[Main]
+57 is root, the type of node is ROOT, precursor 51, successor 85.
+17 is 57's left child, the type of node is TRUNK, precursor 10, successor 51.
+10 is 17's left child, the type of node is LEAF, successor 17.
+51 is 17's right child, the type of node is LEAF, precursor 17, successor 57.
+87 is 57's right child, the type of node is TRUNK, precursor 85, successor 89.
+85 is 87's left child, the type of node is LEAF, precursor 57, successor 87.
+89 is 87's right child, the type of node is LEAF, precursor 87.
+
+n -> key = 15
+[avltree_insert, bstree_insert]
+57 is root, the type of node is ROOT, precursor 51, successor 85.
+17 is 57's left child, the type of node is TRUNK, precursor 15, successor 51.
+10 is 17's left child, the type of node is TRUNK, successor 15.
+15 is 10's right child, the type of node is LEAF, precursor 10, successor 17.
+51 is 17's right child, the type of node is LEAF, precursor 17, successor 57.
+87 is 57's right child, the type of node is TRUNK, precursor 85, successor 89.
+85 is 87's left child, the type of node is LEAF, precursor 57, successor 87.
+89 is 87's right child, the type of node is LEAF, precursor 87.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 2
+[avltree_insert] t = 0x1c601c0, t -> key = 57
+[lost_balance_node] t -> key = 15( 0x1c60070 )
+[lost_balance_node] t -> father -> key = 10( 0x1c60040 )
+[lost_balance_node] t -> key = 15( 0x1c60070 )
+[lost_balance_node] t -> father -> key = 10( 0x1c60040 )
+[lost_balance_node] t -> key = 15( 0x1c60070 )
+[lost_balance_node] t -> father -> key = 10( 0x1c60040 )
+[lost_balance_node] t -> key = 15( 0x1c60070 )
+[lost_balance_node] ret = (nil)
+[Main]
+57 is root, the type of node is ROOT, precursor 51, successor 85.
+17 is 57's left child, the type of node is TRUNK, precursor 15, successor 51.
+10 is 17's left child, the type of node is TRUNK, successor 15.
+15 is 10's right child, the type of node is LEAF, precursor 10, successor 17.
+51 is 17's right child, the type of node is LEAF, precursor 17, successor 57.
+87 is 57's right child, the type of node is TRUNK, precursor 85, successor 89.
+85 is 87's left child, the type of node is LEAF, precursor 57, successor 87.
+89 is 87's right child, the type of node is LEAF, precursor 87.
+
+n -> key = 95
+[avltree_insert, bstree_insert]
+57 is root, the type of node is ROOT, precursor 51, successor 85.
+17 is 57's left child, the type of node is TRUNK, precursor 15, successor 51.
+10 is 17's left child, the type of node is TRUNK, successor 15.
+15 is 10's right child, the type of node is LEAF, precursor 10, successor 17.
+51 is 17's right child, the type of node is LEAF, precursor 17, successor 57.
+87 is 57's right child, the type of node is TRUNK, precursor 85, successor 89.
+85 is 87's left child, the type of node is LEAF, precursor 57, successor 87.
+89 is 87's right child, the type of node is TRUNK, precursor 87, successor 95.
+95 is 89's right child, the type of node is LEAF, precursor 89.
+[avltree_insert] get_node_height( t -> left ) = 3
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c601c0, t -> key = 57
+[lost_balance_node] t -> key = 95( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 89( 0x1c60010 )
+[lost_balance_node] t -> key = 95( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 89( 0x1c60010 )
+[lost_balance_node] t -> key = 95( 0x1c60100 )
+[lost_balance_node] t -> father -> key = 89( 0x1c60010 )
+[lost_balance_node] t -> key = 95( 0x1c60100 )
+[lost_balance_node] ret = (nil)
+[Main]
+57 is root, the type of node is ROOT, precursor 51, successor 85.
+17 is 57's left child, the type of node is TRUNK, precursor 15, successor 51.
+10 is 17's left child, the type of node is TRUNK, successor 15.
+15 is 10's right child, the type of node is LEAF, precursor 10, successor 17.
+51 is 17's right child, the type of node is LEAF, precursor 17, successor 57.
+87 is 57's right child, the type of node is TRUNK, precursor 85, successor 89.
+85 is 87's left child, the type of node is LEAF, precursor 57, successor 87.
+89 is 87's right child, the type of node is TRUNK, precursor 87, successor 95.
+95 is 89's right child, the type of node is LEAF, precursor 89.
+
+n -> key = 12
+[avltree_insert, bstree_insert]
+57 is root, the type of node is ROOT, precursor 51, successor 85.
+17 is 57's left child, the type of node is TRUNK, precursor 15, successor 51.
+10 is 17's left child, the type of node is TRUNK, successor 12.
+15 is 10's right child, the type of node is TRUNK, precursor 12, successor 17.
+12 is 15's left child, the type of node is LEAF, precursor 10, successor 15.
+51 is 17's right child, the type of node is LEAF, precursor 17, successor 57.
+87 is 57's right child, the type of node is TRUNK, precursor 85, successor 89.
+85 is 87's left child, the type of node is LEAF, precursor 57, successor 87.
+89 is 87's right child, the type of node is TRUNK, precursor 87, successor 95.
+95 is 89's right child, the type of node is LEAF, precursor 89.
+[avltree_insert] get_node_height( t -> left ) = 4
+[avltree_insert] get_node_height( t -> right ) = 3
+[avltree_insert] t = 0x1c601c0, t -> key = 57
+[lost_balance_node] t -> key = 12( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 15( 0x1c60070 )
+[lost_balance_node] t -> key = 12( 0x1c60160 )
+[lost_balance_node] t -> father -> key = 15( 0x1c60070 )
+[lost_balance_node]  found lost blance Node address is 0x1c60040, value is 10
+[lost_balance_node] ret = 0x1c60040
+====================> k1 -> key  = 10
+====================> get_node_height( k1 -> left  ) = 0
+====================> get_node_height( k1 -> right  ) = 2
+====================> get_node_height( k1 -> right -> left ) = 1
+====================> get_node_height( k1 -> left ) = 0
+[avltree_insert right left rotation]
+[right_rotation] get_node_height( k1 -> right ) = 1, get_node_height( k1 -> left ) = 0
+[right_rotation] get_node_height( k1 -> left ) - get_node_height( k1 -> right ) = 1
+[right_rotation]  type = 4
+[right_left_rotation, right_rotation] k1_has_right = 0
+[right_left_rotation, right_rotation]  k1 -> key = 15, k1 address = 0x1c60070
+[right_left_rotation, right_rotation]  k2 -> key = 12, k2 address = 0x1c60160
+[right_left_rotation, right_rotation] stat = 0
+[right_left_rotation, right_rotation] ret -> key = 12( 0x1c60160 )
+[right_left_rotation, right_rotation]
+12 is 12's right child, the type of node is TRUNK, successor 15.
+15 is 12's right child, the type of node is LEAF, precursor 12, successor 17.
+
+============[right_left_rotation]============
+10 is 10's right child, the type of node is TRUNK, successor 12.
+12 is 10's right child, the type of node is TRUNK, precursor 10, successor 15.
+15 is 12's right child, the type of node is LEAF, precursor 12, successor 17.
+
+[left_rotation] get_node_height( k1 -> right ) = 0, get_node_height( k1 -> left ) = 2
+[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = 2
+[left_rotation]
+12 is 12's right child, the type of node is TRUNK, precursor 10, successor 15.
+10 is 12's left child, the type of node is LEAF, successor 12.
+15 is 12's right child, the type of node is LEAF, precursor 12, successor 17.
+
+[Main]
+57 is root, the type of node is ROOT, precursor 51, successor 85.
+17 is 57's left child, the type of node is TRUNK, precursor 15, successor 51.
+12 is 17's left child, the type of node is TRUNK, precursor 10, successor 15.
+10 is 12's left child, the type of node is LEAF, successor 12.
+15 is 12's right child, the type of node is LEAF, precursor 12, successor 17.
+51 is 17's right child, the type of node is LEAF, precursor 17, successor 57.
+87 is 57's right child, the type of node is TRUNK, precursor 85, successor 89.
+85 is 87's left child, the type of node is LEAF, precursor 57, successor 87.
+89 is 87's right child, the type of node is TRUNK, precursor 87, successor 95.
+95 is 89's right child, the type of node is LEAF, precursor 89.
+
