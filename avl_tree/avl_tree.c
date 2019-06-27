@@ -7,7 +7,6 @@
 
 static Node* create_avltree_node( int key, Node* father, Node* left, Node* right );
 static Node* avltree_insert( AvlTree t, Node* n );
-static Node* avltree_delete( AvlTree t, Node* n );
 static void  printInfo( Node* n, int key, int direction );
 static Node* left_rotation( Node* t );     //ll
 static Node* right_rotation( Node* t );   //rr
@@ -15,8 +14,9 @@ static Node* left_right_rotation( Node* t );    //lr
 static Node* right_left_rotation( Node* t);     //rl
 
 static Node* bstree_insert( AvlTree t, Node* n );
+static Node* bstree_delete( AvlTree t, Node *n );
 
-static Node* lost_balance_node( Node * t );
+static Node *lost_balance_node(Node *t);
 
 static int check_node_type( Node* t );  // 0 NULL, 1 Single, 2, root, 3, left child, 4 right child
 
@@ -156,7 +156,15 @@ Node* insert_avltree( AvlTree t, int key )
 
 Node* delete_avltree( AvlTree t, int key )
 {
-    return NULL;
+    Node* n = avltree_search( t, key );
+    if ( NULL == n ) {
+        printf( "the Node( %d ) is not found!\n", key );
+        return t;
+    }
+
+    t = bstree_delete( t, n );
+
+    return t;
 }
 
 
@@ -292,14 +300,6 @@ static Node* avltree_insert( AvlTree t, Node* n )
     return t;
 }
  */
-
-
-static Node* avltree_delete( AvlTree t, Node* n )
-{
-    return NULL;
-}
-
-
 
 int get_node_height( Node* t ) {
     int tree_deepth;
@@ -695,6 +695,103 @@ static Node* bstree_insert(AvlTree t, Node* n)
 
 }
 
+static Node *bstree_delete( AvlTree t, Node *n )
+{
+    int type = get_node_type( n );
+    if ( 0 == type )
+        return NULL;
+    printf( "%d 's type %d\n", n->key, type );
+    if ( 1 == type )
+    {
+        free( n );
+        return NULL;
+    }
+
+    if ( 4 == type )
+    {
+        if ( n->father->left == n )
+            n->father->left = NULL;
+        else
+            n->father->right = NULL;
+
+        free( n );
+    }
+    else // if(2 == type)
+    {
+        if ( n->left != NULL && n->right == NULL )
+        {
+            Node *p = avltree_precursor( n );
+            if ( 4 == get_node_type( p ) )
+            {
+                if ( p->father->left == p )
+                    p->father->left = NULL;
+                else
+                    p->father->right = NULL;
+            }
+            else
+            {
+                if ( p->left != NULL )
+                {
+                    if ( p->father->left == p )
+                        p->father->left = p->left;
+                    else
+                        p->father->right = p->left;
+
+                    p->left->father = p->father;
+                }
+                else
+                {
+                    if ( p->father->left == p )
+                        p->father->left = p->right;
+                    else
+                        p->father->right = p->right;
+
+                    p->right->father = p->father;
+                }
+            }
+
+            n->key = p->key;
+            free( p );
+        }
+        else if ( n->right != NULL )
+        {
+            Node *s = avltree_successor( n );
+            if ( 4 == get_node_type( s ) )
+            {
+                if ( s->father->left == s )
+                    s->father->left = NULL;
+                else
+                    s->father->right = NULL;
+            }
+            else
+            {
+                if ( s->left != NULL )
+                {
+                    if ( s->father->left == s )
+                        s->father->left = s->left;
+                    else
+                        s->father->right = s->left;
+
+                    s->left->father = s->father;
+                }
+                else
+                {
+                    if ( s->father->left == s )
+                        s->father->left = s->right;
+                    else
+                        s->father->right = s->right;
+
+                    s->right->father = s->father;
+                }
+            }
+
+            n->key = s->key;
+            free( s );
+        }
+    }
+
+    return t;
+}
 
 static Node* lost_balance_node( Node * t )
 {

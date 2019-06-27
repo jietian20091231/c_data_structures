@@ -11,6 +11,7 @@ typedef struct _node {
 void preorder_avltree( AvlTree t );
 void inorder_avltree( AvlTree t );
 void postorder_avltree( AvlTree t );
+void print_avltree( AvlTree t, int key, int direction );
 
 Node* avltree_search( AvlTree t, int key );
 Node* iterative_avltree_search( AvlTree t, int key );

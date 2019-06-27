@@ -3,6 +3,7 @@
 
 int main(int argc, char const *argv[])
 {
+    /*
   int array[ 10 ][ 10 ] = {
         { 95, 66, 73, 97, 83, 35, 79, 78, 28, 80 },     //0
         { 75, 37, 85, 28, 84, 33, 93, 17, 65, 57 },     //1
@@ -15,6 +16,11 @@ int main(int argc, char const *argv[])
         { 53, 70, 65, 40, 23, 90, 42, 24, 17, 93 },     //8
         { 57, 51, 85, 89, 87, 17, 10, 15, 95, 12 }      //9
     };
+ */
+
+    int array[1][10] = {
+        { 51, 26, 16, 23, 31, 27, 97, 54, 130, 109 }
+    }; 
 
     int i, j;
 
@@ -29,7 +35,7 @@ int main(int argc, char const *argv[])
 
 
 
-    for ( i = 0; i < 10; i++ ) {
+    for ( i = 0; i < 1; i++ ) {
         printf( "==========array[%d]==========\n", i );
         printf( "Input Numbers : " );
         for( j = 0; j < 10; j++ ) {
@@ -44,6 +50,17 @@ int main(int argc, char const *argv[])
             print_avltree( t, t -> key , 0 );
             printf( "\n" );
         }
+
+        int key = 26;
+        t = delete_avltree( t, key );
+
+        printf( "After delete Node( %d ):\n", key );
+
+        if ( NULL != t )
+            print_avltree(t, t -> key, 0 );
+        else 
+            printf( "the AvlTree is empty!\n" );
+
         destroy_avltree( t );
 
     }
