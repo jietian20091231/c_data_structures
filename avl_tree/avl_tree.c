@@ -16,7 +16,8 @@ static Node* right_left_rotation( Node* t);     //rl
 static Node* bstree_insert( AvlTree t, Node* n );
 static Node* bstree_delete( AvlTree t, Node *n );
 
-static Node *lost_balance_node(Node *t);
+static Node *insert_lost_balance_node( Node * t );
+static Node *lost_balance_node( Node * t );
 
 static int check_node_type( Node* t );  // 0 NULL, 1 Single, 2, root, 3, left child, 4 right child
 
@@ -158,11 +159,57 @@ Node* delete_avltree( AvlTree t, int key )
 {
     Node* n = avltree_search( t, key );
     if ( NULL == n ) {
-        printf( "the Node( %d ) is not found!\n", key );
+        printf( "[delete_avltree] the Node( %d ) is not found!\n", key );
         return t;
     }
 
+    Node* n_father = n -> father;
+    if( n_father != NULL ) {
+        printf( "[delete_avltree] n_father -> key = %d\n", n_father -> key );
+    }
+
     t = bstree_delete( t, n );
+    if( NULL == t ) {
+        return t;
+    }
+
+    printf( "[delete_avltree, bstree_delete]\n" );
+    print_avltree( t, t -> key, 0 );
+
+    Node* k1 = lost_balance_node( n_father );
+    if ( k1 == NULL ) return t;
+
+    if( k1 != NULL ) {
+        printf( "====================> k1 -> key  = %d\n", k1 -> key );
+        printf( "====================> get_node_height( k1 -> left  ) = %d\n", get_node_height( k1 -> left  ) );
+        printf( "====================> get_node_height( k1 -> right  ) = %d\n", get_node_height( k1 -> right  ) );
+        if( get_node_height( k1 -> left  ) > get_node_height( k1 -> right) ) {
+                printf( "====================> get_node_height( k1 -> left -> right ) = %d\n", get_node_height( k1 -> left -> right ) );
+                printf( "====================> get_node_height( k1 -> right ) = %d\n", get_node_height( k1 -> right ) );
+                if ( get_node_height( k1 -> left -> right ) == get_node_height( k1 -> right ) ) {
+                    printf( "[delete_avltree singel left rotation]\n" );
+                    k1 = right_rotation( k1 );
+                    if ( NULL == k1 -> father ) t = k1; //change root node
+                } else {
+                    printf( "[delete_avltree left right rotation]\n" );
+                    k1 = left_right_rotation( k1 );
+                    if ( NULL == k1 -> father ) t = k1;
+                }
+
+        } else if ( get_node_height( k1 -> left  ) < get_node_height( k1 -> right) ) {
+                printf( "====================> get_node_height( k1 -> right -> left ) = %d\n", get_node_height( k1 -> right -> left ) );
+                printf( "====================> get_node_height( k1 -> left ) = %d\n", get_node_height( k1 -> left ) );
+                if ( get_node_height( k1 -> right -> left ) == get_node_height( k1 -> left ) ) {
+                    printf( "[delete_avltree singel right rotation]\n" );
+                    k1 = left_rotation( k1 );
+                    if ( NULL == k1 -> father ) t = k1; //change root node
+                } else {
+                    printf( "[delete_avltree right left rotation]\n" );
+                    k1 = right_left_rotation( k1 );
+                    if ( NULL == k1 -> father ) t = k1;
+                }
+        }
+    }
 
     return t;
 }
@@ -253,53 +300,6 @@ static Node* avltree_insert( AvlTree t, Node * n )
     return t;
 }
 
-/*
-static Node* avltree_insert( AvlTree t, Node* n )
-{
-    t = bstree_insert( t, n );
-    printf( "[avltree_insert, bstree_insert]\n" );
-    print_avltree( t, t -> key, 0 );
-
-    printf( "[avltree_insert] get_node_height( t -> left ) = %d\n", get_node_height( t -> left ) );
-    printf( "[avltree_insert] get_node_height( t -> left ) = %d\n", get_node_height( t -> right ) );
-    printf( "[avltree_insert] t = %p, t -> key = %d\n", t, t -> key );
-
-    if ( t != NULL ) {
-        if( get_node_height( t -> left ) - get_node_height( t -> right ) == -2 ) {
-            //left rotation
-            Node* k1 = lost_balance_node( n );
-            printf( "[avltree_insert left case] k1 -> key = %d\n", k1 -> key );
-            printf( "[avltree_insert left case] k1 -> right  = %p\n", k1 -> right );
-            if ( get_node_height( k1 -> right -> left ) == 0 ) {
-                printf( "[avltree_insert singel left rotation]\n" );
-                k1 = left_rotation( k1 );
-                if ( NULL == k1 -> father ) t = k1; //change root node
-            } else {
-                printf( "[avltree_insert singel right left rotation]\n" );
-                k1 = right_left_rotation( k1 );
-                if ( NULL == k1 -> father ) t = k1;
-            }
-
-
-        } else if( get_node_height( t -> left ) - get_node_height( t -> right ) == 2 ) {
-            //right_rotation
-            Node* k1 = lost_balance_node( n );
-            printf( "[avltree_insert right case] k1 -> key = %d\n", k1 -> key );
-            if ( get_node_height( t -> right )  == 0 ) {
-                printf( "[avltree_insert singel right rotation]\n" );
-                k1 = right_rotation( k1 );
-                if ( NULL == k1 -> father ) t = k1; //change root node
-            } else {
-                printf( "[avltree_insert singel left right rotation]\n" );
-                k1 = left_right_rotation( k1 );
-                if ( NULL == k1 -> father ) t = k1;
-            }
-        }
-    }
-
-    return t;
-}
- */
 
 int get_node_height( Node* t ) {
     int tree_deepth;
@@ -793,24 +793,48 @@ static Node *bstree_delete( AvlTree t, Node *n )
     return t;
 }
 
+// static Node* insert_lost_balance_node( Node * t )
+// {
+//     Node* ret = NULL;
+//     Node* tmp = t;
+//     do {
+//         printf( "[insert_lost_balance_node] t -> key = %d( %p )\n", t -> key, t );
+//         tmp =  tmp -> father;
+//         if( NULL == tmp ) break;
+//         printf( "[insert_lost_balance_node] t -> father -> key = %d( %p )\n", t -> father -> key, t -> father );
+//         int diff = get_node_height( tmp -> left )  - get_node_height( tmp -> right );
+//         if( abs( diff ) == 2 ) {
+//             ret = tmp;
+//             printf( "[insert_lost_balance_node]  found lost blance Node address is %p, value is %d\n", ret , ret -> key );
+//             break;
+//         }
+
+//     } while( 1 );
+
+//     printf( "[insert_lost_balance_node] ret = %p\n", ret );
+//     return ret;
+// }
+
 static Node* lost_balance_node( Node * t )
 {
     Node* ret = NULL;
     Node* tmp = t;
+
     do {
-        printf( "[lost_balance_node] t -> key = %d( %p )\n", t -> key, t );
-        tmp =  tmp -> father;
-        if( NULL == tmp ) break;
-        printf( "[lost_balance_node] t -> father -> key = %d( %p )\n", t -> father -> key, t -> father );
+
+        if ( NULL == tmp ) break;
+
+        printf( "[lost_balance_node] tmp -> key = %d( %p )\n", tmp -> key, tmp );
         int diff = get_node_height( tmp -> left )  - get_node_height( tmp -> right );
-        if( abs( diff ) == 2 ) {
+        if( 2 == abs( diff ) ) {
             ret = tmp;
             printf( "[lost_balance_node]  found lost blance Node address is %p, value is %d\n", ret , ret -> key );
             break;
         }
 
+        tmp = tmp -> father;
+
     } while( 1 );
 
-    printf( "[lost_balance_node] ret = %p\n", ret );
     return ret;
 }
