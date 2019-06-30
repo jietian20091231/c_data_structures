@@ -28,7 +28,7 @@ int main(int argc, char const *argv[])
 
         int i, j;
 
-        for ( i = 0; i < 10; i++ ) {
+        for ( i = 1; i < 2; i++ ) {
             printf( "==========array[%d]==========\n", i );
             printf( "Input Numbers : " );
             for( j = 0; j < 10; j++ ) {
