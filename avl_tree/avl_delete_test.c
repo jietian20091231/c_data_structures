@@ -10,32 +10,32 @@ static void loop_random_test( int array[], int size, int test_counter );
 static void step_delete_test(int r);
 
 int array[ 10 ][ 10 ] = {
- { 37, 57, 30, 17, 73, 77, 96, 18, 99, 27 },
- { 59, 96, 50, 13, 15, 93, 36, 91, 67, 75 },
- { 44, 90, 39, 82, 18, 94, 29, 74, 31, 38 },
- { 94, 90, 63, 34, 49, 72, 85, 56, 51, 44 },
- { 52, 91, 48, 19, 84, 36, 69, 37, 55, 44 },
- { 71, 45, 35, 67, 79, 95, 62, 61, 69, 89 },
- { 25, 36, 53, 11, 75, 77, 87, 31, 28, 83 },
- { 36, 19, 31, 45, 55, 20, 66, 44, 65, 10 },
- { 67, 63, 87, 34, 42, 82, 86, 55, 13, 84 },
- { 45, 29, 20, 50, 30, 47, 79, 69, 68, 59 }
+ { 37, 57, 30, 17, 73, 77, 96, 18, 99, 27 },    //0
+ { 59, 96, 50, 13, 15, 93, 36, 91, 67, 75 },    //1
+ { 44, 90, 39, 82, 18, 94, 29, 74, 31, 38 },    //2
+ { 94, 90, 63, 34, 49, 72, 85, 56, 51, 44 },    //3
+ { 52, 91, 48, 19, 84, 36, 69, 37, 55, 44 },    //4
+ { 71, 45, 35, 67, 79, 95, 62, 61, 69, 89 },    //5
+ { 25, 36, 53, 11, 75, 77, 87, 31, 28, 83 },    //6
+ { 36, 19, 31, 45, 55, 20, 66, 44, 65, 10 },    //7
+ { 67, 63, 87, 34, 42, 82, 86, 55, 13, 84 },    //8
+ { 45, 29, 20, 50, 30, 47, 79, 69, 68, 59 }     //9
 };
 
 
 int main(int argc, char const *argv[])
 {
-    // int i, j;
-    // printf( "sizeof( array ) / sizeof( array[0] ) = %d\n", sizeof( array ) / sizeof( array[0] ) );
-    // printf( " sizeof( array[0] ) / sizeof( int ) = %d\n",  sizeof( array[ 0 ] ) / sizeof( int ) );
+    int i, j;
+    printf( "sizeof( array ) / sizeof( array[0] ) = %ld\n", sizeof( array ) / sizeof( array[0] ) );
+    printf( " sizeof( array[0] ) / sizeof( int ) = %ld\n",  sizeof( array[ 0 ] ) / sizeof( int ) );
 
     // for( i = 0; i < sizeof( array ) / sizeof( array[0] ); i++ ) {
     //     loop_random_test( array[ i ], sizeof( array[i] ) / sizeof( int ), 100 );
     // }
 
-    // loop_random_test( array[ 0 ], 10, 100 );
+    //loop_random_test( array[ 5 ], 10, 1000 );
 
-	step_delete_test( 0 );
+	step_delete_test( 5 );
 	return 0;
 }
 
@@ -44,7 +44,7 @@ static void step_delete_test( int r )
     AvlTree t = NULL;
     int i;
     for ( i = 0; i < 10; i++ ) {
-        t = insert_avltree( t, array[0][ i ] );
+        t = insert_avltree( t, array[ r ][ i ] );
         printf( "[Main]\n" );
         print_avltree( t, t -> key , 0 );
         printf( "\n" );
@@ -52,9 +52,9 @@ static void step_delete_test( int r )
 
     printf("========================\n");
 
-    t = delete_tree_node( t, 37 );
-    // t = delete_tree_node( t, 30 );
-    // t = delete_tree_node( t, 96 );
+    t = delete_tree_node( t, 35 );
+    t = delete_tree_node( t, 71 );
+    t = delete_tree_node( t, 89 );
     // t = delete_tree_node( t, 99 );
     // t = delete_tree_node( t, 17 );
     // t = delete_tree_node( t, 57 );

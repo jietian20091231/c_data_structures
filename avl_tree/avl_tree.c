@@ -174,6 +174,7 @@ Node* delete_avltree( AvlTree t, int key )
     Node* n_successor = avltree_successor( n );
     if( NULL != n_successor ) {
         printf( "[delete_avltree] the Node( %d ) successor is %d( %p )\n", key, n_successor -> key, n_successor );
+        print_node_info( "delete_avltree, n_successor" ,n_successor );
     }
 
     Node* n_father = n -> father;
@@ -186,8 +187,6 @@ Node* delete_avltree( AvlTree t, int key )
     if( NULL == t ) {
         return t;
     }
-
-    print_node_info( "[delete_avltree, n_successor]" ,n_successor );
 
     printf( "[delete_avltree, bstree_delete]\n" );
     print_avltree( t, t -> key, 0 );
@@ -257,22 +256,34 @@ Node* delete_avltree( AvlTree t, int key )
         }
     }
 
-    // check_whole_tree_blanace( t );
-    // if( last_check != NULL ) {
-    //     printf( "[delete_avltree, check_whole_tree_blanace] last_check.key = %d\n", last_check -> key );
-    //     printf("[delete_avltree, check_whole_tree_blanace] get_node_height( last_check -> left ) = %d\n", get_node_height( last_check -> left ) );
-    //     printf("[delete_avltree, check_whole_tree_blanace] get_node_height( last_check -> right ) = %d\n", get_node_height( last_check -> right ) );
-    //     if( get_node_height( last_check -> left ) > get_node_height( last_check -> right ) ) {
-    //         Node* tmp = right_rotation( last_check );
-    //         print_node_info( "[delete_avltree, check_whole_tree_blanace, special_right_rotation]", tmp );
-    //         last_check = NULL;
+    check_whole_tree_blanace( t );
+    if( last_check != NULL ) {
+        printf( "[delete_avltree, check_whole_tree_blanace] last_check.key = %d\n", last_check -> key );
+        printf("[delete_avltree, check_whole_tree_blanace] get_node_height( last_check -> left ) = %d\n", get_node_height( last_check -> left ) );
+        printf("[delete_avltree, check_whole_tree_blanace] get_node_height( last_check -> right ) = %d\n", get_node_height( last_check -> right ) );
+        if( get_node_height( last_check -> left ) > get_node_height( last_check -> right ) ) {
+            Node* tmp = NULL;
+            if( 0 == get_node_height( last_check -> right ) && 0 == get_node_height( last_check -> left -> right ) ) {
+                tmp = right_rotation( last_check );
+            } else if ( 0 == get_node_height( last_check -> right )
+                 && get_node_height( last_check -> left -> left ) == get_node_height( last_check -> left -> right)
+            ) {
+                    printf( "[delete_avltree, check_whole_tree_blanace, special single right rotation]\n" );
+                    tmp = special_right_rotation( last_check );
+            } else {
+                    printf( "[delete_avltree, check_whole_tree_blanace, left right rotation]\n" );
+                    k1 = left_right_rotation( k1 );
+            }
 
-    //     } else if (  get_node_height( last_check -> left ) > get_node_height( last_check -> right ) ) {
-    //         Node* tmp = left_rotation( last_check );
-    //         print_node_info( "[delete_avltree, check_whole_tree_blanace, special_left_rotation]", tmp );
-    //         last_check = NULL;
-    //     }
-    // }
+            print_node_info( "[delete_avltree, check_whole_tree_blanace, special_right_rotation]", tmp );
+            last_check = NULL;
+
+        } else if (  get_node_height( last_check -> left ) > get_node_height( last_check -> right ) ) {
+            Node* tmp = left_rotation( last_check );
+            print_node_info( "[delete_avltree, check_whole_tree_blanace, special_left_rotation]", tmp );
+            last_check = NULL;
+        }
+    }
 
 
     return t;
@@ -400,7 +411,7 @@ int get_node_deepth( Node* n )
     return depth;
 }
 
-
+// 0 NULL, 1 single, 2 root, 4, leaf, 3 TRUNk
 int get_node_type( Node* n )
 {
     int type = 0;
@@ -513,7 +524,8 @@ static Node* left_rotation( Node* k1 )
 {
     Node* ret = NULL;
     int type = check_node_type( k1 );
-    printf( "[left_rotation] get_node_height( k1 -> right ) = %d, get_node_height( k1 -> left ) = %d\n", get_node_height( k1 -> left ), get_node_height( k1 -> right ) );
+    printf( "[left_rotation] k1 -> key = %d\n",  k1 -> key );
+    printf( "[left_rotation] get_node_height( k1 -> right ) = %d, get_node_height( k1 -> left ) = %d\n", get_node_height( k1 -> right ), get_node_height( k1 -> left ) );
     printf( "[left_rotation] get_node_height( k1 -> right ) - get_node_height( k1 -> left ) = %d\n", get_node_height( k1 -> right ) - get_node_height( k1 -> left ) );
     if ( 2 == get_node_height( k1 -> right ) - get_node_height( k1 -> left ) ) {
         Node* k2 = k1 -> right;
@@ -550,8 +562,9 @@ static Node* left_rotation( Node* k1 )
         printf( "\n" );
 
     } else {
-
+        printf( "[left_right_rotation, left_rotation] k1 = ( %d )%p, k2 = %p\n", k1 -> key, k1, k1 -> right );
         Node* k2 = k1 -> right;
+        printf( "[left_right_rotation, left_rotation] k2 = %p, k2 -> key = %d\n", k2, k2 -> key );
         printf( "[left_right_rotation, left_rotation] k2 -> left = %p\n", k2 -> left );
         int k1_has_left = ( k1 -> left ) ? 1 : 0;
 
@@ -910,7 +923,8 @@ static Node* special_left_rotation( Node * k1 )
     Node * k2 = k1 -> right;
     Node * k3 = k2 -> left;
 
-    int type = get_node_type( k1 );
+    int type = check_node_type( k1 );
+    printf( "[special_left_rotation] k1 = %d, get_node_type( k1 ) = %d\n", k1 -> key ,get_node_type( k1 ) );
 
     k2 -> father = k1 -> father;
     k2 -> left = k1;
@@ -934,7 +948,7 @@ static Node* special_right_rotation( Node * k1 )
     Node * k2 = k1 -> left;
     Node * k3 = k2 -> right;
 
-    int type = get_node_type( k1 );
+    int type = check_node_type( k1 );
 
     k2 -> father = k1 -> father;
     k2 -> right = k1;
