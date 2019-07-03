@@ -183,7 +183,6 @@ Node* delete_avltree( AvlTree t, int key )
     }
 
     t = bstree_delete( t, n );
-    printf( "--------\n" );
     if( NULL == t ) {
         return t;
     }
@@ -203,6 +202,7 @@ Node* delete_avltree( AvlTree t, int key )
         if ( n_father != NULL && 2 == abs( get_node_height( n_father -> left ) - get_node_height( n -> father -> right ) ) ) {
             k1 = n_father;
         } else {
+            printf( "[delete_avltree, lost_balance_node] n_successor -> key = %d\n" , n_successor -> key );
             k1 = lost_balance_node( n_successor );
         }
 
@@ -262,26 +262,42 @@ Node* delete_avltree( AvlTree t, int key )
         printf("[delete_avltree, check_whole_tree_blanace] get_node_height( last_check -> left ) = %d\n", get_node_height( last_check -> left ) );
         printf("[delete_avltree, check_whole_tree_blanace] get_node_height( last_check -> right ) = %d\n", get_node_height( last_check -> right ) );
         if( get_node_height( last_check -> left ) > get_node_height( last_check -> right ) ) {
-            Node* tmp = NULL;
-            if( 0 == get_node_height( last_check -> right ) && 0 == get_node_height( last_check -> left -> right ) ) {
-                tmp = right_rotation( last_check );
-            } else if ( 0 == get_node_height( last_check -> right )
-                 && get_node_height( last_check -> left -> left ) == get_node_height( last_check -> left -> right)
-            ) {
-                    printf( "[delete_avltree, check_whole_tree_blanace, special single right rotation]\n" );
-                    tmp = special_right_rotation( last_check );
-            } else {
-                    printf( "[delete_avltree, check_whole_tree_blanace, left right rotation]\n" );
-                    k1 = left_right_rotation( k1 );
+            if ( NULL == last_check -> right && NULL == last_check -> left -> right ) {
+                Node* tmp =  right_rotation( last_check );
+                print_node_info( "[delete_avltree, check_whole_tree_blanace, right_rotation]", tmp );
+            } else if ( NULL == last_check -> right
+                && get_node_height( last_check -> left -> left ) == get_node_height( last_check -> left -> right ) )
+            {
+                Node* tmp = special_right_rotation( last_check );
+                print_node_info( "[delete_avltree, check_whole_tree_blanace, special_right_rotation]", tmp );
+            } else if ( NULL == last_check -> right
+                &&  ( NULL == last_check -> left -> left || NULL == last_check -> left -> right ) )
+            {
+                Node* tmp =  special_right_rotation( last_check );
+                print_node_info( "[delete_avltree, check_whole_tree_blanace, special_right_rotation]", tmp );
             }
 
-            print_node_info( "[delete_avltree, check_whole_tree_blanace, special_right_rotation]", tmp );
             last_check = NULL;
 
-        } else if (  get_node_height( last_check -> left ) > get_node_height( last_check -> right ) ) {
-            Node* tmp = left_rotation( last_check );
-            print_node_info( "[delete_avltree, check_whole_tree_blanace, special_left_rotation]", tmp );
+        } else if (  get_node_height( last_check -> left ) < get_node_height( last_check -> right ) ) {
+
+            if ( NULL == last_check -> left && NULL == last_check -> right -> left ) {
+                Node* tmp =  left_rotation( last_check );
+                print_node_info( "[delete_avltree, check_whole_tree_blanace, left_rotation]", tmp );
+            } else if ( NULL == last_check -> left
+                && get_node_height( last_check -> right -> left ) == get_node_height( last_check -> right -> right ) )
+            {
+                Node* tmp = special_left_rotation( last_check );
+                print_node_info( "[delete_avltree, check_whole_tree_blanace, special_left_rotation]", tmp );
+            } else if ( NULL == last_check -> left
+                &&  ( NULL == last_check -> right -> left || NULL == last_check -> right -> right ) )
+            {
+                Node* tmp =  special_left_rotation( last_check );
+                print_node_info( "[delete_avltree, check_whole_tree_blanace, special_left_rotation]", tmp );
+            }
+
             last_check = NULL;
+
         }
     }
 
@@ -870,27 +886,6 @@ static Node *bstree_delete( AvlTree t, Node *n )
     return t;
 }
 
-// static Node* insert_lost_balance_node( Node * t )
-// {
-//     Node* ret = NULL;
-//     Node* tmp = t;
-//     do {
-//         printf( "[insert_lost_balance_node] t -> key = %d( %p )\n", t -> key, t );
-//         tmp =  tmp -> father;
-//         if( NULL == tmp ) break;
-//         printf( "[insert_lost_balance_node] t -> father -> key = %d( %p )\n", t -> father -> key, t -> father );
-//         int diff = get_node_height( tmp -> left )  - get_node_height( tmp -> right );
-//         if( abs( diff ) == 2 ) {
-//             ret = tmp;
-//             printf( "[insert_lost_balance_node]  found lost blance Node address is %p, value is %d\n", ret , ret -> key );
-//             break;
-//         }
-
-//     } while( 1 );
-
-//     printf( "[insert_lost_balance_node] ret = %p\n", ret );
-//     return ret;
-// }
 
 static Node* lost_balance_node( Node * t )
 {

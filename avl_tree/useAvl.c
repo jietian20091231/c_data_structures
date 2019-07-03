@@ -49,7 +49,7 @@ int main(int argc, char const *argv[])
         randomGen( array [ i ] );
     }
 
-    printf( "array[ %d ][ %d ] = {\n ", ROW, COL );
+    printf( "int array[ %d ][ %d ] = {\n ", ROW, COL );
     for ( i = 0; i < ROW; i++ ) {
         printf( " { " );
         for ( j = 0; j < COL; j++ ) {
@@ -60,7 +60,12 @@ int main(int argc, char const *argv[])
             }
 
         }
-        printf( "}\n" );
+        if ( i < ROW - 1  ) {
+            printf( "},\n" );
+        } else {
+            printf( "}\n" );
+        }
+
     }
 
     printf( "}\n" );
